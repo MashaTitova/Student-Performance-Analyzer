@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|d:\\_git\\student-performance-analyzer\\student-performance-analyzer\\analyzer.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|solutionrelative:analyzer.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|d:\\_git\\student-performance-analyzer\\student-performance-analyzer\\analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|solutionrelative:analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|d:\\_git\\student-performance-analyzer\\student-performance-analyzer\\analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|solutionrelative:analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|d:\\_git\\student-performance-analyzer\\student-performance-analyzer\\analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|solutionrelative:analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -32,23 +28,10 @@
               "RelativeDocumentMoniker": "Analyzer.cs",
               "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs*",
               "RelativeToolTip": "Analyzer.cs*",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAkwHoAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwCMAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T13:12:42.609Z",
               "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Analyzer.Designer.cs",
-              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.Designer.cs",
-              "RelativeDocumentMoniker": "Analyzer.Designer.cs",
-              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.Designer.cs",
-              "RelativeToolTip": "Analyzer.Designer.cs",
-              "ViewState": "AgIAAPwCAAAAAAAAAAAAAA4DAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-09T15:08:59.218Z",
               "EditorCaption": ""
             },
             {
@@ -65,7 +48,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Analyzer.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs",
               "RelativeDocumentMoniker": "Analyzer.cs",

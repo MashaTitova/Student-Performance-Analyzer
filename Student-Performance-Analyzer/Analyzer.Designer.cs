@@ -34,9 +34,6 @@
             ExportingReportsHome_button = new Button();
             ExitApp_button = new Button();
             Home_panel = new Panel();
-            HomeButtons_flowLayoutPanel = new FlowLayoutPanel();
-            LoadFile_button = new Button();
-            BuildingRatingsHome_button = new Button();
             Rating_panel = new Panel();
             RatingStudent_button = new Button();
             Group_button = new Button();
@@ -57,10 +54,20 @@
             StatInfoNum_label = new Label();
             Base_panel = new Panel();
             StudentInfo_dataGridView = new DataGridView();
+            StudentsID = new DataGridViewTextBoxColumn();
             StudentName = new DataGridViewTextBoxColumn();
             Cours = new DataGridViewTextBoxColumn();
             Group = new DataGridViewTextBoxColumn();
-            Subject = new DataGridViewTextBoxColumn();
+            Subject1 = new DataGridViewTextBoxColumn();
+            Subject2 = new DataGridViewTextBoxColumn();
+            Subject3 = new DataGridViewTextBoxColumn();
+            Subject4 = new DataGridViewTextBoxColumn();
+            Subject5 = new DataGridViewTextBoxColumn();
+            Subject6 = new DataGridViewTextBoxColumn();
+            Subject7 = new DataGridViewTextBoxColumn();
+            Subject8 = new DataGridViewTextBoxColumn();
+            Subject9 = new DataGridViewTextBoxColumn();
+            Subject10 = new DataGridViewTextBoxColumn();
             AverageScore = new DataGridViewTextBoxColumn();
             ArrearsNumber = new DataGridViewTextBoxColumn();
             WorkWithBase_panel = new Panel();
@@ -82,8 +89,10 @@
             Remove_button = new Button();
             Return_button = new Button();
             WorkWithBaseInfo_button = new Button();
+            HomeButtons_flowLayoutPanel = new FlowLayoutPanel();
+            LoadFile_button = new Button();
+            BuildingRatingsHome_button = new Button();
             Home_panel.SuspendLayout();
-            HomeButtons_flowLayoutPanel.SuspendLayout();
             Rating_panel.SuspendLayout();
             Chart_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)BarСhart_pictureBox).BeginInit();
@@ -94,6 +103,7 @@
             ((System.ComponentModel.ISupportInitialize)StudentInfo_dataGridView).BeginInit();
             WorkWithBase_panel.SuspendLayout();
             Button_panel.SuspendLayout();
+            HomeButtons_flowLayoutPanel.SuspendLayout();
             SuspendLayout();
             // 
             // NameUnit_label
@@ -178,51 +188,6 @@
             Home_panel.Name = "Home_panel";
             Home_panel.Size = new Size(1374, 997);
             Home_panel.TabIndex = 7;
-            // 
-            // HomeButtons_flowLayoutPanel
-            // 
-            HomeButtons_flowLayoutPanel.Anchor = AnchorStyles.None;
-            HomeButtons_flowLayoutPanel.AutoSize = true;
-            HomeButtons_flowLayoutPanel.BackColor = Color.Transparent;
-            HomeButtons_flowLayoutPanel.Controls.Add(LoadFile_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(DataSetHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(StatisticalIndicatorsHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(BuildingRatingsHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(ExportingReportsHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(ExitApp_button);
-            HomeButtons_flowLayoutPanel.Location = new Point(427, 200);
-            HomeButtons_flowLayoutPanel.MaximumSize = new Size(700, 800);
-            HomeButtons_flowLayoutPanel.MinimumSize = new Size(496, 582);
-            HomeButtons_flowLayoutPanel.Name = "HomeButtons_flowLayoutPanel";
-            HomeButtons_flowLayoutPanel.Size = new Size(496, 582);
-            HomeButtons_flowLayoutPanel.TabIndex = 9;
-            // 
-            // LoadFile_button
-            // 
-            LoadFile_button.AutoSize = true;
-            LoadFile_button.BackColor = Color.Transparent;
-            LoadFile_button.Dock = DockStyle.Fill;
-            LoadFile_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            LoadFile_button.Location = new Point(3, 3);
-            LoadFile_button.Name = "LoadFile_button";
-            LoadFile_button.Size = new Size(488, 90);
-            LoadFile_button.TabIndex = 7;
-            LoadFile_button.Text = "Загрузить файл";
-            LoadFile_button.UseVisualStyleBackColor = false;
-            LoadFile_button.Click += LoadFile_button_Click;
-            // 
-            // BuildingRatingsHome_button
-            // 
-            BuildingRatingsHome_button.AutoSize = true;
-            BuildingRatingsHome_button.Dock = DockStyle.Fill;
-            BuildingRatingsHome_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            BuildingRatingsHome_button.Location = new Point(3, 291);
-            BuildingRatingsHome_button.Name = "BuildingRatingsHome_button";
-            BuildingRatingsHome_button.Size = new Size(488, 90);
-            BuildingRatingsHome_button.TabIndex = 3;
-            BuildingRatingsHome_button.Text = "Построение рейтингов";
-            BuildingRatingsHome_button.UseVisualStyleBackColor = true;
-            BuildingRatingsHome_button.Click += Home_button_Click;
             // 
             // Rating_panel
             // 
@@ -417,9 +382,9 @@
             Base_panel.AutoSize = true;
             Base_panel.BackColor = Color.Transparent;
             Base_panel.Controls.Add(StudentInfo_dataGridView);
-            Base_panel.Location = new Point(524, 90);
+            Base_panel.Location = new Point(518, 90);
             Base_panel.Name = "Base_panel";
-            Base_panel.Size = new Size(841, 741);
+            Base_panel.Size = new Size(847, 741);
             Base_panel.TabIndex = 9;
             Base_panel.Visible = false;
             // 
@@ -427,13 +392,20 @@
             // 
             StudentInfo_dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             StudentInfo_dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            StudentInfo_dataGridView.Columns.AddRange(new DataGridViewColumn[] { StudentName, Cours, Group, Subject, AverageScore, ArrearsNumber });
+            StudentInfo_dataGridView.Columns.AddRange(new DataGridViewColumn[] { StudentsID, StudentName, Cours, Group, Subject1, Subject2, Subject3, Subject4, Subject5, Subject6, Subject7, Subject8, Subject9, Subject10, AverageScore, ArrearsNumber });
             StudentInfo_dataGridView.Dock = DockStyle.Fill;
             StudentInfo_dataGridView.Location = new Point(0, 0);
             StudentInfo_dataGridView.Name = "StudentInfo_dataGridView";
             StudentInfo_dataGridView.RowHeadersWidth = 82;
-            StudentInfo_dataGridView.Size = new Size(841, 741);
+            StudentInfo_dataGridView.Size = new Size(847, 741);
             StudentInfo_dataGridView.TabIndex = 8;
+            // 
+            // StudentsID
+            // 
+            StudentsID.HeaderText = "ID";
+            StudentsID.MinimumWidth = 10;
+            StudentsID.Name = "StudentsID";
+            StudentsID.ReadOnly = true;
             // 
             // StudentName
             // 
@@ -444,28 +416,91 @@
             // 
             // Cours
             // 
-            Cours.HeaderText = "Курс студента";
+            Cours.HeaderText = "Курс ";
             Cours.MinimumWidth = 10;
             Cours.Name = "Cours";
             Cours.ReadOnly = true;
             // 
             // Group
             // 
-            Group.HeaderText = "Группа студента";
+            Group.HeaderText = "Группа ";
             Group.MinimumWidth = 10;
             Group.Name = "Group";
             Group.ReadOnly = true;
             // 
-            // Subject
+            // Subject1
             // 
-            Subject.HeaderText = "Предмет";
-            Subject.MinimumWidth = 10;
-            Subject.Name = "Subject";
-            Subject.ReadOnly = true;
+            Subject1.HeaderText = "Предмет1";
+            Subject1.MinimumWidth = 10;
+            Subject1.Name = "Subject1";
+            Subject1.ReadOnly = true;
+            // 
+            // Subject2
+            // 
+            Subject2.HeaderText = "Предмет2";
+            Subject2.MinimumWidth = 10;
+            Subject2.Name = "Subject2";
+            Subject2.ReadOnly = true;
+            // 
+            // Subject3
+            // 
+            Subject3.HeaderText = "Предмет3";
+            Subject3.MinimumWidth = 10;
+            Subject3.Name = "Subject3";
+            Subject3.ReadOnly = true;
+            // 
+            // Subject4
+            // 
+            Subject4.HeaderText = "Предмет4";
+            Subject4.MinimumWidth = 10;
+            Subject4.Name = "Subject4";
+            Subject4.ReadOnly = true;
+            // 
+            // Subject5
+            // 
+            Subject5.HeaderText = "Предмет5";
+            Subject5.MinimumWidth = 10;
+            Subject5.Name = "Subject5";
+            Subject5.ReadOnly = true;
+            // 
+            // Subject6
+            // 
+            Subject6.HeaderText = "Предмет6";
+            Subject6.MinimumWidth = 10;
+            Subject6.Name = "Subject6";
+            Subject6.ReadOnly = true;
+            // 
+            // Subject7
+            // 
+            Subject7.HeaderText = "Предмет7";
+            Subject7.MinimumWidth = 10;
+            Subject7.Name = "Subject7";
+            Subject7.ReadOnly = true;
+            // 
+            // Subject8
+            // 
+            Subject8.HeaderText = "Предмет8";
+            Subject8.MinimumWidth = 10;
+            Subject8.Name = "Subject8";
+            Subject8.ReadOnly = true;
+            // 
+            // Subject9
+            // 
+            Subject9.HeaderText = "Предмет9";
+            Subject9.MinimumWidth = 10;
+            Subject9.Name = "Subject9";
+            Subject9.ReadOnly = true;
+            // 
+            // Subject10
+            // 
+            Subject10.HeaderText = "Предмет10";
+            Subject10.MinimumWidth = 10;
+            Subject10.Name = "Subject10";
+            Subject10.ReadOnly = true;
             // 
             // AverageScore
             // 
-            AverageScore.HeaderText = "Средний балл";
+            AverageScore.HeaderText = "Общий средний балл ";
             AverageScore.MinimumWidth = 10;
             AverageScore.Name = "AverageScore";
             AverageScore.ReadOnly = true;
@@ -629,7 +664,7 @@
             ChooseFindParam_comboBox.Anchor = AnchorStyles.None;
             ChooseFindParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             ChooseFindParam_comboBox.FormattingEnabled = true;
-            ChooseFindParam_comboBox.Items.AddRange(new object[] { "ФИО студента", "Курс студента", "Группа студента", "Предмет", "Средний балл", "Количество задолженностей" });
+            ChooseFindParam_comboBox.Items.AddRange(new object[] { "ФИО студента", "Средний балл", "Количество задолженностей" });
             ChooseFindParam_comboBox.Location = new Point(4, 318);
             ChooseFindParam_comboBox.Name = "ChooseFindParam_comboBox";
             ChooseFindParam_comboBox.Size = new Size(312, 40);
@@ -651,7 +686,7 @@
             // 
             Apply_button.Anchor = AnchorStyles.None;
             Apply_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            Apply_button.Location = new Point(232, 36);
+            Apply_button.Location = new Point(235, 36);
             Apply_button.Name = "Apply_button";
             Apply_button.Size = new Size(225, 90);
             Apply_button.TabIndex = 25;
@@ -695,6 +730,51 @@
             WorkWithBaseInfo_button.Text = "Справка пользователя";
             WorkWithBaseInfo_button.UseVisualStyleBackColor = true;
             // 
+            // HomeButtons_flowLayoutPanel
+            // 
+            HomeButtons_flowLayoutPanel.Anchor = AnchorStyles.None;
+            HomeButtons_flowLayoutPanel.AutoSize = true;
+            HomeButtons_flowLayoutPanel.BackColor = Color.Transparent;
+            HomeButtons_flowLayoutPanel.Controls.Add(LoadFile_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(DataSetHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(StatisticalIndicatorsHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(BuildingRatingsHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(ExportingReportsHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(ExitApp_button);
+            HomeButtons_flowLayoutPanel.Location = new Point(427, 200);
+            HomeButtons_flowLayoutPanel.MaximumSize = new Size(700, 800);
+            HomeButtons_flowLayoutPanel.MinimumSize = new Size(496, 582);
+            HomeButtons_flowLayoutPanel.Name = "HomeButtons_flowLayoutPanel";
+            HomeButtons_flowLayoutPanel.Size = new Size(496, 582);
+            HomeButtons_flowLayoutPanel.TabIndex = 9;
+            // 
+            // LoadFile_button
+            // 
+            LoadFile_button.AutoSize = true;
+            LoadFile_button.BackColor = Color.Transparent;
+            LoadFile_button.Dock = DockStyle.Fill;
+            LoadFile_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            LoadFile_button.Location = new Point(3, 3);
+            LoadFile_button.Name = "LoadFile_button";
+            LoadFile_button.Size = new Size(488, 90);
+            LoadFile_button.TabIndex = 7;
+            LoadFile_button.Text = "Загрузить файл";
+            LoadFile_button.UseVisualStyleBackColor = false;
+            LoadFile_button.Click += LoadFile_button_Click;
+            // 
+            // BuildingRatingsHome_button
+            // 
+            BuildingRatingsHome_button.AutoSize = true;
+            BuildingRatingsHome_button.Dock = DockStyle.Fill;
+            BuildingRatingsHome_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            BuildingRatingsHome_button.Location = new Point(3, 291);
+            BuildingRatingsHome_button.Name = "BuildingRatingsHome_button";
+            BuildingRatingsHome_button.Size = new Size(488, 90);
+            BuildingRatingsHome_button.TabIndex = 3;
+            BuildingRatingsHome_button.Text = "Построение рейтингов";
+            BuildingRatingsHome_button.UseVisualStyleBackColor = true;
+            BuildingRatingsHome_button.Click += Home_button_Click;
+            // 
             // Analyzer_form
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -709,8 +789,6 @@
             Text = "Анализатор успеваемости студентов ";
             Home_panel.ResumeLayout(false);
             Home_panel.PerformLayout();
-            HomeButtons_flowLayoutPanel.ResumeLayout(false);
-            HomeButtons_flowLayoutPanel.PerformLayout();
             Rating_panel.ResumeLayout(false);
             Chart_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)BarСhart_pictureBox).EndInit();
@@ -723,6 +801,8 @@
             WorkWithBase_panel.ResumeLayout(false);
             WorkWithBase_panel.PerformLayout();
             Button_panel.ResumeLayout(false);
+            HomeButtons_flowLayoutPanel.ResumeLayout(false);
+            HomeButtons_flowLayoutPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -770,17 +850,27 @@
         private TextBox Median_textBox;
         private TextBox ChooseFind_textBox;
         private Label ChooseSort_label;
-        private DataGridViewTextBoxColumn StudentName;
-        private DataGridViewTextBoxColumn Cours;
-        private DataGridViewTextBoxColumn Group;
-        private DataGridViewTextBoxColumn Subject;
-        private DataGridViewTextBoxColumn AverageScore;
-        private DataGridViewTextBoxColumn ArrearsNumber;
         private PictureBox BarСhart_pictureBox;
         private PictureBox CircleChart_pictureBox;
         private Panel Chart_panel;
         private Panel Rating_panel;
         private Button Group_button;
         private Button RatingStudent_button;
+        private DataGridViewTextBoxColumn StudentsID;
+        private DataGridViewTextBoxColumn StudentName;
+        private DataGridViewTextBoxColumn Cours;
+        private DataGridViewTextBoxColumn Group;
+        private DataGridViewTextBoxColumn Subject1;
+        private DataGridViewTextBoxColumn Subject2;
+        private DataGridViewTextBoxColumn Subject3;
+        private DataGridViewTextBoxColumn Subject4;
+        private DataGridViewTextBoxColumn Subject5;
+        private DataGridViewTextBoxColumn Subject6;
+        private DataGridViewTextBoxColumn Subject7;
+        private DataGridViewTextBoxColumn Subject8;
+        private DataGridViewTextBoxColumn Subject9;
+        private DataGridViewTextBoxColumn Subject10;
+        private DataGridViewTextBoxColumn AverageScore;
+        private DataGridViewTextBoxColumn ArrearsNumber;
     }
 }

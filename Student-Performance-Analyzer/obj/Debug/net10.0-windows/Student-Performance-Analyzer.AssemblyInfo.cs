@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Student-Performance-Analyzer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a74444bbd6e9820a543569e2e5859a9447cd7113")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a27d3535f4fd78c5059d8f5d14d556ca48af1a8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Student-Performance-Analyzer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Student-Performance-Analyzer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

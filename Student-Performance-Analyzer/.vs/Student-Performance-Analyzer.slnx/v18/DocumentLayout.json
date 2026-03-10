@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|d:\\_git\\student-performance-analyzer\\student-performance-analyzer\\analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|solutionrelative:analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|d:\\_git\\student-performance-analyzer\\student-performance-analyzer\\analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|solutionrelative:analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|d:\\_git\\student-performance-analyzer\\student-performance-analyzer\\analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|solutionrelative:analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,17 +18,17 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Analyzer.cs",
               "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs",
               "RelativeDocumentMoniker": "Analyzer.cs",
-              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs*",
-              "RelativeToolTip": "Analyzer.cs*",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAgwFIAAABGAAAAAAAAAA==",
+              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs",
+              "RelativeToolTip": "Analyzer.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAiwH0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T13:12:42.609Z",
               "IsPinned": true,
@@ -48,12 +48,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Analyzer.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs",
               "RelativeDocumentMoniker": "Analyzer.cs",
-              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
-              "RelativeToolTip": "Analyzer.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "Analyzer.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T13:39:03.316Z",
               "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
