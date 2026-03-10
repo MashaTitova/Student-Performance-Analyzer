@@ -33,7 +33,7 @@ namespace Student_Performance_Analyzer
             }
             if (tmp.Name == "BuildingRatingsHome_button")
             {
-                NameUnit_label.Text = "Построение рейтингов";
+                NameUnit_label.Text = "Построение рейтингов по общему среднему баллу";
                 Rating_panel.Visible = true;
                 Chart_panel.Visible = true;
                 Base_panel.Visible = true;
@@ -75,7 +75,7 @@ namespace Student_Performance_Analyzer
             {
                 StatisticalIndicators_panel.Visible = false;
             }
-            if (NameUnit_label.Text == "Построение рейтингов")
+            if (NameUnit_label.Text == "Построение рейтингов по общему среднему баллу")
             {
                 Rating_panel.Visible = false;
                 Chart_panel.Visible = false;

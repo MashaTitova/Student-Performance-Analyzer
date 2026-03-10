@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Student-Performance-Analyzer",
+    "\\Student-Performance-Analyzer\\.vs",
+    "\\Student-Performance-Analyzer\\.vs\\ProjectEvaluation",
+    "\\Student-Performance-Analyzer\\.vs\\Student-Performance-Analyzer.slnx",
+    "\\Student-Performance-Analyzer\\.vs\\Student-Performance-Analyzer.slnx\\FileContentIndex",
+    "\\Student-Performance-Analyzer\\.vs\\Student-Performance-Analyzer.slnx\\v18",
+    "\\Student-Performance-Analyzer\\.vs\\Student-Performance-Analyzer.slnx\\v18\\ResourceExplorer",
+    "\\Student-Performance-Analyzer\\bin\\Debug",
+    "\\Student-Performance-Analyzer\\bin\\Debug\\net10.0-windows"
   ],
+  "SelectedNode": "\\Student-Performance-Analyzer\\Student-Performance-Analyzer.slnx",
   "PreviewInSolutionExplorer": false
 }
