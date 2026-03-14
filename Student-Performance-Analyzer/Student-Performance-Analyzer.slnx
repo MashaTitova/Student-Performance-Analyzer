@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../ClassLibrary/ClassLibrary.csproj" Id="ae0eeb41-196d-49fa-9281-934f0a065b6a" />
   <Project Path="Student-Performance-Analyzer.csproj" />
 </Solution>
