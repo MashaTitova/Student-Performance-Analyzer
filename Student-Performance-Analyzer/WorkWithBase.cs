@@ -1,60 +1,52 @@
 ﻿using System.ComponentModel;
-using Student_Performance_Analyzer;
+using System.Data;
 public class WorkWithBase
 {
-    public static DataGridView Sort(DataGridView grid, string sortDirect, string param)
+    public static DataGridView CustomSort(DataGridView grid, string sortDirect, string param)
     {
+
         // Определяем направление сортировки
         ListSortDirection sortDirection =
             sortDirect == "Возрастание"
                 ? ListSortDirection.Ascending
                 : ListSortDirection.Descending;
-        DataGridViewColumn column = grid.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c =>c.HeaderText == param);
+        DataGridViewColumn column = grid.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.HeaderText == param);
         grid.Sort(
                column,
                sortDirection);
         return grid;
     }
-    
-    public static DataGridView FindText(DataGridView grid, string searchText, string columnName)
+
+    public static void FilterString(DataGridView grid, string searchValue, string param)
     {
-        int i = 0;
-        foreach (DataGridViewRow row in grid.Rows)
-        {
-            DataGridViewCell cell = row.Cells[columnName];
-            if (!(cell.Value != null &&
-                cell.Value.ToString().Contains(searchText)))
-            {
-                grid.Rows.RemoveAt(i);
-            }
-            i++;
-        }
-        return grid;
+        DataGridViewColumn column = grid.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.HeaderText == param);
+        if (column == null || string.IsNullOrEmpty(searchValue))
+            return;
+
+        // Получаем DataTable из DataGridView
+        DataTable dataTable = (DataTable)grid.DataSource;
+
+        // Формируем фильтр
+        string filter = $"[{column.Name}] LIKE '%{searchValue}%'";
+
+        // Применяем фильтр
+        dataTable.DefaultView.RowFilter = filter;
     }
-
-    public static DataGridView FindNum(DataGridView grid, string columnName, string oper, string meaning)
+    public static void FilterNums(DataGridView grid, string searchValue, string param, string ratio)
     {
-        DataGridViewColumn column = grid.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.HeaderText == columnName);
-        List<int> rowsToRemove = new List<int>();
+        DataGridViewColumn column = grid.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.HeaderText == param);
+        if (column == null || string.IsNullOrEmpty(searchValue))
+            return;
 
-        for (int i = 0; i < grid.Rows.Count; i++)
-        {
-            DataGridViewRow row = grid.Rows[i];
-            object cellValue = row.Cells[column.Index].Value;
-            bool result = Analyzer_form.Calculate(
-                Convert.ToDouble(cellValue),
-                Convert.ToDouble(meaning),
-                oper);
+        // Получаем DataTable из DataGridView
+        DataTable dataTable = (DataTable)grid.DataSource;
 
-            if (!result)
-                rowsToRemove.Add(i);  
-        }
+        // Формируем фильтр
+        string filter = $"Convert([{column.Name}], 'System.Double') {ratio} {Convert.ToDouble(searchValue)}";
 
-        // Удаляем строки в обратном порядке
-        for (int j = rowsToRemove.Count - 1; j >= 0; j--)
-            grid.Rows.RemoveAt(rowsToRemove[j]);
-
-        return grid;
+        // Применяем фильтр
+        dataTable.DefaultView.RowFilter = filter;
     }
 }
-
+    
+   

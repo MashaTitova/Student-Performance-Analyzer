@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Data;
 using System.DirectoryServices;
+using System.Security.Policy;
 using System.Windows.Forms.VisualStyles;
 using static WorkWithBase;
 
@@ -15,6 +16,7 @@ namespace Student_Performance_Analyzer
         public Analyzer_form()
         {
             InitializeComponent();
+            StudentInfo_dataGridView.Columns.Clear();
             StudentInfo_dataGridView.DataSource = inputDataTable;
         }
 
@@ -163,14 +165,20 @@ namespace Student_Performance_Analyzer
             string[] lines = File.ReadAllLines(selectedFilePath);
             int numberOfLines = lines.Length;
             def = f.ReadLine().Split(";");
-            for (int i = 4; i <= 13; i++)
+            for (int i = 0; i <= 15; i++)
             {
-                StudentInfo_dataGridView.Columns[i].HeaderText = def[i];
-                ChooseSortParam_comboBox.Items.Add(def[i]);
-                ChooseFindParam_comboBox.Items.Add(def[i]);
+                inputDataTable.Columns.Add(def[i]);
+                if (i >= 4 && i <= 13)
+                {
+                    
+                    ChooseSortParam_comboBox.Items.Add(def[i]);
+                    ChooseFindParam_comboBox.Items.Add(def[i]);
+                }
+               
             }
             for (int i = 1; i < numberOfLines; i++)
             {
+                DataRow dr = inputDataTable.NewRow();
                 def = f.ReadLine().Split(";");
                 try
                 {
@@ -181,7 +189,11 @@ namespace Student_Performance_Analyzer
                     {
                         Convert.ToDouble(def[j]);
                     }
-                    inputDataTable.Rows.Add(def);
+                    for (int k = 0; k < inputDataTable.Columns.Count; k++)
+                    {
+                        dr[k] = def[k];
+                    }
+                    inputDataTable.Rows.Add(dr);
                 }
                 catch (Exception)
                 {
@@ -223,24 +235,31 @@ namespace Student_Performance_Analyzer
             {
                 if (SortDirection_comboBox.Text != "" &&
                 ChooseSortParam_comboBox.Text != "")
-                    WorkWithBase.Sort(StudentInfo_dataGridView, SortDirection_comboBox.Text, ChooseSortParam_comboBox.Text);
-                if ((ChooseFindParam_comboBox.Text != "" && FindRatio_comboBox.Text != "" && ChooseFind_textBox.Text != "") || (ChooseGroupParam_comboBox.Text != "" && ChooseGroup_textBox.Text != ""))
+                    WorkWithBase.CustomSort(StudentInfo_dataGridView, SortDirection_comboBox.Text, ChooseSortParam_comboBox.Text);
+                if ((ChooseFindParam_comboBox.Text != "" && FindRatio_comboBox.Text != "" && ChooseFind_textBox.Text != ""));
                 {
-                    StudentInfo_dataGridView.Rows.Clear();
-                    if (ChooseFindParam_comboBox.Text != "" && FindRatio_comboBox.Text != "" && ChooseFind_textBox.Text != "")
+                    try
                     {
-                        if (ChooseFindParam_comboBox.Text == "ФИО студента")
-                        {
-                            if (FindRatio_comboBox.Text == "=")
-                            {
-                                StudentInfo_dataGridView = WorkWithBase.FindText(StudentInfo_dataGridView, ChooseFind_textBox.Text, "StudentName");
-                            }
-                        }
-                        else
-                        {
-                            StudentInfo_dataGridView = WorkWithBase.FindNum(StudentInfo_dataGridView, ChooseFindParam_comboBox.Text, FindRatio_comboBox.Text, ChooseFind_textBox.Text);
-
-                        }
+                        Convert.ToDouble(ChooseFind_textBox.Text);
+                    }
+                    catch (Exception)
+                    {
+                       MessageBox.Show(
+                       "Значение параметра поиска введено неверно",
+                       "Ошибка",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Error);
+                       return;
+                    }
+                    if(ChooseFindParam_comboBox.Text == "ФИО студента" &&  FindRatio_comboBox.Text == "=")
+                    {
+                        WorkWithBase.FilterString(StudentInfo_dataGridView, ChooseFind_textBox.Text, "ФИО студента");
+                        StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count}";
+                    }
+                    else
+                    {
+                        WorkWithBase.FilterNums(StudentInfo_dataGridView, ChooseFind_textBox.Text, ChooseFindParam_comboBox.Text, FindRatio_comboBox.Text);
+                        StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count}";
                     }
                 }
             }
@@ -248,16 +267,23 @@ namespace Student_Performance_Analyzer
 
         private void Remove_button_Click(object sender, EventArgs e)
         {
-            inputDataTable.Rows.Clear();
-            foreach (DataGridViewRow row in mainData)
+            if(WorkWithBase_panel.Visible == true)
             {
-                DataGridViewRow newRow = (DataGridViewRow)row.Clone();
-                for (int i = 0; i < row.Cells.Count; i++)
+                ChooseSortParam_comboBox.SelectedItem = null;
+                SortDirection_comboBox.SelectedItem = null;
+                ChooseFindParam_comboBox.SelectedItem = null;
+                FindRatio_comboBox.SelectedItem = null;
+                ChooseGroupParam_comboBox.SelectedItem = null;
+                ChooseFind_textBox.Text = null;
+                ChooseGroup_textBox.Text = null;
+                if (StudentInfo_dataGridView.DataSource is DataTable table)
                 {
-                    newRow.Cells[i].Value = row.Cells[i].Value;
+                    table.DefaultView.Sort = null;
+                    table.DefaultView.RowFilter = null;
                 }
-                inputDataTable.Rows.Add(newRow);
+                StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count}";
             }
+            
         }
     }
 
