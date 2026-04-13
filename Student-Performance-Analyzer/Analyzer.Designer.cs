@@ -34,6 +34,11 @@
             ExportingReportsHome_button = new Button();
             ExitApp_button = new Button();
             Home_panel = new Panel();
+            Chart_panel = new Panel();
+            RatingCriteria_comboBox = new ComboBox();
+            RatingCriteria_label = new Label();
+            BarСhart_pictureBox = new PictureBox();
+            CircleChart_pictureBox = new PictureBox();
             WorkWithBase_panel = new Panel();
             SortDirection_label = new Label();
             SortDirection_comboBox = new ComboBox();
@@ -41,25 +46,16 @@
             ChooseSort_label = new Label();
             Sort_label = new Label();
             Group_label = new Label();
-            ChooseGroup_textBox = new TextBox();
             Find_label = new Label();
             ChooseFind_label = new Label();
-            GroupRatio_label = new Label();
             ChooseGroup_label = new Label();
             ChooseGroupParam_comboBox = new ComboBox();
             ChooseSortParam_comboBox = new ComboBox();
             FindRatio_comboBox = new ComboBox();
             ChooseFindParam_comboBox = new ComboBox();
-            HomeButtons_flowLayoutPanel = new FlowLayoutPanel();
-            LoadFile_button = new Button();
-            BuildingRatingsHome_button = new Button();
-            Rating_panel = new Panel();
-            RatingStudent_button = new Button();
-            Group_button = new Button();
-            Chart_panel = new Panel();
-            BarСhart_pictureBox = new PictureBox();
-            CircleChart_pictureBox = new PictureBox();
             StatisticalIndicators_panel = new Panel();
+            ChooseColumn_comboBox = new ComboBox();
+            ChooseColumn_label = new Label();
             Max_label = new Label();
             Max_textBox = new TextBox();
             Min_label = new Label();
@@ -68,6 +64,9 @@
             Median_textBox = new TextBox();
             Average_label = new Label();
             Average_textBox = new TextBox();
+            Rating_panel = new Panel();
+            RatingStudent_button = new Button();
+            Group_button = new Button();
             StatInfo_panel = new Panel();
             StatInfo_label = new Label();
             StatInfoNum_label = new Label();
@@ -93,19 +92,22 @@
             Apply_button = new Button();
             Remove_button = new Button();
             Return_button = new Button();
-            WorkWithBaseInfo_button = new Button();
+            Info_button = new Button();
+            HomeButtons_flowLayoutPanel = new FlowLayoutPanel();
+            LoadFile_button = new Button();
+            BuildingRatingsHome_button = new Button();
             Home_panel.SuspendLayout();
-            WorkWithBase_panel.SuspendLayout();
-            HomeButtons_flowLayoutPanel.SuspendLayout();
-            Rating_panel.SuspendLayout();
             Chart_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)BarСhart_pictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CircleChart_pictureBox).BeginInit();
+            WorkWithBase_panel.SuspendLayout();
             StatisticalIndicators_panel.SuspendLayout();
+            Rating_panel.SuspendLayout();
             StatInfo_panel.SuspendLayout();
             Base_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)StudentInfo_dataGridView).BeginInit();
             Button_panel.SuspendLayout();
+            HomeButtons_flowLayoutPanel.SuspendLayout();
             SuspendLayout();
             // 
             // NameUnit_label
@@ -177,21 +179,77 @@
             // Home_panel
             // 
             Home_panel.BackColor = Color.Transparent;
-            Home_panel.Controls.Add(WorkWithBase_panel);
-            Home_panel.Controls.Add(HomeButtons_flowLayoutPanel);
-            Home_panel.Controls.Add(Rating_panel);
             Home_panel.Controls.Add(Chart_panel);
+            Home_panel.Controls.Add(WorkWithBase_panel);
             Home_panel.Controls.Add(StatisticalIndicators_panel);
+            Home_panel.Controls.Add(Rating_panel);
             Home_panel.Controls.Add(StatInfo_panel);
             Home_panel.Controls.Add(Base_panel);
             Home_panel.Controls.Add(NameUnit_label);
             Home_panel.Controls.Add(Button_panel);
+            Home_panel.Controls.Add(HomeButtons_flowLayoutPanel);
             Home_panel.Dock = DockStyle.Fill;
             Home_panel.Location = new Point(0, 0);
             Home_panel.Margin = new Padding(4, 2, 4, 2);
             Home_panel.Name = "Home_panel";
             Home_panel.Size = new Size(1384, 1028);
             Home_panel.TabIndex = 7;
+            // 
+            // Chart_panel
+            // 
+            Chart_panel.AutoSize = true;
+            Chart_panel.Controls.Add(RatingCriteria_comboBox);
+            Chart_panel.Controls.Add(RatingCriteria_label);
+            Chart_panel.Controls.Add(BarСhart_pictureBox);
+            Chart_panel.Controls.Add(CircleChart_pictureBox);
+            Chart_panel.Location = new Point(0, 90);
+            Chart_panel.Margin = new Padding(4, 2, 4, 2);
+            Chart_panel.Name = "Chart_panel";
+            Chart_panel.Size = new Size(514, 743);
+            Chart_panel.TabIndex = 30;
+            Chart_panel.Visible = false;
+            // 
+            // RatingCriteria_comboBox
+            // 
+            RatingCriteria_comboBox.FormattingEnabled = true;
+            RatingCriteria_comboBox.Items.AddRange(new object[] { "Общий средний балл", "Кол-во задолженностей" });
+            RatingCriteria_comboBox.Location = new Point(0, 49);
+            RatingCriteria_comboBox.Name = "RatingCriteria_comboBox";
+            RatingCriteria_comboBox.Size = new Size(510, 40);
+            RatingCriteria_comboBox.TabIndex = 33;
+            // 
+            // RatingCriteria_label
+            // 
+            RatingCriteria_label.Anchor = AnchorStyles.None;
+            RatingCriteria_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            RatingCriteria_label.Location = new Point(0, 0);
+            RatingCriteria_label.Name = "RatingCriteria_label";
+            RatingCriteria_label.Size = new Size(511, 42);
+            RatingCriteria_label.TabIndex = 32;
+            RatingCriteria_label.Text = "Выберете критерий построения рейтингов";
+            RatingCriteria_label.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // BarСhart_pictureBox
+            // 
+            BarСhart_pictureBox.Anchor = AnchorStyles.None;
+            BarСhart_pictureBox.BackColor = Color.Transparent;
+            BarСhart_pictureBox.Location = new Point(0, 412);
+            BarСhart_pictureBox.Margin = new Padding(4, 2, 4, 2);
+            BarСhart_pictureBox.Name = "BarСhart_pictureBox";
+            BarСhart_pictureBox.Size = new Size(510, 329);
+            BarСhart_pictureBox.TabIndex = 31;
+            BarСhart_pictureBox.TabStop = false;
+            // 
+            // CircleChart_pictureBox
+            // 
+            CircleChart_pictureBox.Anchor = AnchorStyles.None;
+            CircleChart_pictureBox.BackColor = Color.Transparent;
+            CircleChart_pictureBox.Location = new Point(0, 96);
+            CircleChart_pictureBox.Margin = new Padding(4, 2, 4, 2);
+            CircleChart_pictureBox.Name = "CircleChart_pictureBox";
+            CircleChart_pictureBox.Size = new Size(510, 318);
+            CircleChart_pictureBox.TabIndex = 30;
+            CircleChart_pictureBox.TabStop = false;
             // 
             // WorkWithBase_panel
             // 
@@ -201,10 +259,8 @@
             WorkWithBase_panel.Controls.Add(ChooseSort_label);
             WorkWithBase_panel.Controls.Add(Sort_label);
             WorkWithBase_panel.Controls.Add(Group_label);
-            WorkWithBase_panel.Controls.Add(ChooseGroup_textBox);
             WorkWithBase_panel.Controls.Add(Find_label);
             WorkWithBase_panel.Controls.Add(ChooseFind_label);
-            WorkWithBase_panel.Controls.Add(GroupRatio_label);
             WorkWithBase_panel.Controls.Add(ChooseGroup_label);
             WorkWithBase_panel.Controls.Add(ChooseGroupParam_comboBox);
             WorkWithBase_panel.Controls.Add(ChooseSortParam_comboBox);
@@ -221,7 +277,7 @@
             // 
             SortDirection_label.Anchor = AnchorStyles.None;
             SortDirection_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            SortDirection_label.Location = new Point(7, 151);
+            SortDirection_label.Location = new Point(8, 149);
             SortDirection_label.Margin = new Padding(4, 0, 4, 0);
             SortDirection_label.Name = "SortDirection_label";
             SortDirection_label.Size = new Size(435, 45);
@@ -232,9 +288,10 @@
             // SortDirection_comboBox
             // 
             SortDirection_comboBox.Anchor = AnchorStyles.None;
+            SortDirection_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             SortDirection_comboBox.FormattingEnabled = true;
             SortDirection_comboBox.Items.AddRange(new object[] { "Возрастание", "Убывание" });
-            SortDirection_comboBox.Location = new Point(7, 201);
+            SortDirection_comboBox.Location = new Point(8, 199);
             SortDirection_comboBox.Margin = new Padding(4, 2, 4, 2);
             SortDirection_comboBox.Name = "SortDirection_comboBox";
             SortDirection_comboBox.Size = new Size(435, 40);
@@ -243,7 +300,7 @@
             // ChooseFind_textBox
             // 
             ChooseFind_textBox.Anchor = AnchorStyles.None;
-            ChooseFind_textBox.Location = new Point(4, 425);
+            ChooseFind_textBox.Location = new Point(8, 459);
             ChooseFind_textBox.Margin = new Padding(4, 2, 4, 2);
             ChooseFind_textBox.Name = "ChooseFind_textBox";
             ChooseFind_textBox.Size = new Size(435, 39);
@@ -253,7 +310,7 @@
             // 
             ChooseSort_label.Anchor = AnchorStyles.None;
             ChooseSort_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            ChooseSort_label.Location = new Point(15, 51);
+            ChooseSort_label.Location = new Point(16, 49);
             ChooseSort_label.Margin = new Padding(4, 0, 4, 0);
             ChooseSort_label.Name = "ChooseSort_label";
             ChooseSort_label.Size = new Size(435, 45);
@@ -265,7 +322,7 @@
             // 
             Sort_label.Anchor = AnchorStyles.None;
             Sort_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            Sort_label.Location = new Point(93, 15);
+            Sort_label.Location = new Point(94, 13);
             Sort_label.Margin = new Padding(4, 0, 4, 0);
             Sort_label.Name = "Sort_label";
             Sort_label.Size = new Size(288, 45);
@@ -277,7 +334,7 @@
             // 
             Group_label.Anchor = AnchorStyles.None;
             Group_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            Group_label.Location = new Point(69, 486);
+            Group_label.Location = new Point(69, 557);
             Group_label.Margin = new Padding(4, 0, 4, 0);
             Group_label.Name = "Group_label";
             Group_label.Size = new Size(288, 38);
@@ -285,20 +342,11 @@
             Group_label.Text = "Группировка студентов";
             Group_label.TextAlign = ContentAlignment.TopCenter;
             // 
-            // ChooseGroup_textBox
-            // 
-            ChooseGroup_textBox.Anchor = AnchorStyles.None;
-            ChooseGroup_textBox.Location = new Point(4, 627);
-            ChooseGroup_textBox.Margin = new Padding(4, 2, 4, 2);
-            ChooseGroup_textBox.Name = "ChooseGroup_textBox";
-            ChooseGroup_textBox.Size = new Size(435, 39);
-            ChooseGroup_textBox.TabIndex = 24;
-            // 
             // Find_label
             // 
             Find_label.Anchor = AnchorStyles.None;
             Find_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            Find_label.Location = new Point(69, 265);
+            Find_label.Location = new Point(73, 299);
             Find_label.Margin = new Padding(4, 0, 4, 0);
             Find_label.Name = "Find_label";
             Find_label.Size = new Size(288, 41);
@@ -310,32 +358,19 @@
             // 
             ChooseFind_label.Anchor = AnchorStyles.None;
             ChooseFind_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            ChooseFind_label.Location = new Point(-4, 305);
+            ChooseFind_label.Location = new Point(8, 339);
             ChooseFind_label.Margin = new Padding(4, 0, 4, 0);
             ChooseFind_label.Name = "ChooseFind_label";
-            ChooseFind_label.Size = new Size(435, 45);
+            ChooseFind_label.Size = new Size(427, 45);
             ChooseFind_label.TabIndex = 13;
             ChooseFind_label.Text = "Введите параметр поиска";
             ChooseFind_label.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // GroupRatio_label
-            // 
-            GroupRatio_label.Anchor = AnchorStyles.None;
-            GroupRatio_label.BorderStyle = BorderStyle.FixedSingle;
-            GroupRatio_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            GroupRatio_label.Location = new Point(345, 572);
-            GroupRatio_label.Margin = new Padding(4, 0, 4, 0);
-            GroupRatio_label.Name = "GroupRatio_label";
-            GroupRatio_label.Size = new Size(93, 40);
-            GroupRatio_label.TabIndex = 22;
-            GroupRatio_label.Text = "=";
-            GroupRatio_label.TextAlign = ContentAlignment.TopCenter;
             // 
             // ChooseGroup_label
             // 
             ChooseGroup_label.Anchor = AnchorStyles.None;
             ChooseGroup_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            ChooseGroup_label.Location = new Point(4, 527);
+            ChooseGroup_label.Location = new Point(4, 598);
             ChooseGroup_label.Margin = new Padding(4, 0, 4, 0);
             ChooseGroup_label.Name = "ChooseGroup_label";
             ChooseGroup_label.Size = new Size(435, 36);
@@ -348,20 +383,21 @@
             ChooseGroupParam_comboBox.Anchor = AnchorStyles.None;
             ChooseGroupParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             ChooseGroupParam_comboBox.FormattingEnabled = true;
-            ChooseGroupParam_comboBox.Items.AddRange(new object[] { "Курс студента", "Группа студента" });
-            ChooseGroupParam_comboBox.Location = new Point(4, 565);
+            ChooseGroupParam_comboBox.Items.AddRange(new object[] { "Курс", "Группа" });
+            ChooseGroupParam_comboBox.Location = new Point(4, 636);
             ChooseGroupParam_comboBox.Margin = new Padding(4, 2, 4, 2);
             ChooseGroupParam_comboBox.Name = "ChooseGroupParam_comboBox";
-            ChooseGroupParam_comboBox.Size = new Size(312, 40);
+            ChooseGroupParam_comboBox.Size = new Size(435, 40);
             ChooseGroupParam_comboBox.TabIndex = 19;
             // 
             // ChooseSortParam_comboBox
             // 
             ChooseSortParam_comboBox.Anchor = AnchorStyles.None;
+            ChooseSortParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             ChooseSortParam_comboBox.ForeColor = Color.Black;
             ChooseSortParam_comboBox.FormattingEnabled = true;
             ChooseSortParam_comboBox.Items.AddRange(new object[] { "ФИО студента", "Общий средний балл", "Количество задолженностей" });
-            ChooseSortParam_comboBox.Location = new Point(7, 107);
+            ChooseSortParam_comboBox.Location = new Point(8, 105);
             ChooseSortParam_comboBox.Margin = new Padding(4, 2, 4, 2);
             ChooseSortParam_comboBox.Name = "ChooseSortParam_comboBox";
             ChooseSortParam_comboBox.Size = new Size(435, 40);
@@ -373,10 +409,10 @@
             FindRatio_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             FindRatio_comboBox.FormattingEnabled = true;
             FindRatio_comboBox.Items.AddRange(new object[] { "=", ">", ">=", "<", "<=" });
-            FindRatio_comboBox.Location = new Point(345, 352);
+            FindRatio_comboBox.Location = new Point(349, 386);
             FindRatio_comboBox.Margin = new Padding(4, 2, 4, 2);
             FindRatio_comboBox.Name = "FindRatio_comboBox";
-            FindRatio_comboBox.Size = new Size(91, 40);
+            FindRatio_comboBox.Size = new Size(94, 40);
             FindRatio_comboBox.TabIndex = 17;
             // 
             // ChooseFindParam_comboBox
@@ -385,130 +421,16 @@
             ChooseFindParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             ChooseFindParam_comboBox.FormattingEnabled = true;
             ChooseFindParam_comboBox.Items.AddRange(new object[] { "ФИО студента", "Общий средний балл", "Кол-во задолженностей" });
-            ChooseFindParam_comboBox.Location = new Point(4, 352);
+            ChooseFindParam_comboBox.Location = new Point(8, 386);
             ChooseFindParam_comboBox.Margin = new Padding(4, 2, 4, 2);
             ChooseFindParam_comboBox.Name = "ChooseFindParam_comboBox";
             ChooseFindParam_comboBox.Size = new Size(312, 40);
             ChooseFindParam_comboBox.TabIndex = 16;
             // 
-            // HomeButtons_flowLayoutPanel
-            // 
-            HomeButtons_flowLayoutPanel.Anchor = AnchorStyles.None;
-            HomeButtons_flowLayoutPanel.AutoSize = true;
-            HomeButtons_flowLayoutPanel.BackColor = Color.Transparent;
-            HomeButtons_flowLayoutPanel.Controls.Add(LoadFile_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(DataSetHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(StatisticalIndicatorsHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(BuildingRatingsHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(ExportingReportsHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(ExitApp_button);
-            HomeButtons_flowLayoutPanel.Location = new Point(431, 218);
-            HomeButtons_flowLayoutPanel.Margin = new Padding(4, 2, 4, 2);
-            HomeButtons_flowLayoutPanel.MaximumSize = new Size(700, 800);
-            HomeButtons_flowLayoutPanel.MinimumSize = new Size(496, 582);
-            HomeButtons_flowLayoutPanel.Name = "HomeButtons_flowLayoutPanel";
-            HomeButtons_flowLayoutPanel.Size = new Size(554, 582);
-            HomeButtons_flowLayoutPanel.TabIndex = 9;
-            // 
-            // LoadFile_button
-            // 
-            LoadFile_button.AutoSize = true;
-            LoadFile_button.BackColor = Color.Transparent;
-            LoadFile_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            LoadFile_button.Location = new Point(4, 2);
-            LoadFile_button.Margin = new Padding(4, 2, 4, 2);
-            LoadFile_button.Name = "LoadFile_button";
-            LoadFile_button.Size = new Size(546, 90);
-            LoadFile_button.TabIndex = 7;
-            LoadFile_button.Text = "Загрузить файл";
-            LoadFile_button.UseVisualStyleBackColor = false;
-            LoadFile_button.Click += LoadFile_button_Click;
-            // 
-            // BuildingRatingsHome_button
-            // 
-            BuildingRatingsHome_button.AutoSize = true;
-            BuildingRatingsHome_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            BuildingRatingsHome_button.Location = new Point(4, 284);
-            BuildingRatingsHome_button.Margin = new Padding(4, 2, 4, 2);
-            BuildingRatingsHome_button.Name = "BuildingRatingsHome_button";
-            BuildingRatingsHome_button.Size = new Size(546, 90);
-            BuildingRatingsHome_button.TabIndex = 3;
-            BuildingRatingsHome_button.Text = "Построение рейтингов";
-            BuildingRatingsHome_button.UseVisualStyleBackColor = true;
-            BuildingRatingsHome_button.Click += Home_button_Click;
-            // 
-            // Rating_panel
-            // 
-            Rating_panel.AutoSize = true;
-            Rating_panel.Controls.Add(RatingStudent_button);
-            Rating_panel.Controls.Add(Group_button);
-            Rating_panel.Location = new Point(936, 862);
-            Rating_panel.Margin = new Padding(4, 2, 4, 2);
-            Rating_panel.Name = "Rating_panel";
-            Rating_panel.Size = new Size(446, 162);
-            Rating_panel.TabIndex = 33;
-            Rating_panel.Visible = false;
-            // 
-            // RatingStudent_button
-            // 
-            RatingStudent_button.Anchor = AnchorStyles.None;
-            RatingStudent_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            RatingStudent_button.Location = new Point(4, 34);
-            RatingStudent_button.Margin = new Padding(4, 2, 4, 2);
-            RatingStudent_button.Name = "RatingStudent_button";
-            RatingStudent_button.Size = new Size(225, 90);
-            RatingStudent_button.TabIndex = 29;
-            RatingStudent_button.Text = "Рейтинг студентов";
-            RatingStudent_button.UseVisualStyleBackColor = true;
-            // 
-            // Group_button
-            // 
-            Group_button.Anchor = AnchorStyles.None;
-            Group_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            Group_button.Location = new Point(236, 34);
-            Group_button.Margin = new Padding(4, 2, 4, 2);
-            Group_button.Name = "Group_button";
-            Group_button.Size = new Size(206, 90);
-            Group_button.TabIndex = 28;
-            Group_button.Text = "Рейтинг групп";
-            Group_button.UseVisualStyleBackColor = true;
-            // 
-            // Chart_panel
-            // 
-            Chart_panel.AutoSize = true;
-            Chart_panel.Controls.Add(BarСhart_pictureBox);
-            Chart_panel.Controls.Add(CircleChart_pictureBox);
-            Chart_panel.Location = new Point(0, 90);
-            Chart_panel.Margin = new Padding(4, 2, 4, 2);
-            Chart_panel.Name = "Chart_panel";
-            Chart_panel.Size = new Size(514, 743);
-            Chart_panel.TabIndex = 30;
-            Chart_panel.Visible = false;
-            // 
-            // BarСhart_pictureBox
-            // 
-            BarСhart_pictureBox.Anchor = AnchorStyles.None;
-            BarСhart_pictureBox.BackColor = Color.Transparent;
-            BarСhart_pictureBox.Location = new Point(-4, 363);
-            BarСhart_pictureBox.Margin = new Padding(4, 2, 4, 2);
-            BarСhart_pictureBox.Name = "BarСhart_pictureBox";
-            BarСhart_pictureBox.Size = new Size(514, 378);
-            BarСhart_pictureBox.TabIndex = 31;
-            BarСhart_pictureBox.TabStop = false;
-            // 
-            // CircleChart_pictureBox
-            // 
-            CircleChart_pictureBox.Anchor = AnchorStyles.None;
-            CircleChart_pictureBox.BackColor = Color.Transparent;
-            CircleChart_pictureBox.Location = new Point(-4, 2);
-            CircleChart_pictureBox.Margin = new Padding(4, 2, 4, 2);
-            CircleChart_pictureBox.Name = "CircleChart_pictureBox";
-            CircleChart_pictureBox.Size = new Size(514, 365);
-            CircleChart_pictureBox.TabIndex = 30;
-            CircleChart_pictureBox.TabStop = false;
-            // 
             // StatisticalIndicators_panel
             // 
+            StatisticalIndicators_panel.Controls.Add(ChooseColumn_comboBox);
+            StatisticalIndicators_panel.Controls.Add(ChooseColumn_label);
             StatisticalIndicators_panel.Controls.Add(Max_label);
             StatisticalIndicators_panel.Controls.Add(Max_textBox);
             StatisticalIndicators_panel.Controls.Add(Min_label);
@@ -520,49 +442,70 @@
             StatisticalIndicators_panel.Location = new Point(0, 90);
             StatisticalIndicators_panel.Margin = new Padding(4, 2, 4, 2);
             StatisticalIndicators_panel.Name = "StatisticalIndicators_panel";
-            StatisticalIndicators_panel.Size = new Size(518, 730);
+            StatisticalIndicators_panel.Size = new Size(518, 743);
             StatisticalIndicators_panel.TabIndex = 25;
             StatisticalIndicators_panel.Visible = false;
+            // 
+            // ChooseColumn_comboBox
+            // 
+            ChooseColumn_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ChooseColumn_comboBox.FormattingEnabled = true;
+            ChooseColumn_comboBox.Items.AddRange(new object[] { "Общий средний балл", "Кол-во задолженностей" });
+            ChooseColumn_comboBox.Location = new Point(32, 106);
+            ChooseColumn_comboBox.Name = "ChooseColumn_comboBox";
+            ChooseColumn_comboBox.Size = new Size(327, 40);
+            ChooseColumn_comboBox.TabIndex = 31;
+            // 
+            // ChooseColumn_label
+            // 
+            ChooseColumn_label.Anchor = AnchorStyles.None;
+            ChooseColumn_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            ChooseColumn_label.Location = new Point(30, 19);
+            ChooseColumn_label.Margin = new Padding(4, 0, 4, 0);
+            ChooseColumn_label.Name = "ChooseColumn_label";
+            ChooseColumn_label.Size = new Size(394, 81);
+            ChooseColumn_label.TabIndex = 30;
+            ChooseColumn_label.Text = "Выберете столбец, по которому будут проводиться вычисления";
             // 
             // Max_label
             // 
             Max_label.Anchor = AnchorStyles.None;
             Max_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            Max_label.Location = new Point(41, 493);
+            Max_label.Location = new Point(34, 606);
             Max_label.Margin = new Padding(4, 0, 4, 0);
             Max_label.Name = "Max_label";
             Max_label.Size = new Size(305, 45);
             Max_label.TabIndex = 28;
             Max_label.Text = "Максимальное значение";
-            Max_label.TextAlign = ContentAlignment.TopCenter;
             // 
             // Max_textBox
             // 
             Max_textBox.Anchor = AnchorStyles.None;
-            Max_textBox.Location = new Point(41, 565);
+            Max_textBox.Location = new Point(32, 677);
             Max_textBox.Margin = new Padding(4, 2, 4, 2);
             Max_textBox.Name = "Max_textBox";
-            Max_textBox.Size = new Size(325, 39);
+            Max_textBox.ReadOnly = true;
+            Max_textBox.Size = new Size(329, 39);
             Max_textBox.TabIndex = 29;
             // 
             // Min_label
             // 
             Min_label.Anchor = AnchorStyles.None;
             Min_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            Min_label.Location = new Point(41, 314);
+            Min_label.Location = new Point(32, 459);
             Min_label.Margin = new Padding(4, 0, 4, 0);
             Min_label.Name = "Min_label";
             Min_label.Size = new Size(305, 45);
             Min_label.TabIndex = 26;
             Min_label.Text = "Минимальное значение";
-            Min_label.TextAlign = ContentAlignment.TopCenter;
             // 
             // Min_textBox
             // 
             Min_textBox.Anchor = AnchorStyles.None;
-            Min_textBox.Location = new Point(41, 386);
+            Min_textBox.Location = new Point(32, 538);
             Min_textBox.Margin = new Padding(4, 2, 4, 2);
             Min_textBox.Name = "Min_textBox";
+            Min_textBox.ReadOnly = true;
             Min_textBox.Size = new Size(327, 39);
             Min_textBox.TabIndex = 27;
             // 
@@ -570,20 +513,20 @@
             // 
             Median_label.Anchor = AnchorStyles.None;
             Median_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            Median_label.Location = new Point(41, 162);
+            Median_label.Location = new Point(32, 322);
             Median_label.Margin = new Padding(4, 0, 4, 0);
             Median_label.Name = "Median_label";
             Median_label.Size = new Size(163, 45);
             Median_label.TabIndex = 24;
             Median_label.Text = "Медиана";
-            Median_label.TextAlign = ContentAlignment.TopCenter;
             // 
             // Median_textBox
             // 
             Median_textBox.Anchor = AnchorStyles.None;
-            Median_textBox.Location = new Point(41, 235);
+            Median_textBox.Location = new Point(34, 393);
             Median_textBox.Margin = new Padding(4, 2, 4, 2);
             Median_textBox.Name = "Median_textBox";
+            Median_textBox.ReadOnly = true;
             Median_textBox.Size = new Size(327, 39);
             Median_textBox.TabIndex = 25;
             // 
@@ -591,22 +534,60 @@
             // 
             Average_label.Anchor = AnchorStyles.None;
             Average_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            Average_label.Location = new Point(41, 15);
+            Average_label.Location = new Point(30, 181);
             Average_label.Margin = new Padding(4, 0, 4, 0);
             Average_label.Name = "Average_label";
             Average_label.Size = new Size(327, 45);
             Average_label.TabIndex = 12;
             Average_label.Text = "Среднее арифметическое";
-            Average_label.TextAlign = ContentAlignment.TopCenter;
             // 
             // Average_textBox
             // 
             Average_textBox.Anchor = AnchorStyles.None;
-            Average_textBox.Location = new Point(41, 85);
+            Average_textBox.Location = new Point(32, 249);
             Average_textBox.Margin = new Padding(4, 2, 4, 2);
             Average_textBox.Name = "Average_textBox";
+            Average_textBox.ReadOnly = true;
             Average_textBox.Size = new Size(325, 39);
             Average_textBox.TabIndex = 23;
+            // 
+            // Rating_panel
+            // 
+            Rating_panel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            Rating_panel.Controls.Add(RatingStudent_button);
+            Rating_panel.Controls.Add(Group_button);
+            Rating_panel.Location = new Point(936, 862);
+            Rating_panel.Margin = new Padding(4, 2, 4, 2);
+            Rating_panel.Name = "Rating_panel";
+            Rating_panel.Size = new Size(446, 162);
+            Rating_panel.TabIndex = 33;
+            Rating_panel.Visible = false;
+            // 
+            // RatingStudent_button
+            // 
+            RatingStudent_button.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            RatingStudent_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            RatingStudent_button.Location = new Point(4, 29);
+            RatingStudent_button.Margin = new Padding(4, 2, 4, 2);
+            RatingStudent_button.Name = "RatingStudent_button";
+            RatingStudent_button.Size = new Size(225, 90);
+            RatingStudent_button.TabIndex = 29;
+            RatingStudent_button.Text = "Рейтинг студентов";
+            RatingStudent_button.UseVisualStyleBackColor = true;
+            RatingStudent_button.Click += Rating_Mode;
+            // 
+            // Group_button
+            // 
+            Group_button.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            Group_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            Group_button.Location = new Point(236, 29);
+            Group_button.Margin = new Padding(4, 2, 4, 2);
+            Group_button.Name = "Group_button";
+            Group_button.Size = new Size(206, 90);
+            Group_button.TabIndex = 28;
+            Group_button.Text = "Рейтинг групп";
+            Group_button.UseVisualStyleBackColor = true;
+            Group_button.Click += Rating_Mode;
             // 
             // StatInfo_panel
             // 
@@ -783,21 +764,23 @@
             // 
             // Button_panel
             // 
+            Button_panel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            Button_panel.BackColor = Color.Transparent;
             Button_panel.Controls.Add(Apply_button);
             Button_panel.Controls.Add(Remove_button);
             Button_panel.Controls.Add(Return_button);
-            Button_panel.Controls.Add(WorkWithBaseInfo_button);
+            Button_panel.Controls.Add(Info_button);
             Button_panel.Location = new Point(0, 862);
             Button_panel.Margin = new Padding(4, 2, 4, 2);
             Button_panel.Name = "Button_panel";
-            Button_panel.Size = new Size(923, 169);
+            Button_panel.Size = new Size(923, 162);
             Button_panel.TabIndex = 29;
             // 
             // Apply_button
             // 
-            Apply_button.Anchor = AnchorStyles.None;
+            Apply_button.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Apply_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            Apply_button.Location = new Point(236, 36);
+            Apply_button.Location = new Point(232, 29);
             Apply_button.Margin = new Padding(4, 2, 4, 2);
             Apply_button.Name = "Apply_button";
             Apply_button.Size = new Size(225, 90);
@@ -809,9 +792,9 @@
             // 
             // Remove_button
             // 
-            Remove_button.Anchor = AnchorStyles.None;
+            Remove_button.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Remove_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            Remove_button.Location = new Point(464, 36);
+            Remove_button.Location = new Point(462, 29);
             Remove_button.Margin = new Padding(4, 2, 4, 2);
             Remove_button.Name = "Remove_button";
             Remove_button.Size = new Size(225, 90);
@@ -823,9 +806,9 @@
             // 
             // Return_button
             // 
-            Return_button.Anchor = AnchorStyles.None;
+            Return_button.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             Return_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            Return_button.Location = new Point(695, 36);
+            Return_button.Location = new Point(695, 29);
             Return_button.Margin = new Padding(4, 2, 4, 2);
             Return_button.Name = "Return_button";
             Return_button.Size = new Size(225, 90);
@@ -835,17 +818,64 @@
             Return_button.Visible = false;
             Return_button.Click += ReturnInMenu_button_Click;
             // 
-            // WorkWithBaseInfo_button
+            // Info_button
             // 
-            WorkWithBaseInfo_button.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            WorkWithBaseInfo_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            WorkWithBaseInfo_button.Location = new Point(4, 36);
-            WorkWithBaseInfo_button.Margin = new Padding(4, 2, 4, 2);
-            WorkWithBaseInfo_button.Name = "WorkWithBaseInfo_button";
-            WorkWithBaseInfo_button.Size = new Size(225, 90);
-            WorkWithBaseInfo_button.TabIndex = 7;
-            WorkWithBaseInfo_button.Text = "Справка пользователя";
-            WorkWithBaseInfo_button.UseVisualStyleBackColor = true;
+            Info_button.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            Info_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            Info_button.Location = new Point(0, 29);
+            Info_button.Margin = new Padding(4, 2, 4, 2);
+            Info_button.Name = "Info_button";
+            Info_button.Size = new Size(225, 90);
+            Info_button.TabIndex = 7;
+            Info_button.Text = "Справка пользователя";
+            Info_button.UseVisualStyleBackColor = true;
+            Info_button.Click += Get_Inf;
+            // 
+            // HomeButtons_flowLayoutPanel
+            // 
+            HomeButtons_flowLayoutPanel.Anchor = AnchorStyles.None;
+            HomeButtons_flowLayoutPanel.AutoSize = true;
+            HomeButtons_flowLayoutPanel.BackColor = Color.Transparent;
+            HomeButtons_flowLayoutPanel.Controls.Add(LoadFile_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(DataSetHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(StatisticalIndicatorsHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(BuildingRatingsHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(ExportingReportsHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(ExitApp_button);
+            HomeButtons_flowLayoutPanel.Location = new Point(431, 160);
+            HomeButtons_flowLayoutPanel.Margin = new Padding(4, 2, 4, 2);
+            HomeButtons_flowLayoutPanel.MaximumSize = new Size(700, 800);
+            HomeButtons_flowLayoutPanel.MinimumSize = new Size(496, 582);
+            HomeButtons_flowLayoutPanel.Name = "HomeButtons_flowLayoutPanel";
+            HomeButtons_flowLayoutPanel.Size = new Size(554, 582);
+            HomeButtons_flowLayoutPanel.TabIndex = 9;
+            // 
+            // LoadFile_button
+            // 
+            LoadFile_button.AutoSize = true;
+            LoadFile_button.BackColor = Color.Transparent;
+            LoadFile_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            LoadFile_button.Location = new Point(4, 2);
+            LoadFile_button.Margin = new Padding(4, 2, 4, 2);
+            LoadFile_button.Name = "LoadFile_button";
+            LoadFile_button.Size = new Size(546, 90);
+            LoadFile_button.TabIndex = 7;
+            LoadFile_button.Text = "Загрузить файл";
+            LoadFile_button.UseVisualStyleBackColor = false;
+            LoadFile_button.Click += LoadFile_button_Click;
+            // 
+            // BuildingRatingsHome_button
+            // 
+            BuildingRatingsHome_button.AutoSize = true;
+            BuildingRatingsHome_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            BuildingRatingsHome_button.Location = new Point(4, 284);
+            BuildingRatingsHome_button.Margin = new Padding(4, 2, 4, 2);
+            BuildingRatingsHome_button.Name = "BuildingRatingsHome_button";
+            BuildingRatingsHome_button.Size = new Size(546, 90);
+            BuildingRatingsHome_button.TabIndex = 3;
+            BuildingRatingsHome_button.Text = "Построение рейтингов";
+            BuildingRatingsHome_button.UseVisualStyleBackColor = true;
+            BuildingRatingsHome_button.Click += Home_button_Click;
             // 
             // Analyzer_form
             // 
@@ -862,20 +892,20 @@
             Text = "Анализатор успеваемости студентов ";
             Home_panel.ResumeLayout(false);
             Home_panel.PerformLayout();
-            WorkWithBase_panel.ResumeLayout(false);
-            WorkWithBase_panel.PerformLayout();
-            HomeButtons_flowLayoutPanel.ResumeLayout(false);
-            HomeButtons_flowLayoutPanel.PerformLayout();
-            Rating_panel.ResumeLayout(false);
             Chart_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)BarСhart_pictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)CircleChart_pictureBox).EndInit();
+            WorkWithBase_panel.ResumeLayout(false);
+            WorkWithBase_panel.PerformLayout();
             StatisticalIndicators_panel.ResumeLayout(false);
             StatisticalIndicators_panel.PerformLayout();
+            Rating_panel.ResumeLayout(false);
             StatInfo_panel.ResumeLayout(false);
             Base_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)StudentInfo_dataGridView).EndInit();
             Button_panel.ResumeLayout(false);
+            HomeButtons_flowLayoutPanel.ResumeLayout(false);
+            HomeButtons_flowLayoutPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -893,17 +923,15 @@
         private Button Apply_button;
         private Button Remove_button;
         private Button Return_button;
-        private Button WorkWithBaseInfo_button;
+        private Button Info_button;
         private DataGridView StudentInfo_dataGridView;
         private Panel WorkWithBase_panel;
         private Label Average_label;
         private Label Sort_label;
         private Label Group_label;
-        private TextBox ChooseGroup_textBox;
         private Label Find_label;
         private TextBox Average_textBox;
         private Label ChooseFind_label;
-        private Label GroupRatio_label;
         private Label ChooseGroup_label;
         private ComboBox ChooseGroupParam_comboBox;
         private ComboBox ChooseSortParam_comboBox;
@@ -947,5 +975,9 @@
         private DataGridViewTextBoxColumn Subject10;
         private DataGridViewTextBoxColumn AverageScore;
         private DataGridViewTextBoxColumn ArrearsNumber;
+        private Label ChooseColumn_label;
+        private ComboBox ChooseColumn_comboBox;
+        private ComboBox RatingCriteria_comboBox;
+        private Label RatingCriteria_label;
     }
 }

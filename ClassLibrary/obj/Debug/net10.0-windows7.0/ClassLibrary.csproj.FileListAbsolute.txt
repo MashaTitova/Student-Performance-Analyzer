@@ -1,0 +1,12 @@
+D:\_git\Student-Performance-Analyzer\ClassLibrary\bin\Debug\net10.0-windows7.0\ClassLibrary.deps.json
+D:\_git\Student-Performance-Analyzer\ClassLibrary\bin\Debug\net10.0-windows7.0\ClassLibrary.dll
+D:\_git\Student-Performance-Analyzer\ClassLibrary\bin\Debug\net10.0-windows7.0\ClassLibrary.pdb
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0-windows7.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0-windows7.0\ClassLibrary.AssemblyInfoInputs.cache
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0-windows7.0\ClassLibrary.AssemblyInfo.cs
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0-windows7.0\ClassLibrary.csproj.CoreCompileInputs.cache
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0-windows7.0\ClassLibrary.sourcelink.json
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0-windows7.0\ClassLibrary.dll
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0-windows7.0\refint\ClassLibrary.dll
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0-windows7.0\ClassLibrary.pdb
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0-windows7.0\ref\ClassLibrary.dll

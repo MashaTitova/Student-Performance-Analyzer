@@ -1,0 +1,12 @@
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\bin\Debug\net10.0-windows7.0\AnalyzerClassLibrary.deps.json
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\bin\Debug\net10.0-windows7.0\AnalyzerClassLibrary.dll
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\bin\Debug\net10.0-windows7.0\AnalyzerClassLibrary.pdb
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.AssemblyInfoInputs.cache
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.AssemblyInfo.cs
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.csproj.CoreCompileInputs.cache
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.sourcelink.json
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.dll
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\refint\AnalyzerClassLibrary.dll
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.pdb
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\ref\AnalyzerClassLibrary.dll

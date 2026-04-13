@@ -1,11 +1,33 @@
 {
   "version": 3,
   "targets": {
-    "net10.0-windows7.0": {}
+    "net10.0-windows7.0": {
+      "AnalyzerClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/AnalyzerClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AnalyzerClassLibrary.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "AnalyzerClassLibrary/1.0.0": {
+      "type": "project",
+      "path": "../AnalyzerClassLibrary/AnalyzerClassLibrary.csproj",
+      "msbuildProject": "../AnalyzerClassLibrary/AnalyzerClassLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0-windows7.0": []
+    "net10.0-windows7.0": [
+      "AnalyzerClassLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
@@ -24,7 +46,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net10.0-windows"
+        "net10.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -32,8 +54,12 @@
       },
       "frameworks": {
         "net10.0-windows7.0": {
-          "targetAlias": "net10.0-windows",
-          "projectReferences": {}
+          "targetAlias": "net10.0-windows7.0",
+          "projectReferences": {
+            "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj": {
+              "projectPath": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -50,7 +76,7 @@
     },
     "frameworks": {
       "net10.0-windows7.0": {
-        "targetAlias": "net10.0-windows",
+        "targetAlias": "net10.0-windows7.0",
         "imports": [
           "net461",
           "net462",

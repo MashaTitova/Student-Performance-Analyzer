@@ -1,0 +1,5 @@
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows\AnalyzerClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows\AnalyzerClassLibrary.AssemblyInfoInputs.cache
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows\AnalyzerClassLibrary.AssemblyInfo.cs
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows\AnalyzerClassLibrary.csproj.CoreCompileInputs.cache
+D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows\AnalyzerClassLibrary.sourcelink.json
