@@ -1,0 +1,5 @@
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0\ClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0\ClassLibrary.AssemblyInfoInputs.cache
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0\ClassLibrary.AssemblyInfo.cs
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0\ClassLibrary.csproj.CoreCompileInputs.cache
+D:\_git\Student-Performance-Analyzer\ClassLibrary\obj\Debug\net10.0\ClassLibrary.sourcelink.json
