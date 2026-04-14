@@ -1,10 +1,5 @@
 using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
-using System.DirectoryServices;
-using System.Numerics;
-using System.Security.Policy;
-using System.Windows.Forms.VisualStyles;
 
 
 
@@ -82,7 +77,8 @@ namespace Student_Performance_Analyzer
                         Rating_panel.Visible = true;
                         Chart_panel.Visible = true;
                         Base_panel.Visible = true;
-                        Apply_button.Text = "Показать диаграммы";
+                        StatInfo_panel.Visible = true;
+                        Apply_button.Text = "Построить рейтинг";
                         Remove_button.Text = "Скрыть рейтинг";
                     }
                     HomeButtons_flowLayoutPanel.Visible = false;
@@ -91,7 +87,7 @@ namespace Student_Performance_Analyzer
                     Return_button.Visible = true;
                 }
             }
-            
+
 
         }
 
@@ -151,7 +147,7 @@ namespace Student_Performance_Analyzer
                     LoadFile();
                 }
             }
-               
+
         }
         private void LoadFile()
         {
@@ -211,7 +207,7 @@ namespace Student_Performance_Analyzer
                     }
                 }
             }
-            
+
 
         }
         private void FillTable()
@@ -259,7 +255,7 @@ namespace Student_Performance_Analyzer
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
-               
+
             }
             StreamReader f = new StreamReader(selectedFilePath);
             string[] lines = File.ReadAllLines(selectedFilePath);
@@ -350,73 +346,82 @@ namespace Student_Performance_Analyzer
             }
             if (StatisticalIndicators_panel.Visible == true)
             {
-                if(ChooseColumn_comboBox.Text != "")
+                if (ChooseColumn_comboBox.Text != "")
                 {
                     Fill_Statistical_Indicators();
                 }
             }
             if (Chart_panel.Visible == true)
             {
-               
+                Rating_Mode();
             }
         }
-        private void Rating_Mode(object sender, EventArgs e)
+
+        private void Rating_Mode()
         {
-            var tmp = (Button)sender;
-            DataGridViewColumn column = StudentInfo_dataGridView.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.HeaderText == RatingCriteria_comboBox.Text);
-            if (tmp.Name == "RatingStudent_button")
+            if(RatingCriteria_comboBox.Text == "")
             {
-
-                if (column != null)
-                {
-                    // 1. Сортируем исходную таблицу (inputDataTable), а не DataGridView
-                    // Это надёжнее, т. к. DataGridView может иметь локальные изменения
-                    inputDataTable.DefaultView.Sort = $"{column.Name} DESC";
-                    DataTable sortedTable = inputDataTable.DefaultView.ToTable();
-
-                    // 2. Создаём отфильтрованную таблицу с нужными колонками
-                    DataTable filteredTable = sortedTable.DefaultView.ToTable(
-                        true, // удаляем дубликаты
-                        "StudentName",
-                        column.Name);
-
-                    // 3. Добавляем столбец "Рейтинг", если его нет
-                    if (!filteredTable.Columns.Contains("Rating"))
-                    {
-                        filteredTable.Columns.Add("Rating", typeof(int));
-                    }
-
-                    // 4. Заполняем столбец "Рейтинг" (позиции с 1)
-                    for (int i = 0; i < filteredTable.Rows.Count; i++)
-                    {
-                        filteredTable.Rows[i]["Rating"] = i + 1;
-                    }
-
-                    // 5. Обновляем DataGridView
-                    StudentInfo_dataGridView.DataSource = filteredTable;
-
-                    // 6. Настраиваем заголовки столбцов
-                    StudentInfo_dataGridView.Columns["Rating"].HeaderText = "Рейтинг";
-                    StudentInfo_dataGridView.Columns[column.Name].HeaderText = "Оценка";
-                    StudentInfo_dataGridView.Columns["StudentName"].HeaderText = "Имя студента";
-
-                    // 7. Дополнительно: настраиваем ширину столбцов (по желанию)
-                    StudentInfo_dataGridView.Columns["Rating"].Width = 50;
-                    StudentInfo_dataGridView.Columns["StudentName"].Width = 150;
-                    StudentInfo_dataGridView.Columns[column.Name].Width = 80;
-                }
-                else
-                {
-                    MessageBox.Show("Столбец не найден! Проверьте выбор в ComboBox.");
-                }
+                MessageBox.Show(
+                 "Параметр рейтинга не выбран",
+                 "Ошибка",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Error);
+                return;
             }
+            if(!checkBox_GroupRating.Checked && !checkBox_StudentRating.Checked)
+            {
+                MessageBox.Show(
+                "Выберите рейтинг студентов или рейтинг групп",
+                "Ошибка",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                return;
+            }
+            DataColumn column = inputDataTable.Columns
+                .Cast<DataColumn>()
+                .FirstOrDefault(c => c.ColumnName == RatingCriteria_comboBox.Text);
+            DataColumn Group = inputDataTable.Columns
+                .Cast<DataColumn>()
+                .FirstOrDefault(c => c.ColumnName == "Группа");
+
+            DataTable deepCopyTable = inputDataTable.Clone();
+            foreach (DataRow row in inputDataTable.Rows)
+            {
+                deepCopyTable.ImportRow(row);
+            }
+            if (checkBox_StudentRating.Checked)
+            {
+                // Сортируем по столбцу из DataTable
+                deepCopyTable.DefaultView.Sort = $"{column.ColumnName} DESC";
+                DataTable sortedTable = deepCopyTable.DefaultView.ToTable();
+
+                // Фильтруем, используя имя столбца из DataTable
+                DataTable filteredTable = sortedTable.DefaultView.ToTable(
+                    false,
+                    "ID",
+                    "ФИО студента",
+                    column.ColumnName);
+
+                for (int i = 0; i < filteredTable.Rows.Count; i++)
+                {
+                    filteredTable.Rows[i]["ID"] = i + 1;
+                }
+
+                StudentInfo_dataGridView.DataSource = filteredTable;
+
+
+                StudentInfo_dataGridView.Columns["ID"].HeaderText = "Номер в рейтинге";
+                StudentInfo_dataGridView.Columns[column.ColumnName].HeaderText = $"{RatingCriteria_comboBox.Text}";
+                StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count}";
+            }
+            
             else
             {
-                // Создаем словарь для хранения средних оценок по группам
+
                 Dictionary<string, double> groupAverage = new Dictionary<string, double>();
 
-                // Сортируем DataGridView по группам
-                StudentInfo_dataGridView.Sort(Group, ListSortDirection.Ascending);
+                deepCopyTable.DefaultView.Sort = Group.ColumnName + " ASC";
+                DataTable sortedTable = deepCopyTable.DefaultView.ToTable();
 
                 // Проходим по всем строкам и считаем средние оценки
                 double total = 0;
@@ -442,7 +447,7 @@ namespace Student_Performance_Analyzer
                     }
 
                     // Суммируем оценки
-                    total += Convert.ToDouble(inputDataTable.Rows[i][column.Name]);
+                    total += Convert.ToDouble(inputDataTable.Rows[i][column.ColumnName]);
                     count++;
                 }
 
@@ -457,9 +462,9 @@ namespace Student_Performance_Analyzer
 
                 // Создаем новую таблицу для отображения рейтинга
                 DataTable filteredTable = new DataTable();
-                filteredTable.Columns.Add("Рейтинг", typeof(int));
+                filteredTable.Columns.Add("Номер в рейтинге", typeof(int));
                 filteredTable.Columns.Add("Группа", typeof(string));
-                filteredTable.Columns.Add("Средний балл", typeof(double));
+                filteredTable.Columns.Add($"Средний балл {RatingCriteria_comboBox.Text}", typeof(double));
 
                 int rank = 1;
                 foreach (var group in sortedGroups)
@@ -473,24 +478,21 @@ namespace Student_Performance_Analyzer
 
                 // Привязываем таблицу к DataGridView
                 StudentInfo_dataGridView.DataSource = filteredTable;
+                StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count}";
 
-                // Настраиваем отображение
-                StudentInfo_dataGridView.Columns["Рейтинг"].Width = 50;
-                StudentInfo_dataGridView.Columns["Группа"].Width = 100;
-                StudentInfo_dataGridView.Columns["Средний балл"].Width = 100;
             }
         }
-           
+
         private void Fill_Statistical_Indicators()
         {
-           Average_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateAverage(StudentInfo_dataGridView, ChooseColumn_comboBox.Text));
-           Median_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMedian(StudentInfo_dataGridView, ChooseColumn_comboBox.Text));
-           Min_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMinMax(StudentInfo_dataGridView, ChooseColumn_comboBox.Text)[0]);
-           Max_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMinMax(StudentInfo_dataGridView, ChooseColumn_comboBox.Text)[1]);
+            Average_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateAverage(StudentInfo_dataGridView, ChooseColumn_comboBox.Text));
+            Median_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMedian(StudentInfo_dataGridView, ChooseColumn_comboBox.Text));
+            Min_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMinMax(StudentInfo_dataGridView, ChooseColumn_comboBox.Text)[0]);
+            Max_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMinMax(StudentInfo_dataGridView, ChooseColumn_comboBox.Text)[1]);
         }
         private void Remove_button_Click(object sender, EventArgs e)
         {
-            if(WorkWithBase_panel.Visible == true)
+            if (WorkWithBase_panel.Visible == true)
             {
                 ChooseSortParam_comboBox.SelectedItem = null;
                 SortDirection_comboBox.SelectedItem = null;
@@ -513,10 +515,19 @@ namespace Student_Performance_Analyzer
                 Min_textBox.Text = null;
                 Max_textBox.Text = null;
             }
+            if(Chart_panel.Visible == true)
+            {
+                RatingCriteria_comboBox.Text = "";
+                checkBox_GroupRating.Checked = false;
+                checkBox_StudentRating.Checked = false;
+                StudentInfo_dataGridView.DataSource = inputDataTable;
+                StudentInfo_dataGridView.Columns["ID"].HeaderText = "ID";
+                StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count}";
+            }
 
 
         }
-        private void Get_Inf (object  sender, EventArgs e)
+        private void Get_Inf(object sender, EventArgs e)
         {
             if (HomeButtons_flowLayoutPanel.Visible == true)
             {
@@ -565,6 +576,30 @@ namespace Student_Performance_Analyzer
                 "Справка пользователя",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Asterisk);
+            }
+        }
+
+        private void checkBox_StudentRating_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_StudentRating.Checked == true)
+            {
+                checkBox_GroupRating.Enabled = false;
+            }
+            else
+            {
+                checkBox_GroupRating.Enabled = true;
+            }
+        }
+
+        private void checkBox_GroupRating_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_GroupRating.Checked == true)
+            {
+                checkBox_StudentRating.Enabled = false;
+            }
+            else
+            {
+                checkBox_StudentRating.Enabled = true;
             }
         }
     }
