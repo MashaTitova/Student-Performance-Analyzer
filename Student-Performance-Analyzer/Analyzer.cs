@@ -1,6 +1,6 @@
-using System.ComponentModel;
 using System.Data;
-
+using System.Data.Common;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 namespace Student_Performance_Analyzer
@@ -120,6 +120,7 @@ namespace Student_Performance_Analyzer
             }
             if (Chart_panel.Visible == true)
             {
+                StatisticalIndicators_panel.Visible = false;
                 Rating_panel.Visible = false;
                 Chart_panel.Visible = false;
             }
@@ -356,10 +357,98 @@ namespace Student_Performance_Analyzer
                 Rating_Mode();
             }
         }
+        private void BuildGroupRatingChartAbsolute(IEnumerable<KeyValuePair<string, double>> sortedGroups)
+        {
+            chart.Series.Clear();
+            chart.Titles.Clear();
+            // Заголовок
+            Title title = new Title($"Рейтинг групп по критерию {RatingCriteria_comboBox.Text}");
+            chart.Titles.Add(title);
 
+            // Серия
+            Series series = new Series
+            {
+                Name = "Рейтинг групп",
+                ChartType = SeriesChartType.Column,
+                IsValueShownAsLabel = false,
+                LabelFormat = ""
+            };
+
+            // Добавляем данные
+            foreach (var group in sortedGroups)
+            {
+                series.Points.AddXY(group.Key, group.Value);
+            }
+
+            // Добавляем серию на диаграмму
+            chart.Series.Add(series);
+
+            // Настройка ChartArea
+            ChartArea chartArea = chart.ChartAreas[0];
+
+            // Настраиваем оси
+            chartArea.AxisX.Title = "Группы";
+            chartArea.AxisY.Title = "Средний балл";
+            chartArea.AxisY.Interval = 1;
+            chartArea.AxisY.MajorGrid.Enabled = true;
+            chartArea.AxisX.MajorGrid.Enabled = true;
+
+            // Устраняем наложение столбцов
+            series.CustomProperties = "PointWidth=0.6, GapDepth=100, Overlap=0";
+            series["PointWidth"] = "0.5"; 
+
+            // Дополнительные настройки
+            series["ColumnWidth"] = "0.6";
+            series.Palette = ChartColorPalette.Pastel;
+
+            // Выравнивание точек под метками
+            chart.AlignDataPointsByAxisLabel();
+        }
+        private void BuildStudentRatingBarChart(DataTable filteredTable, string ratingCriteria)
+        {
+            var gradeGroups = filteredTable.AsEnumerable()
+                .GroupBy(row => row[ratingCriteria])
+                .Select(group => new
+                {
+                    Grade = group.Key, 
+                    Count = group.Count() 
+                })
+                .ToList();
+            chart.Series.Clear();
+            chart.Titles.Clear();
+
+            var title = new Title($"Распределение оценок по критерию: {RatingCriteria_comboBox.Text}");
+            chart.Titles.Add(title);
+
+            var series = new Series
+            {
+                Name = "Распределение оценок",
+                ChartType = SeriesChartType.Pie, 
+                IsValueShownAsLabel = true 
+            };
+
+            foreach (var group in gradeGroups)
+            {
+                series.Points.AddXY(group.Grade, group.Count);
+            }
+
+            chart.Series.Add(series);
+
+            var chartArea = chart.ChartAreas[0];
+            chartArea.AxisX.Title = "Оценки";
+            chartArea.AxisY.Title = "Количество учеников";
+
+            series.Palette = ChartColorPalette.Fire;
+
+            series["PieLabelStyle"] = "Percentage";
+
+            int totalStudents = gradeGroups.Sum(g => g.Count);
+
+        }
         private void Rating_Mode()
         {
-            if(RatingCriteria_comboBox.Text == "")
+            chart.Visible = true;
+            if (RatingCriteria_comboBox.Text == "")
             {
                 MessageBox.Show(
                  "Параметр рейтинга не выбран",
@@ -413,6 +502,7 @@ namespace Student_Performance_Analyzer
                 StudentInfo_dataGridView.Columns["ID"].HeaderText = "Номер в рейтинге";
                 StudentInfo_dataGridView.Columns[column.ColumnName].HeaderText = $"{RatingCriteria_comboBox.Text}";
                 StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count}";
+                BuildStudentRatingBarChart(filteredTable, RatingCriteria_comboBox.Text);
             }
             
             else
@@ -479,7 +569,7 @@ namespace Student_Performance_Analyzer
                 // Привязываем таблицу к DataGridView
                 StudentInfo_dataGridView.DataSource = filteredTable;
                 StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count}";
-
+                BuildGroupRatingChartAbsolute(sortedGroups);
             }
         }
 

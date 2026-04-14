@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             NameUnit_label = new Label();
             DataSetHome_button = new Button();
             StatisticalIndicatorsHome_button = new Button();
@@ -35,10 +38,9 @@
             ExitApp_button = new Button();
             Home_panel = new Panel();
             Chart_panel = new Panel();
+            chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             RatingCriteria_comboBox = new ComboBox();
             RatingCriteria_label = new Label();
-            BarСhart_pictureBox = new PictureBox();
-            CircleChart_pictureBox = new PictureBox();
             WorkWithBase_panel = new Panel();
             SortDirection_label = new Label();
             SortDirection_comboBox = new ComboBox();
@@ -98,8 +100,7 @@
             BuildingRatingsHome_button = new Button();
             Home_panel.SuspendLayout();
             Chart_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)BarСhart_pictureBox).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)CircleChart_pictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chart).BeginInit();
             WorkWithBase_panel.SuspendLayout();
             StatisticalIndicators_panel.SuspendLayout();
             Rating_panel.SuspendLayout();
@@ -198,16 +199,31 @@
             // Chart_panel
             // 
             Chart_panel.AutoSize = true;
+            Chart_panel.Controls.Add(chart);
             Chart_panel.Controls.Add(RatingCriteria_comboBox);
             Chart_panel.Controls.Add(RatingCriteria_label);
-            Chart_panel.Controls.Add(BarСhart_pictureBox);
-            Chart_panel.Controls.Add(CircleChart_pictureBox);
             Chart_panel.Location = new Point(0, 90);
             Chart_panel.Margin = new Padding(4, 2, 4, 2);
             Chart_panel.Name = "Chart_panel";
             Chart_panel.Size = new Size(514, 743);
             Chart_panel.TabIndex = 30;
             Chart_panel.Visible = false;
+            // 
+            // chart
+            // 
+            chartArea1.Name = "ChartArea1";
+            chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chart.Legends.Add(legend1);
+            chart.Location = new Point(8, 97);
+            chart.Name = "chart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chart.Series.Add(series1);
+            chart.Size = new Size(502, 634);
+            chart.TabIndex = 34;
+            chart.Visible = false;
             // 
             // RatingCriteria_comboBox
             // 
@@ -228,28 +244,6 @@
             RatingCriteria_label.TabIndex = 32;
             RatingCriteria_label.Text = "Выберете критерий построения рейтингов";
             RatingCriteria_label.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // BarСhart_pictureBox
-            // 
-            BarСhart_pictureBox.Anchor = AnchorStyles.None;
-            BarСhart_pictureBox.BackColor = Color.Transparent;
-            BarСhart_pictureBox.Location = new Point(0, 412);
-            BarСhart_pictureBox.Margin = new Padding(4, 2, 4, 2);
-            BarСhart_pictureBox.Name = "BarСhart_pictureBox";
-            BarСhart_pictureBox.Size = new Size(510, 329);
-            BarСhart_pictureBox.TabIndex = 31;
-            BarСhart_pictureBox.TabStop = false;
-            // 
-            // CircleChart_pictureBox
-            // 
-            CircleChart_pictureBox.Anchor = AnchorStyles.None;
-            CircleChart_pictureBox.BackColor = Color.Transparent;
-            CircleChart_pictureBox.Location = new Point(0, 96);
-            CircleChart_pictureBox.Margin = new Padding(4, 2, 4, 2);
-            CircleChart_pictureBox.Name = "CircleChart_pictureBox";
-            CircleChart_pictureBox.Size = new Size(510, 318);
-            CircleChart_pictureBox.TabIndex = 30;
-            CircleChart_pictureBox.TabStop = false;
             // 
             // WorkWithBase_panel
             // 
@@ -892,8 +886,7 @@
             Home_panel.ResumeLayout(false);
             Home_panel.PerformLayout();
             Chart_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)BarСhart_pictureBox).EndInit();
-            ((System.ComponentModel.ISupportInitialize)CircleChart_pictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chart).EndInit();
             WorkWithBase_panel.ResumeLayout(false);
             WorkWithBase_panel.PerformLayout();
             StatisticalIndicators_panel.ResumeLayout(false);
@@ -951,8 +944,6 @@
         private TextBox Median_textBox;
         private TextBox ChooseFind_textBox;
         private Label ChooseSort_label;
-        private PictureBox BarСhart_pictureBox;
-        private PictureBox CircleChart_pictureBox;
         private Panel Chart_panel;
         private Panel Rating_panel;
         private Label SortDirection_label;
@@ -979,5 +970,6 @@
         private Label RatingCriteria_label;
         private CheckBox checkBox_GroupRating;
         private CheckBox checkBox_StudentRating;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
     }
 }
