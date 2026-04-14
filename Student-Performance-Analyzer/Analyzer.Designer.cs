@@ -65,8 +65,8 @@
             Average_label = new Label();
             Average_textBox = new TextBox();
             Rating_panel = new Panel();
-            RatingStudent_button = new Button();
-            Group_button = new Button();
+            checkBox_GroupRating = new CheckBox();
+            checkBox_StudentRating = new CheckBox();
             StatInfo_panel = new Panel();
             StatInfo_label = new Label();
             StatInfoNum_label = new Label();
@@ -112,7 +112,7 @@
             // 
             // NameUnit_label
             // 
-            NameUnit_label.Anchor = AnchorStyles.Top;
+            NameUnit_label.Anchor = AnchorStyles.None;
             NameUnit_label.BackColor = Color.Transparent;
             NameUnit_label.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
             NameUnit_label.Location = new Point(15, 15);
@@ -554,40 +554,38 @@
             // Rating_panel
             // 
             Rating_panel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            Rating_panel.Controls.Add(RatingStudent_button);
-            Rating_panel.Controls.Add(Group_button);
-            Rating_panel.Location = new Point(936, 862);
+            Rating_panel.Controls.Add(checkBox_GroupRating);
+            Rating_panel.Controls.Add(checkBox_StudentRating);
+            Rating_panel.Location = new Point(936, 917);
             Rating_panel.Margin = new Padding(4, 2, 4, 2);
             Rating_panel.Name = "Rating_panel";
-            Rating_panel.Size = new Size(446, 162);
+            Rating_panel.Size = new Size(446, 107);
             Rating_panel.TabIndex = 33;
             Rating_panel.Visible = false;
             // 
-            // RatingStudent_button
+            // checkBox_GroupRating
             // 
-            RatingStudent_button.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            RatingStudent_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            RatingStudent_button.Location = new Point(4, 29);
-            RatingStudent_button.Margin = new Padding(4, 2, 4, 2);
-            RatingStudent_button.Name = "RatingStudent_button";
-            RatingStudent_button.Size = new Size(225, 90);
-            RatingStudent_button.TabIndex = 29;
-            RatingStudent_button.Text = "Рейтинг студентов";
-            RatingStudent_button.UseVisualStyleBackColor = true;
-            RatingStudent_button.Click += Rating_Mode;
+            checkBox_GroupRating.Anchor = AnchorStyles.None;
+            checkBox_GroupRating.AutoSize = true;
+            checkBox_GroupRating.Location = new Point(19, 55);
+            checkBox_GroupRating.Name = "checkBox_GroupRating";
+            checkBox_GroupRating.Size = new Size(203, 36);
+            checkBox_GroupRating.TabIndex = 1;
+            checkBox_GroupRating.Text = "Рейтинг групп";
+            checkBox_GroupRating.UseVisualStyleBackColor = true;
+            checkBox_GroupRating.CheckedChanged += checkBox_GroupRating_CheckedChanged;
             // 
-            // Group_button
+            // checkBox_StudentRating
             // 
-            Group_button.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            Group_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            Group_button.Location = new Point(236, 29);
-            Group_button.Margin = new Padding(4, 2, 4, 2);
-            Group_button.Name = "Group_button";
-            Group_button.Size = new Size(206, 90);
-            Group_button.TabIndex = 28;
-            Group_button.Text = "Рейтинг групп";
-            Group_button.UseVisualStyleBackColor = true;
-            Group_button.Click += Rating_Mode;
+            checkBox_StudentRating.Anchor = AnchorStyles.None;
+            checkBox_StudentRating.AutoSize = true;
+            checkBox_StudentRating.Location = new Point(19, 1);
+            checkBox_StudentRating.Name = "checkBox_StudentRating";
+            checkBox_StudentRating.Size = new Size(250, 36);
+            checkBox_StudentRating.TabIndex = 0;
+            checkBox_StudentRating.Text = "Рейтинг студентов";
+            checkBox_StudentRating.UseVisualStyleBackColor = true;
+            checkBox_StudentRating.CheckedChanged += checkBox_StudentRating_CheckedChanged;
             // 
             // StatInfo_panel
             // 
@@ -595,7 +593,7 @@
             StatInfo_panel.AutoSize = true;
             StatInfo_panel.Controls.Add(StatInfo_label);
             StatInfo_panel.Controls.Add(StatInfoNum_label);
-            StatInfo_panel.Location = new Point(955, 875);
+            StatInfo_panel.Location = new Point(940, 849);
             StatInfo_panel.Margin = new Padding(4, 2, 4, 2);
             StatInfo_panel.Name = "StatInfo_panel";
             StatInfo_panel.Size = new Size(403, 64);
@@ -640,6 +638,7 @@
             StudentInfo_dataGridView.AllowUserToAddRows = false;
             StudentInfo_dataGridView.AllowUserToDeleteRows = false;
             StudentInfo_dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            StudentInfo_dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             StudentInfo_dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             StudentInfo_dataGridView.Columns.AddRange(new DataGridViewColumn[] { StudentsID, StudentName, Cours, Group, Subject1, Subject2, Subject3, Subject4, Subject5, Subject6, Subject7, Subject8, Subject9, Subject10, AverageScore, ArrearsNumber });
             StudentInfo_dataGridView.Dock = DockStyle.Fill;
@@ -842,7 +841,7 @@
             HomeButtons_flowLayoutPanel.Controls.Add(BuildingRatingsHome_button);
             HomeButtons_flowLayoutPanel.Controls.Add(ExportingReportsHome_button);
             HomeButtons_flowLayoutPanel.Controls.Add(ExitApp_button);
-            HomeButtons_flowLayoutPanel.Location = new Point(431, 160);
+            HomeButtons_flowLayoutPanel.Location = new Point(431, 260);
             HomeButtons_flowLayoutPanel.Margin = new Padding(4, 2, 4, 2);
             HomeButtons_flowLayoutPanel.MaximumSize = new Size(700, 800);
             HomeButtons_flowLayoutPanel.MinimumSize = new Size(496, 582);
@@ -900,6 +899,7 @@
             StatisticalIndicators_panel.ResumeLayout(false);
             StatisticalIndicators_panel.PerformLayout();
             Rating_panel.ResumeLayout(false);
+            Rating_panel.PerformLayout();
             StatInfo_panel.ResumeLayout(false);
             Base_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)StudentInfo_dataGridView).EndInit();
@@ -955,8 +955,6 @@
         private PictureBox CircleChart_pictureBox;
         private Panel Chart_panel;
         private Panel Rating_panel;
-        private Button Group_button;
-        private Button RatingStudent_button;
         private Label SortDirection_label;
         private ComboBox SortDirection_comboBox;
         private DataGridViewTextBoxColumn StudentsID;
@@ -979,5 +977,7 @@
         private ComboBox ChooseColumn_comboBox;
         private ComboBox RatingCriteria_comboBox;
         private Label RatingCriteria_label;
+        private CheckBox checkBox_GroupRating;
+        private CheckBox checkBox_StudentRating;
     }
 }
