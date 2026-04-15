@@ -9,6 +9,7 @@ namespace Student_Performance_Analyzer
     {
         private string selectedFilePath = "";
         DataTable inputDataTable = new DataTable();
+        private string report = "Отчет о работе с данными об успеваемости студентов.\n";
 
         public Analyzer_form()
         {
@@ -120,7 +121,7 @@ namespace Student_Performance_Analyzer
             }
             if (Chart_panel.Visible == true)
             {
-                StatisticalIndicators_panel.Visible = false;
+                StatInfo_panel.Visible = false;
                 Rating_panel.Visible = false;
                 Chart_panel.Visible = false;
             }
@@ -152,6 +153,7 @@ namespace Student_Performance_Analyzer
         }
         private void LoadFile()
         {
+            report = "";
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             // Настройка диалогового окна
@@ -188,7 +190,7 @@ namespace Student_Performance_Analyzer
             {
                 SaveFileDialog saveDialog = new SaveFileDialog();
                 saveDialog.Title = "Сохранить отчет";
-                saveDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+                saveDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
                 saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 if (saveDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -197,8 +199,7 @@ namespace Student_Performance_Analyzer
                         // Получаем путь к файлу
                         string filePath = saveDialog.FileName;
 
-                        // Пример сохранения текста в файл
-                        //File.WriteAllText(filePath, NameUnit_label.Text);
+                        File.WriteAllText(filePath, report);
 
                         MessageBox.Show("Отчет сохранен успешно!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -305,15 +306,28 @@ namespace Student_Performance_Analyzer
             }
         }
 
-
+        private void GetTab()
+        {
+            if(report != "")
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    report += "\n";
+                }
+            }
+        }
         private void Apply_button_Click(object sender, EventArgs e)
         {
             if (WorkWithBase_panel.Visible == true)
             {
+                GetTab();
                 if (SortDirection_comboBox.Text != "" &&
                 ChooseSortParam_comboBox.Text != "")
+                {
                     AnalyzerClassLibrary.CustomSort(StudentInfo_dataGridView, SortDirection_comboBox.Text, ChooseSortParam_comboBox.Text);
-                if (ChooseFindParam_comboBox.Text != "" && FindRatio_comboBox.Text != "" && ChooseFind_textBox.Text != "") ;
+                    report += $"Сортировка по параметру {ChooseSortParam_comboBox.Text}. Направление сортировки: {SortDirection_comboBox.Text}\n";
+                }
+                if (ChooseFindParam_comboBox.Text != "" && FindRatio_comboBox.Text != "" && ChooseFind_textBox.Text != "")
                 {
                     try
                     {
@@ -329,6 +343,7 @@ namespace Student_Performance_Analyzer
                         MessageBoxIcon.Error);
                         return;
                     }
+                    report += $"Поиск значений по параметру {ChooseFindParam_comboBox.Text}. Условие поиска {FindRatio_comboBox.Text} {ChooseFind_textBox.Text}\n";
                     if (ChooseFindParam_comboBox.Text == "ФИО студента" && FindRatio_comboBox.Text == "=")
                     {
                         AnalyzerClassLibrary.FilterString(StudentInfo_dataGridView, ChooseFind_textBox.Text, "ФИО студента");
@@ -342,7 +357,21 @@ namespace Student_Performance_Analyzer
                 }
                 if (ChooseGroupParam_comboBox.Text != "")
                 {
+                    report += $"Группировка по параметру {ChooseGroupParam_comboBox.Text}.\n";
                     AnalyzerClassLibrary.Group(StudentInfo_dataGridView, ChooseGroupParam_comboBox.Text);
+                }
+
+                for (int i = 0; i < StudentInfo_dataGridView.Rows.Count; i++)
+                {
+                    DataGridViewRow row = StudentInfo_dataGridView.Rows[i];
+                    List<string> cellValues = new List<string>();
+
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        cellValues.Add(cell.Value?.ToString() ?? "null");
+                    }
+                    report += "ID;ФИО студента;Курс;Группа;Физика;Английский язык;История;Физическая культура;Культурология;Информатика;Психология;Математика;Биология;Химия;Общий средний балл;Кол-во задолженностей\n";
+                    report += $"{string.Join(";", cellValues)}\n";
                 }
             }
             if (StatisticalIndicators_panel.Visible == true)
@@ -447,6 +476,7 @@ namespace Student_Performance_Analyzer
         }
         private void Rating_Mode()
         {
+            GetTab();
             chart.Visible = true;
             if (RatingCriteria_comboBox.Text == "")
             {
@@ -480,6 +510,7 @@ namespace Student_Performance_Analyzer
             }
             if (checkBox_StudentRating.Checked)
             {
+                report += $"Построение рейтинга студентов по параметру {RatingCriteria_comboBox.Text}\n";
                 // Сортируем по столбцу из DataTable
                 deepCopyTable.DefaultView.Sort = $"{column.ColumnName} DESC";
                 DataTable sortedTable = deepCopyTable.DefaultView.ToTable();
@@ -507,7 +538,7 @@ namespace Student_Performance_Analyzer
             
             else
             {
-
+                report += $"Построение рейтинга групп по параметру {RatingCriteria_comboBox.Text}\n";
                 Dictionary<string, double> groupAverage = new Dictionary<string, double>();
 
                 deepCopyTable.DefaultView.Sort = Group.ColumnName + " ASC";
@@ -571,14 +602,32 @@ namespace Student_Performance_Analyzer
                 StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count}";
                 BuildGroupRatingChartAbsolute(sortedGroups);
             }
+            for (int i = 0; i < StudentInfo_dataGridView.Rows.Count; i++)
+            {
+                DataGridViewRow row = StudentInfo_dataGridView.Rows[i];
+                List<string> cellValues = new List<string>();
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cellValues.Add(cell.Value?.ToString() ?? "null");
+                }
+                report += "ID;ФИО студента;Курс;Группа;Физика;Английский язык;История;Физическая культура;Культурология;Информатика;Психология;Математика;Биология;Химия;Общий средний балл;Кол-во задолженностей\n";
+                report += $"{string.Join(";", cellValues)}\n";
+            }
         }
 
         private void Fill_Statistical_Indicators()
         {
-            Average_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateAverage(StudentInfo_dataGridView, ChooseColumn_comboBox.Text));
-            Median_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMedian(StudentInfo_dataGridView, ChooseColumn_comboBox.Text));
-            Min_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMinMax(StudentInfo_dataGridView, ChooseColumn_comboBox.Text)[0]);
-            Max_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMinMax(StudentInfo_dataGridView, ChooseColumn_comboBox.Text)[1]);
+                GetTab();
+                Average_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateAverage(StudentInfo_dataGridView, ChooseColumn_comboBox.Text));
+                Median_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMedian(StudentInfo_dataGridView, ChooseColumn_comboBox.Text));
+                Min_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMinMax(StudentInfo_dataGridView, ChooseColumn_comboBox.Text)[0]);
+                Max_textBox.Text = Convert.ToString(CalculateStatisticalIndicators.CalculateMinMax(StudentInfo_dataGridView, ChooseColumn_comboBox.Text)[1]);
+                report += $"Статистические показатели по столбцу {ChooseColumn_comboBox.Text}.\n" +
+                    $"Среднее арифметическое: {Average_textBox.Text}\n" +
+                    $"Медиана: {Median_textBox.Text}\n" +
+                    $"Минамальное значение {Min_textBox.Text}\n" +
+                    $"Максимальное значение {Max_textBox.Text}\n";
         }
         private void Remove_button_Click(object sender, EventArgs e)
         {
