@@ -113,13 +113,13 @@
             // 
             // NameUnit_label
             // 
-            NameUnit_label.Anchor = AnchorStyles.None;
             NameUnit_label.BackColor = Color.Transparent;
+            NameUnit_label.Dock = DockStyle.Top;
             NameUnit_label.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            NameUnit_label.Location = new Point(15, 15);
+            NameUnit_label.Location = new Point(0, 0);
             NameUnit_label.Margin = new Padding(4, 0, 4, 0);
             NameUnit_label.Name = "NameUnit_label";
-            NameUnit_label.Size = new Size(1359, 64);
+            NameUnit_label.Size = new Size(1384, 64);
             NameUnit_label.TabIndex = 0;
             NameUnit_label.Text = "Анализатор успеваемости студентов";
             NameUnit_label.TextAlign = ContentAlignment.TopCenter;
