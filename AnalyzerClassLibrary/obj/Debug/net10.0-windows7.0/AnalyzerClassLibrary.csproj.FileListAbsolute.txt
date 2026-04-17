@@ -10,3 +10,15 @@ D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-wind
 D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\refint\AnalyzerClassLibrary.dll
 D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.pdb
 D:\_git\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\ref\AnalyzerClassLibrary.dll
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\bin\Debug\net10.0-windows7.0\AnalyzerClassLibrary.deps.json
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\bin\Debug\net10.0-windows7.0\AnalyzerClassLibrary.dll
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\bin\Debug\net10.0-windows7.0\AnalyzerClassLibrary.pdb
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.AssemblyInfoInputs.cache
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.AssemblyInfo.cs
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.csproj.CoreCompileInputs.cache
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.sourcelink.json
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.dll
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\refint\AnalyzerClassLibrary.dll
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\AnalyzerClassLibrary.pdb
+D:\Masha\Алгоритмизация\Семестр2\Курсовая работа вариант2\Student-Performance-Analyzer\AnalyzerClassLibrary\obj\Debug\net10.0-windows7.0\ref\AnalyzerClassLibrary.dll

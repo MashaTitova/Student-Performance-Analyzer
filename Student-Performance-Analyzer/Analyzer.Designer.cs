@@ -74,22 +74,6 @@
             StatInfoNum_label = new Label();
             Base_panel = new Panel();
             StudentInfo_dataGridView = new DataGridView();
-            StudentsID = new DataGridViewTextBoxColumn();
-            StudentName = new DataGridViewTextBoxColumn();
-            Cours = new DataGridViewTextBoxColumn();
-            Group = new DataGridViewTextBoxColumn();
-            Subject1 = new DataGridViewTextBoxColumn();
-            Subject2 = new DataGridViewTextBoxColumn();
-            Subject3 = new DataGridViewTextBoxColumn();
-            Subject4 = new DataGridViewTextBoxColumn();
-            Subject5 = new DataGridViewTextBoxColumn();
-            Subject6 = new DataGridViewTextBoxColumn();
-            Subject7 = new DataGridViewTextBoxColumn();
-            Subject8 = new DataGridViewTextBoxColumn();
-            Subject9 = new DataGridViewTextBoxColumn();
-            Subject10 = new DataGridViewTextBoxColumn();
-            AverageScore = new DataGridViewTextBoxColumn();
-            ArrearsNumber = new DataGridViewTextBoxColumn();
             Button_panel = new Panel();
             Apply_button = new Button();
             Remove_button = new Button();
@@ -227,6 +211,7 @@
             // 
             // RatingCriteria_comboBox
             // 
+            RatingCriteria_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             RatingCriteria_comboBox.FormattingEnabled = true;
             RatingCriteria_comboBox.Items.AddRange(new object[] { "Общий средний балл", "Кол-во задолженностей" });
             RatingCriteria_comboBox.Location = new Point(0, 49);
@@ -414,7 +399,7 @@
             ChooseFindParam_comboBox.Anchor = AnchorStyles.None;
             ChooseFindParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             ChooseFindParam_comboBox.FormattingEnabled = true;
-            ChooseFindParam_comboBox.Items.AddRange(new object[] { "ФИО студента", "Общий средний балл", "Кол-во задолженностей" });
+            ChooseFindParam_comboBox.Items.AddRange(new object[] { "Общий средний балл", "Кол-во задолженностей" });
             ChooseFindParam_comboBox.Location = new Point(8, 386);
             ChooseFindParam_comboBox.Margin = new Padding(4, 2, 4, 2);
             ChooseFindParam_comboBox.Name = "ChooseFindParam_comboBox";
@@ -634,7 +619,6 @@
             StudentInfo_dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             StudentInfo_dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             StudentInfo_dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            StudentInfo_dataGridView.Columns.AddRange(new DataGridViewColumn[] { StudentsID, StudentName, Cours, Group, Subject1, Subject2, Subject3, Subject4, Subject5, Subject6, Subject7, Subject8, Subject9, Subject10, AverageScore, ArrearsNumber });
             StudentInfo_dataGridView.Dock = DockStyle.Fill;
             StudentInfo_dataGridView.Location = new Point(0, 0);
             StudentInfo_dataGridView.Margin = new Padding(4, 2, 4, 2);
@@ -642,118 +626,6 @@
             StudentInfo_dataGridView.RowHeadersWidth = 82;
             StudentInfo_dataGridView.Size = new Size(860, 743);
             StudentInfo_dataGridView.TabIndex = 8;
-            // 
-            // StudentsID
-            // 
-            StudentsID.HeaderText = "ID";
-            StudentsID.MinimumWidth = 10;
-            StudentsID.Name = "StudentsID";
-            StudentsID.Width = 82;
-            // 
-            // StudentName
-            // 
-            StudentName.HeaderText = "ФИО студента";
-            StudentName.MinimumWidth = 10;
-            StudentName.Name = "StudentName";
-            StudentName.Width = 197;
-            // 
-            // Cours
-            // 
-            Cours.HeaderText = "Курс ";
-            Cours.MinimumWidth = 10;
-            Cours.Name = "Cours";
-            Cours.Width = 117;
-            // 
-            // Group
-            // 
-            Group.HeaderText = "Группа ";
-            Group.MinimumWidth = 10;
-            Group.Name = "Group";
-            Group.Width = 143;
-            // 
-            // Subject1
-            // 
-            Subject1.HeaderText = "Предмет1";
-            Subject1.MinimumWidth = 10;
-            Subject1.Name = "Subject1";
-            Subject1.Width = 169;
-            // 
-            // Subject2
-            // 
-            Subject2.HeaderText = "Предмет2";
-            Subject2.MinimumWidth = 10;
-            Subject2.Name = "Subject2";
-            Subject2.Width = 169;
-            // 
-            // Subject3
-            // 
-            Subject3.HeaderText = "Предмет3";
-            Subject3.MinimumWidth = 10;
-            Subject3.Name = "Subject3";
-            Subject3.Width = 169;
-            // 
-            // Subject4
-            // 
-            Subject4.HeaderText = "Предмет4";
-            Subject4.MinimumWidth = 10;
-            Subject4.Name = "Subject4";
-            Subject4.Width = 169;
-            // 
-            // Subject5
-            // 
-            Subject5.HeaderText = "Предмет5";
-            Subject5.MinimumWidth = 10;
-            Subject5.Name = "Subject5";
-            Subject5.Width = 169;
-            // 
-            // Subject6
-            // 
-            Subject6.HeaderText = "Предмет6";
-            Subject6.MinimumWidth = 10;
-            Subject6.Name = "Subject6";
-            Subject6.Width = 169;
-            // 
-            // Subject7
-            // 
-            Subject7.HeaderText = "Предмет7";
-            Subject7.MinimumWidth = 10;
-            Subject7.Name = "Subject7";
-            Subject7.Width = 169;
-            // 
-            // Subject8
-            // 
-            Subject8.HeaderText = "Предмет8";
-            Subject8.MinimumWidth = 10;
-            Subject8.Name = "Subject8";
-            Subject8.Width = 169;
-            // 
-            // Subject9
-            // 
-            Subject9.HeaderText = "Предмет9";
-            Subject9.MinimumWidth = 10;
-            Subject9.Name = "Subject9";
-            Subject9.Width = 169;
-            // 
-            // Subject10
-            // 
-            Subject10.HeaderText = "Предмет10";
-            Subject10.MinimumWidth = 10;
-            Subject10.Name = "Subject10";
-            Subject10.Width = 182;
-            // 
-            // AverageScore
-            // 
-            AverageScore.HeaderText = "Общий средний балл ";
-            AverageScore.MinimumWidth = 10;
-            AverageScore.Name = "AverageScore";
-            AverageScore.Width = 225;
-            // 
-            // ArrearsNumber
-            // 
-            ArrearsNumber.HeaderText = "Кол-во задолженностей";
-            ArrearsNumber.MinimumWidth = 10;
-            ArrearsNumber.Name = "ArrearsNumber";
-            ArrearsNumber.Width = 299;
             // 
             // Button_panel
             // 
@@ -822,7 +694,6 @@
             Info_button.TabIndex = 7;
             Info_button.Text = "Справка пользователя";
             Info_button.UseVisualStyleBackColor = true;
-            Info_button.Click += Get_Inf;
             // 
             // HomeButtons_flowLayoutPanel
             // 
@@ -883,6 +754,7 @@
             MinimumSize = new Size(1391, 1031);
             Name = "Analyzer_form";
             Text = "Анализатор успеваемости студентов ";
+            FormClosing += Analyzer_form_FormClosing;
             Home_panel.ResumeLayout(false);
             Home_panel.PerformLayout();
             Chart_panel.ResumeLayout(false);
@@ -948,22 +820,6 @@
         private Panel Rating_panel;
         private Label SortDirection_label;
         private ComboBox SortDirection_comboBox;
-        private DataGridViewTextBoxColumn StudentsID;
-        private DataGridViewTextBoxColumn StudentName;
-        private DataGridViewTextBoxColumn Cours;
-        private DataGridViewTextBoxColumn Group;
-        private DataGridViewTextBoxColumn Subject1;
-        private DataGridViewTextBoxColumn Subject2;
-        private DataGridViewTextBoxColumn Subject3;
-        private DataGridViewTextBoxColumn Subject4;
-        private DataGridViewTextBoxColumn Subject5;
-        private DataGridViewTextBoxColumn Subject6;
-        private DataGridViewTextBoxColumn Subject7;
-        private DataGridViewTextBoxColumn Subject8;
-        private DataGridViewTextBoxColumn Subject9;
-        private DataGridViewTextBoxColumn Subject10;
-        private DataGridViewTextBoxColumn AverageScore;
-        private DataGridViewTextBoxColumn ArrearsNumber;
         private Label ChooseColumn_label;
         private ComboBox ChooseColumn_comboBox;
         private ComboBox RatingCriteria_comboBox;

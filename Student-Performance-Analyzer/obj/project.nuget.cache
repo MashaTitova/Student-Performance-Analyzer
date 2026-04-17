@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sYlWQa0u4XI=",
+  "dgSpecHash": "04WyEBWdo5Y=",
   "success": true,
-  "projectFilePath": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Student-Performance-Analyzer.csproj",
+  "projectFilePath": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Student-Performance-Analyzer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\winforms.datavisualization\\1.10.0\\winforms.datavisualization.1.10.0.nupkg.sha512"
   ],

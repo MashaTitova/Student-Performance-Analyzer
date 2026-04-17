@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj": {}
+    "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj": {}
   },
   "projects": {
-    "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj": {
+    "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj",
+        "projectUniqueName": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj",
         "projectName": "AnalyzerClassLibrary",
-        "projectPath": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj",
+        "projectPath": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\obj\\",
+        "outputPath": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",

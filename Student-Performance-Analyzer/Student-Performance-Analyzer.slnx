@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="../AnalyzerClassLibrary/AnalyzerClassLibrary.csproj" />
+  <Project Path="../AnalyzerTestProject/AnalyzerTestProject.csproj" Id="cbc30c11-0fd8-4a3a-868f-5653177926e2" />
   <Project Path="Student-Performance-Analyzer.csproj" />
 </Solution>

@@ -3,56 +3,79 @@ using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 
-public class AnalyzerClassLibrary
+public class WorkWithBase
 {
-    public static void CustomSort(DataGridView grid, string sortDirect, string param)
+    public static void CustomSort(List<Student> students, string sortDirection, string param)
     {
+        // Проверки входных параметров
+        if (students == null)
+            throw new ArgumentNullException(nameof(students));
+        if (string.IsNullOrEmpty(sortDirection))
+            throw new ArgumentException("Направление сортировки не указано");
+        if (string.IsNullOrEmpty(param))
+            throw new ArgumentException("Параметр сортировки не указан");
 
-        // Определяем направление сортировки
-        ListSortDirection sortDirection =
-            sortDirect == "Возрастание"
-                ? ListSortDirection.Ascending
-                : ListSortDirection.Descending;
-        DataGridViewColumn column = grid.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.HeaderText == param);
-        grid.Sort(
-                column,
-                sortDirection);
+        // Получаем селектор для выбранного параметра
+        var selector = GetPropertySelector(param);
+
+        // Создаём новый отсортированный список, не затрагивая исходный
+        var sortedList = sortDirection == "Возрастание"
+            ? students.OrderBy(selector).ToList()
+            : students.OrderByDescending(selector).ToList();
+
+        // Очищаем и перезаполняем исходный список
+        students.Clear();
+        students.AddRange(sortedList);
     }
 
-    public static void FilterString(DataGridView grid, string searchValue, string param)
+    public static Func<Student, object> GetPropertySelector(string propertyName)
     {
-        DataGridViewColumn column = grid.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.HeaderText == param);
-        if (column == null || string.IsNullOrEmpty(searchValue))
-            return;
-
-        // Получаем DataTable из DataGridView
-        DataTable dataTable = (DataTable)grid.DataSource;
-
-        // Формируем фильтр
-        string filter = $"[{column.Name}] LIKE '%{searchValue}%'";
-
-        // Применяем фильтр
-        dataTable.DefaultView.RowFilter = filter;
+        return propertyName switch
+        {
+            "Физика" => s => s.Physics,
+            "Английский язык" => s => s.English,
+            "История" => s => s.History,
+            "Физическая культура" => s => s.PhysicalEducation,
+            "Культурология" => s => s.CulturalStudies,
+            "Информатика" => s => s.Informatics,
+            "Психология" => s => s.Psychology,
+            "Математика" => s => s.Mathematics,
+            "Биология" => s => s.Biology,
+            "Химия" => s => s.Chemistry,
+            "Кол-во задолженностей" => s => s.DebtCount,
+            _ => s => s.AverageGrade
+        };
     }
-    public static void FilterNums(DataGridView grid, string searchValue, string param, string ratio)
+
+    public static List<Student> FilterNums(List<Student> students, string searchValue, string param, string ratio)
     {
-        DataGridViewColumn column = grid.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.HeaderText == param);
-        if (column == null || string.IsNullOrEmpty(searchValue))
-            return;
+        double value = Convert.ToDouble(searchValue);
+        var propertySelector = GetPropertySelector(param);
 
-        // Получаем DataTable из DataGridView
-        DataTable dataTable = (DataTable)grid.DataSource;
-
-        // Формируем фильтр
-        string filter = $"Convert([{column.Name}], 'System.Double') {ratio} {Convert.ToDouble(searchValue)}";
-
-        // Применяем фильтр
-        dataTable.DefaultView.RowFilter = filter;
+        return ratio switch
+        {
+            ">" => students.Where(s => Convert.ToDouble(propertySelector(s)) > value).ToList(),
+            "<" => students.Where(s => Convert.ToDouble(propertySelector(s)) < value).ToList(),
+            "<=" => students.Where(s => Convert.ToDouble(propertySelector(s)) <= value).ToList(),
+            ">=" => students.Where(s => Convert.ToDouble(propertySelector(s)) >= value).ToList(),
+            "=" => students.Where(s => Math.Abs(Convert.ToDouble(propertySelector(s)) - value) < 0.001).ToList(),
+            _ => students
+        };
     }
-    public static void Group(DataGridView grid, string param)
+    public static Dictionary<string, List<Student>> Group(List<Student> students, string param)
     {
-        DataGridViewColumn column = grid.Columns.Cast<DataGridViewColumn>().FirstOrDefault(c => c.HeaderText == param);
-        grid.Sort(column, ListSortDirection.Ascending);
+        return students.GroupBy(GetGroupKeySelector(param))
+                      .ToDictionary(g => g.Key, g => g.ToList());
+    }
+
+    public static Func<Student, string> GetGroupKeySelector(string propertyName)
+    {
+        return propertyName switch
+        {
+            "Курс" => s => s.Course.ToString(),
+            "Группа" => s => s.Group,
+            _ => s => "Другое"
+        };
     }
 }
 
