@@ -12,15 +12,15 @@ namespace Student_Performance_Analyzer
     public partial class Analyzer_form : Form
     {
         private string selectedFilePath = "";
-        private List<Student> studentList = new List<Student>();
-        private List<Student> originalStudentList = new List<Student>();
+        private Student[] studentArray = new Student[0];
+        private Student[] originalStudentArray = new Student[0];
         private BindingSource bindingSource = new BindingSource();
         private string report = "Отчёт о работе с данными об успеваемости студентов.\n";
 
         public Analyzer_form()
         {
             InitializeComponent();
-            bindingSource.DataSource = studentList;
+            bindingSource.DataSource = studentArray;
             StudentInfo_dataGridView.DataSource = bindingSource;
             foreach (DataGridViewColumn column in StudentInfo_dataGridView.Columns)
             {
@@ -46,7 +46,7 @@ namespace Student_Performance_Analyzer
             }
             else
             {
-                if (studentList.Count == 0)
+                if (studentArray.Length == 0)
                 {
                     MessageBox.Show(
                 "Загрузите файл",
@@ -60,7 +60,7 @@ namespace Student_Performance_Analyzer
                     StatisticalIndicatorsHome_button.Enabled = true;
                     BuildingRatingsHome_button.Enabled = true;
                     ExportingReportsHome_button.Enabled = true;
-                    StatInfoNum_label.Text = $"{studentList.Count}";
+                    StatInfoNum_label.Text = $"{studentArray.Length}";
 
                     if (tmp.Name == "DataSetHome_button")
                     {
@@ -111,10 +111,9 @@ namespace Student_Performance_Analyzer
             {
                 WorkWithBase_panel.Visible = false;
                 StatInfo_panel.Visible = false;
-                studentList.Clear();
-                studentList.AddRange(originalStudentList);
-                bindingSource.ResetBindings(false);
-                StatInfoNum_label.Text = $"{studentList.Count}";
+                studentArray = (Student[])originalStudentArray.Clone();
+                UpdateDataGridView();
+                StatInfoNum_label.Text = $"{studentArray.Length}";
             }
             if (NameUnit_label.Text == "Вычисление статистических показателей")
             {
@@ -136,7 +135,7 @@ namespace Student_Performance_Analyzer
 
         private void LoadFile_button_Click(object sender, EventArgs e)
         {
-            if (studentList.Count == 0)
+            if (studentArray.Length == 0)
             {
                 LoadFile();
             }
@@ -150,8 +149,8 @@ namespace Student_Performance_Analyzer
                 );
                 if (result == DialogResult.Yes)
                 {
-                    studentList.Clear();
-                    originalStudentList.Clear();
+                    studentArray = Array.Empty<Student>();
+                    originalStudentArray = Array.Empty<Student>();
                     ClearReport_Click(sender, e);
                     LoadFile();
                 }
@@ -200,37 +199,38 @@ namespace Student_Performance_Analyzer
                     RatingCriteria_comboBox.Items.Add(def[i]);
                 }
 
+                var tempList = new List<Student>();
                 for (int i = 1; i < lines.Length; i++)
                 {
                     string[] values = lines[i].Split(';');
                     if (values.Length >= 16)
                     {
-                        Student student = new Student
-                        {
-                            ID = int.Parse(values[0]),
-                            FullName = values[1],
-                            Course = int.Parse(values[2]),
-                            Group = values[3],
-                            Physics = double.Parse(values[4]),
-                            English = double.Parse(values[5]),
-                            History = double.Parse(values[6]),
-                            PhysicalEducation = double.Parse(values[7]),
-                            CulturalStudies = double.Parse(values[8]),
-                            Informatics = double.Parse(values[9]),
-                            Psychology = double.Parse(values[10]),
-                            Mathematics = double.Parse(values[11]),
-                            Biology = double.Parse(values[12]),
-                            Chemistry = double.Parse(values[13]),
-                            AverageGrade = double.Parse(values[14]),
-                            DebtCount = int.Parse(values[15])
-                        };
-                        studentList.Add(student);
+                        Student student = new Student(
+                            int.Parse(values[0]),
+                    values[1],
+                    int.Parse(values[2]),
+                    values[3],
+                    double.Parse(values[4]),
+                    double.Parse(values[5]),
+                    double.Parse(values[6]),
+                    double.Parse(values[7]),
+                    double.Parse(values[8]),
+                    double.Parse(values[9]),
+                    double.Parse(values[10]),
+                    double.Parse(values[11]),
+                    double.Parse(values[12]),
+                    double.Parse(values[13]),
+                    double.Parse(values[14]),
+                    int.Parse(values[15])
+                );
+                        tempList.Add(student);
                     }
                 }
-                originalStudentList.Clear();
-                originalStudentList.AddRange(studentList);
-                bindingSource.ResetBindings(false);
-                StatInfoNum_label.Text = $"{studentList.Count}";
+                studentArray = tempList.ToArray();
+                originalStudentArray = (Student[])studentArray.Clone();
+
+                UpdateDataGridView();
+                StatInfoNum_label.Text = $"{studentArray.Length}";
             }
             catch (Exception ex)
             {
@@ -240,14 +240,14 @@ namespace Student_Performance_Analyzer
         }
         private void Save_Click(object sender, EventArgs e)
         {
-            if (studentList.Count == 0)
+            if (studentArray.Length == 0)
             {
                 MessageBox.Show(
                     "Загрузите файл",
                     "Нет файла",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
-                return; // Добавлен return для предотвращения дальнейшего выполнения
+                return;
             }
 
             SaveFileDialog saveDialog = new SaveFileDialog();
@@ -260,7 +260,6 @@ namespace Student_Performance_Analyzer
                 try
                 {
                     string filePath = saveDialog.FileName;
-
                     File.WriteAllText(filePath, report);
                     MessageBox.Show("Отчёт сохранён успешно!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearReport_Click(sender, e);
@@ -271,7 +270,6 @@ namespace Student_Performance_Analyzer
                 }
             }
         }
-
         private void GetTab()
         {
             report += "ID;ФИО студента;Курс;Группа;Физика;Английский язык;История;Физическая культура;Культурология;Информатика;Психология;Математика;Биология;Химия;Общий средний балл;Кол-во задолженностей\n";
@@ -279,16 +277,15 @@ namespace Student_Performance_Analyzer
 
         private void Apply_button_Click(object sender, EventArgs e)
         {
-
             if (WorkWithBase_panel.Visible == true)
             {
                 GetTab();
 
-                var currentStudents = new List<Student>(studentList);
+                Student[] currentStudents = (Student[])studentArray.Clone();
 
                 if (SortDirection_comboBox.Text != "" && ChooseSortParam_comboBox.Text != "")
                 {
-                    WorkWithBase.CustomSort(currentStudents, SortDirection_comboBox.Text, ChooseSortParam_comboBox.Text);
+                    WorkWithBase.CustomSort(ref currentStudents, SortDirection_comboBox.Text, ChooseSortParam_comboBox.Text);
                     report += $"Сортировка по параметру {ChooseSortParam_comboBox.Text}. Направление сортировки: {SortDirection_comboBox.Text}\n";
                 }
 
@@ -296,7 +293,7 @@ namespace Student_Performance_Analyzer
                 {
                     try
                     {
-                        Convert.ToDouble(ChooseFind_textBox.Text); 
+                        Convert.ToDouble(ChooseFind_textBox.Text);
                     }
                     catch (Exception)
                     {
@@ -309,12 +306,7 @@ namespace Student_Performance_Analyzer
                     }
 
                     report += $"Поиск значений по параметру {ChooseFindParam_comboBox.Text}. Условие поиска {FindRatio_comboBox.Text} {ChooseFind_textBox.Text}\n";
-                    currentStudents = WorkWithBase.FilterNums(
-                        currentStudents,
-                        ChooseFind_textBox.Text,
-                        ChooseFindParam_comboBox.Text,
-                        FindRatio_comboBox.Text
-                    );
+                    currentStudents = WorkWithBase.FilterNums(currentStudents, ChooseFind_textBox.Text, ChooseFindParam_comboBox.Text, FindRatio_comboBox.Text);
                 }
 
                 if (ChooseGroupParam_comboBox.Text != "")
@@ -326,22 +318,20 @@ namespace Student_Performance_Analyzer
 
                     foreach (var group in groupedStudents)
                     {
-                        report += $"Группа: {group.Key} ({group.Value.Count} студентов)\n";
+                        report += $"Группа: {group.Key} ({group.Value.Length} студентов)\n";
                         displayList.AddRange(group.Value);
                     }
 
-                    studentList.Clear();
-                    studentList.AddRange(displayList);
+                    studentArray = displayList.ToArray();
                 }
                 else
                 {
-                    
-                    studentList.Clear();
-                    studentList.AddRange(currentStudents);
+                    studentArray = currentStudents;
                 }
 
-                bindingSource.ResetBindings(false);
-                StatInfoNum_label.Text = $"{studentList.Count}";
+                UpdateDataGridView();
+                StatInfoNum_label.Text = $"{studentArray.Length}";
+
                 for (int i = 0; i < StudentInfo_dataGridView.Rows.Count; i++)
                 {
                     DataGridViewRow row = StudentInfo_dataGridView.Rows[i];
@@ -359,9 +349,9 @@ namespace Student_Performance_Analyzer
             {
                 try
                 {
-                    double average = CalculateStatisticalIndicators.CalculateAverage(studentList, ChooseColumn_comboBox.Text);
-                    double median = CalculateStatisticalIndicators.CalculateMedian(studentList, ChooseColumn_comboBox.Text);
-                    var (min, max) = CalculateStatisticalIndicators.CalculateMinMax(studentList, ChooseColumn_comboBox.Text);
+                    double average = CalculateStatisticalIndicators.CalculateAverage(studentArray, ChooseColumn_comboBox.Text);
+                    double median = CalculateStatisticalIndicators.CalculateMedian(studentArray, ChooseColumn_comboBox.Text);
+                    var (min, max) = CalculateStatisticalIndicators.CalculateMinMax(studentArray, ChooseColumn_comboBox.Text);
 
                     Average_textBox.Text = average.ToString();
                     Median_textBox.Text = median.ToString();
@@ -387,25 +377,28 @@ namespace Student_Performance_Analyzer
         {
             if (forceOriginal)
             {
-                studentList.Clear();
-                studentList.AddRange(originalStudentList); // Восстанавливаем из резервной копии
+                studentArray = (Student[])originalStudentArray.Clone();
             }
 
-            bindingSource.ResetBindings(false); // Обновляем источник данных грида
-            StatInfoNum_label.Text = $"{studentList.Count}"; // Обновляем счётчик
+            UpdateDataGridView();
+            StatInfoNum_label.Text = $"{studentArray.Length}";
 
-            // Сбрасываем сортировку колонок
             foreach (DataGridViewColumn column in StudentInfo_dataGridView.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
-            // Скрываем диаграмму, если она была показана
             chart.Visible = false;
             chart.Series.Clear();
             chart.Titles.Clear();
         }
-        private DataTable CreateDataTableFromStudentList(List<Student> students)
+        private void UpdateDataGridView()
+        {
+            var dataTable = CreateDataTableFromStudentArray(studentArray);
+            StudentInfo_dataGridView.DataSource = dataTable;
+        }
+
+        private DataTable CreateDataTableFromStudentArray(Student[] students)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("ID", typeof(int));
@@ -425,7 +418,6 @@ namespace Student_Performance_Analyzer
             dt.Columns.Add("Общий средний балл", typeof(double));
             dt.Columns.Add("Кол-во задолженностей", typeof(int));
 
-            // Заполняем строки в исходном порядке
             foreach (var student in students)
             {
                 dt.Rows.Add(
@@ -452,7 +444,8 @@ namespace Student_Performance_Analyzer
         }
         private void Remove_button_Click(object sender, EventArgs e)
         {
-            StudentInfo_dataGridView.DataSource = CreateDataTableFromStudentList(originalStudentList);
+            StudentInfo_dataGridView.DataSource = CreateDataTableFromStudentArray(originalStudentArray);
+
             if (WorkWithBase_panel.Visible == true)
             {
                 ChooseSortParam_comboBox.SelectedItem = null;
@@ -464,7 +457,6 @@ namespace Student_Performance_Analyzer
 
                 RestoreOriginalData(true);
             }
-
 
             if (StatisticalIndicators_panel.Visible == true)
             {
@@ -490,7 +482,6 @@ namespace Student_Performance_Analyzer
         }
         private void Rating_Mode()
         {
-
             GetTab();
             chart.Visible = true;
 
@@ -500,7 +491,7 @@ namespace Student_Performance_Analyzer
                 return;
             }
 
-            DataTable inputDataTable = CreateDataTableFromStudentList(studentList);
+            DataTable inputDataTable = CreateDataTableFromStudentArray(studentArray);
 
             // Ищем нужные колонки
             DataColumn column = inputDataTable.Columns

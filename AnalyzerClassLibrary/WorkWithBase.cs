@@ -5,30 +5,29 @@ using System.Windows.Forms;
 
 public class WorkWithBase
 {
-    public static void CustomSort(List<Student> students, string sortDirection, string param)
-    {
-        // Проверки входных параметров
-        if (students == null)
-            throw new ArgumentNullException(nameof(students));
-        if (string.IsNullOrEmpty(sortDirection))
-            throw new ArgumentException("Направление сортировки не указано");
-        if (string.IsNullOrEmpty(param))
-            throw new ArgumentException("Параметр сортировки не указан");
+	public static void CustomSort(ref Student[] students, string sortDirection, string param)
+	{
+		// Проверки входных параметров
+		if (students == null)
+			throw new ArgumentNullException(nameof(students));
+		if (string.IsNullOrEmpty(sortDirection))
+			throw new ArgumentException("Направление сортировки не указано");
+		if (string.IsNullOrEmpty(param))
+			throw new ArgumentException("Параметр сортировки не указан");
 
-        // Получаем селектор для выбранного параметра
-        var selector = GetPropertySelector(param);
+		// Получаем селектор для выбранного параметра
+		var selector = GetPropertySelector(param);
 
-        // Создаём новый отсортированный список, не затрагивая исходный
-        var sortedList = sortDirection == "Возрастание"
-            ? students.OrderBy(selector).ToList()
-            : students.OrderByDescending(selector).ToList();
+		// Создаём новый отсортированный массив
+		var sortedList = sortDirection == "Возрастание"
+			? students.OrderBy(selector).ToArray()
+			: students.OrderByDescending(selector).ToArray();
 
-        // Очищаем и перезаполняем исходный список
-        students.Clear();
-        students.AddRange(sortedList);
-    }
+		// Переприсваиваем массив
+		students = sortedList;
+	}
 
-    public static Func<Student, object> GetPropertySelector(string propertyName)
+	public static Func<Student, object> GetPropertySelector(string propertyName)
     {
         return propertyName switch
         {
@@ -47,36 +46,37 @@ public class WorkWithBase
         };
     }
 
-    public static List<Student> FilterNums(List<Student> students, string searchValue, string param, string ratio)
-    {
-        double value = Convert.ToDouble(searchValue);
-        var propertySelector = GetPropertySelector(param);
+	public static Student[] FilterNums(Student[] students, string searchValue, string param, string ratio)
+	{
+		double value = Convert.ToDouble(searchValue);
+		var propertySelector = GetPropertySelector(param);
 
-        return ratio switch
-        {
-            ">" => students.Where(s => Convert.ToDouble(propertySelector(s)) > value).ToList(),
-            "<" => students.Where(s => Convert.ToDouble(propertySelector(s)) < value).ToList(),
-            "<=" => students.Where(s => Convert.ToDouble(propertySelector(s)) <= value).ToList(),
-            ">=" => students.Where(s => Convert.ToDouble(propertySelector(s)) >= value).ToList(),
-            "=" => students.Where(s => Math.Abs(Convert.ToDouble(propertySelector(s)) - value) < 0.001).ToList(),
-            _ => students
-        };
-    }
-    public static Dictionary<string, List<Student>> Group(List<Student> students, string param)
-    {
-        return students.GroupBy(GetGroupKeySelector(param))
-                      .ToDictionary(g => g.Key, g => g.ToList());
-    }
+		return ratio switch
+		{
+			">" => students.Where(s => Convert.ToDouble(propertySelector(s)) > value).ToArray(),
+			"<" => students.Where(s => Convert.ToDouble(propertySelector(s)) < value).ToArray(),
+			"<=" => students.Where(s => Convert.ToDouble(propertySelector(s)) <= value).ToArray(),
+			">=" => students.Where(s => Convert.ToDouble(propertySelector(s)) >= value).ToArray(),
+			"=" => students.Where(s => Math.Abs(Convert.ToDouble(propertySelector(s)) - value) < 0.001).ToArray(),
+			_ => students
+		};
+	}
+	public static Dictionary<string, Student[]> Group(Student[] students, string param)
+	{
+		return students
+			.GroupBy(GetGroupKeySelector(param))
+			.ToDictionary(g => g.Key, g => g.ToArray());
+	}
 
-    public static Func<Student, string> GetGroupKeySelector(string propertyName)
-    {
-        return propertyName switch
-        {
-            "Курс" => s => s.Course.ToString(),
-            "Группа" => s => s.Group,
-            _ => s => "Другое"
-        };
-    }
+	public static Func<Student, string> GetGroupKeySelector(string propertyName)
+	{
+		return propertyName switch
+		{
+			"Курс" => s => s.Course.ToString(),
+			"Группа" => s => s.Group,
+			_ => s => "Другое"
+		};
+	}
 }
 
 

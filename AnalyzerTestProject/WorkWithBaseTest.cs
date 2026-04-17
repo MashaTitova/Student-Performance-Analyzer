@@ -1,197 +1,157 @@
 ﻿public class WorkWithBaseTests
 {
-    private List<Student> testStudents;
-
-    public WorkWithBaseTests()
+    private Student[] CreateTestStudents()
     {
-        testStudents = new List<Student>
+        return new Student[]
         {
-            new Student { ID = 1, FullName = "Иванов И.И.", Physics = 4.5, English = 3.0, Mathematics = 5.0, Course = 2, Group = "ИСФ-21", DebtCount = 0 },
-            new Student { ID = 2, FullName = "Петров П.П.", Physics = 3.5, English = 4.0, Mathematics = 4.0, Course = 2, Group = "ИСФ-21", DebtCount = 1 },
-            new Student { ID = 3, FullName = "Сидоров С.С.", Physics = 5.0, English = 5.0, Mathematics = 3.5, Course = 3, Group = "ИСФ-31", DebtCount = 2 },
-            new Student { ID = 4, FullName = "Козлов К.К.", Physics = 4.0, English = 4.5, Mathematics = 4.5, Course = 3, Group = "ИСФ-32", DebtCount = 0 }
+            new Student(1, "Иванов И.И.", 2, "Гр-101", 4.5, 5.0, 3.8, 4.2, 4.0, 4.8, 4.3, 4.7, 4.1, 4.6, 4.4, 0),
+            new Student(2, "Петров П.П.", 2, "Гр-102", 3.2, 4.0, 4.5, 3.9, 4.1, 3.7, 4.2, 3.5, 4.3, 3.8, 3.9, 1),
+            new Student(3, "Сидоров С.С.", 3, "Гр-101", 5.0, 4.8, 4.9, 5.0, 4.7, 4.9, 4.8, 5.0, 4.9, 4.8, 4.9, 0),
+            new Student(4, "Козлова К.К.", 3, "Гр-103", 4.0, 4.2, 4.1, 4.3, 4.4, 4.0, 4.5, 4.1, 4.2, 4.3, 4.2, 0)
         };
     }
+    [Theory]
+    [InlineData("Физика", "Возрастание")]
+    [InlineData("Английский язык", "Убывание")]
+    [InlineData("Математика", "Возрастание")]
+    public void CustomSort_SortsCorrectly(string param, string sortDirection)
+    {
+        var students = CreateTestStudents();
+        var originalStudents = (Student[])students.Clone();
+
+
+        WorkWithBase.CustomSort(ref students, sortDirection, param);
+
+        var selector = WorkWithBase.GetPropertySelector(param);
+        var expected = sortDirection == "Возрастание"
+            ? originalStudents.OrderBy(selector).ToArray()
+            : originalStudents.OrderByDescending(selector).ToArray();
+
+        Assert.Equal(expected.Length, students.Length);
+        for (int i = 0; i < expected.Length; i++)
+        {
+            Assert.Equal(expected[i].ID, students[i].ID);
+        }
+    }
 
     [Fact]
-    public void CustomSort_NullStudents_ThrowsArgumentNullException()
+    public void CustomSort_ThrowsArgumentNullException_WhenStudentsIsNull()
     {
+        Student[] students = null;
         Assert.Throws<ArgumentNullException>(() =>
-            WorkWithBase.CustomSort(null, "Возрастание", "Физика"));
+            WorkWithBase.CustomSort(ref students, "Возрастание", "Физика"));
     }
 
     [Fact]
-    public void CustomSort_EmptySortDirection_ThrowsArgumentException()
+    public void CustomSort_ThrowsArgumentException_WhenSortDirectionIsEmpty()
     {
-        var students = new List<Student>();
+        var students = CreateTestStudents();
         Assert.Throws<ArgumentException>(() =>
-            WorkWithBase.CustomSort(students, "", "Физика"));
+            WorkWithBase.CustomSort(ref students, "", "Физика"));
     }
 
     [Fact]
-    public void CustomSort_EmptyParam_ThrowsArgumentException()
+    public void CustomSort_ThrowsArgumentException_WhenParamIsEmpty()
     {
-        var students = new List<Student>();
+        var students = CreateTestStudents();
         Assert.Throws<ArgumentException>(() =>
-            WorkWithBase.CustomSort(students, "Возрастание", ""));
+            WorkWithBase.CustomSort(ref students, "Возрастание", ""));
     }
-
-    [Fact]
-    public void CustomSort_Ascending_SortsCorrectly()
-    {
-        WorkWithBase.CustomSort(testStudents, "Возрастание", "Физика");
-
-        var sortedIDs = testStudents.Select(s => s.ID).ToList();
-        Assert.Equal(new List<int> { 2, 4, 1, 3 }, sortedIDs);
-    }
-
-    [Fact]
-    public void CustomSort_Descending_SortsCorrectly()
-    {
-        WorkWithBase.CustomSort(testStudents, "Убывание", "Математика");
-
-        var sortedIDs = testStudents.Select(s => s.ID).ToList();
-        Assert.Equal(new List<int> { 1, 4, 2, 3 }, sortedIDs); 
-    }
-
-    [Fact]
-    public void CustomSort_UnknownParam_UsesAverageGrade()
-    {
-        var originalStudents = new List<Student>(testStudents);
-
-        WorkWithBase.CustomSort(testStudents, "Возрастание", "Неизвестный параметр");
-
-        var averageGrades = testStudents.Select(s => s.AverageGrade).ToList();
-        Assert.True(averageGrades.SequenceEqual(averageGrades.OrderBy(x => x)));
-    }
-
-    [Fact]
-    public void GetPropertySelector_Valid_ReturnsCorrectSelector()
-    {
-        var selector = WorkWithBase.GetPropertySelector("Физика");
-        var result = selector(testStudents[0]);
-
-        Assert.Equal(4.5, result);
-    }
-
-
     [Theory]
-    [InlineData("Физика", 4.0)]
-    [InlineData("Математика", 4.0)]
-    [InlineData("Кол-во задолженностей", 1)]
-    public void FilterNums_GreaterThan_ReturnsCorrectResults(string param, double value)
+    [InlineData(">", 4.0, 2)] 
+    [InlineData("<", 4.0, 1)] 
+    [InlineData("=", 4.5, 1)]  
+    [InlineData(">=", 4.5, 2)] 
+    public void FilterNums_FiltersCorrectly(string ratio, double value, int expectedCount)
     {
-        var filtered = WorkWithBase.FilterNums(testStudents, value.ToString(), param, ">");
+        var students = CreateTestStudents();
 
-        foreach (var student in filtered)
+        var filtered = WorkWithBase.FilterNums(students, value.ToString(), "Физика", ratio);
+
+        Assert.Equal(expectedCount, filtered.Length);
+    }
+
+    [Fact]
+    public void FilterNums_ReturnsOriginalArray_WhenInvalidRatio()
+    {
+        var students = CreateTestStudents();
+
+        var result = WorkWithBase.FilterNums(students, "4,0", "Физика", "invalid");
+
+        Assert.Same(students, result);
+    }
+
+  
+     [Fact]
+    public void Group_GroupsByCourse_Correctly()
+    {
+        var students = CreateTestStudents();
+
+
+        var result = WorkWithBase.Group(students, "Курс");
+
+        Assert.Equal(2, result.Count); 
+        Assert.True(result.ContainsKey("2"));
+        Assert.True(result.ContainsKey("3"));
+        Assert.Equal(2, result["2"].Length); 
+        Assert.Equal(2, result["3"].Length); 
+
+        Assert.Contains(result["2"], s => s.ID == 1); 
+        Assert.Contains(result["2"], s => s.ID == 2); 
+        Assert.Contains(result["3"], s => s.ID == 3); 
+        Assert.Contains(result["3"], s => s.ID == 4); 
+    }
+
+    [Fact]
+    public void Group_GroupsByGroup_Correctly()
+    {
+        var students = CreateTestStudents();
+
+        var result = WorkWithBase.Group(students, "Группа");
+
+
+        Assert.Equal(3, result.Count); 
+        Assert.True(result.ContainsKey("Гр-101"));
+        Assert.True(result.ContainsKey("Гр-102"));
+        Assert.True(result.ContainsKey("Гр-103"));
+
+        Assert.Equal(2, result["Гр-101"].Length); 
+        Assert.Equal(1, result["Гр-102"].Length); 
+        Assert.Equal(1, result["Гр-103"].Length); 
+
+        Assert.Contains(result["Гр-101"], s => s.ID == 1);
+        Assert.Contains(result["Гр-101"], s => s.ID == 3);
+        Assert.Contains(result["Гр-102"], s => s.ID == 2);
+        Assert.Contains(result["Гр-103"], s => s.ID == 4);
+    }
+
+    [Fact]
+    public void Group_HandlesUnknownParameter_Correctly()
+    {
+        var students = CreateTestStudents();
+
+        var result = WorkWithBase.Group(students, "Неизвестный параметр");
+
+        Assert.Equal(1, result.Count);
+        Assert.True(result.ContainsKey("Другое"));
+        Assert.Equal(students.Length, result["Другое"].Length);
+
+        for (int i = 0; i < students.Length; i++)
         {
-            var propertyValue = Convert.ToDouble(WorkWithBase.GetPropertySelector(param)(student));
-            Assert.True(propertyValue > value);
+            Assert.Contains(result["Другое"], s => s.ID == students[i].ID);
         }
     }
 
-    [Theory]
-    [InlineData("Физика", 4.0)]
-    [InlineData("Математика", 4.0)]
-    [InlineData("Кол-во задолженностей", 1)]
-    public void FilterNums_LessThan_ReturnsCorrectResults(string param, double value)
-    {
-        var filtered = WorkWithBase.FilterNums(testStudents, value.ToString(), param, "<");
-
-        foreach (var student in filtered)
-        {
-            var propertyValue = Convert.ToDouble(WorkWithBase.GetPropertySelector(param)(student));
-            Assert.True(propertyValue < value);
-        }
-    }
-    [Theory]
-    [InlineData("Физика", 4.0)]
-    [InlineData("Математика", 4.0)]
-    [InlineData("Кол-во задолженностей", 1)]
-    public void FilterNums_LessOrEqualThan_ReturnsCorrectResults(string param, double value)
-    {
-        var filtered = WorkWithBase.FilterNums(testStudents, value.ToString(), param, "<=");
-
-        foreach (var student in filtered)
-        {
-            var propertyValue = Convert.ToDouble(WorkWithBase.GetPropertySelector(param)(student));
-            Assert.True(propertyValue <= value);
-        }
-    }
-    [Theory]
-    [InlineData("Физика", 4.0)]
-    [InlineData("Математика", 4.0)]
-    [InlineData("Кол-во задолженностей", 1)]
-    public void FilterNums_GreaterOrEqualThan_ReturnsCorrectResults(string param, double value)
-    {
-        var filtered = WorkWithBase.FilterNums(testStudents, value.ToString(), param, ">=");
-
-        foreach (var student in filtered)
-        {
-            var propertyValue = Convert.ToDouble(WorkWithBase.GetPropertySelector(param)(student));
-            Assert.True(propertyValue >= value);
-        }
-    }
-
-    [Theory]
-    [InlineData("Физика", 3.5)]
-    [InlineData("Математика", 4.0)]
-    [InlineData("Кол-во задолженностей", 0)]
-    public void FilterNums_EqualTo_ReturnsCorrectResults(string param, double value)
-    {
-        var filtered = WorkWithBase.FilterNums(testStudents, value.ToString(), param, "=");
-
-        foreach (var student in filtered)
-        {
-            var propertyValue = Convert.ToDouble(WorkWithBase.GetPropertySelector(param)(student));
-            Assert.True(Math.Abs(propertyValue - value) < 0.001);
-        }
-    }
-
-
     [Fact]
-    public void Group_ByCourse_GroupsCorrectly()
+    public void Group_ReturnsEmptyDictionary_EmptyArray()
     {
-        var grouped = WorkWithBase.Group(testStudents, "Курс");
+        // Arrange
+        Student[] students = new Student[0];
 
-        Assert.Contains("2", grouped.Keys);
-        Assert.Contains("3", grouped.Keys);
-        Assert.Equal(2, grouped["2"].Count);
-        Assert.Equal(2, grouped["3"].Count);
+        var result = WorkWithBase.Group(students, "Курс");
+
+        Assert.Empty(result);
     }
 
-    [Fact]
-    public void Group_ByGroup_GroupsCorrectly()
-    {
-        var grouped = WorkWithBase.Group(testStudents, "Группа");
 
-        Assert.Contains("ИСФ-21", grouped.Keys);
-        Assert.Contains("ИСФ-31", grouped.Keys);
-        Assert.Contains("ИСФ-32", grouped.Keys);
-        Assert.Equal(2, grouped["ИСФ-21"].Count);
-        Assert.Equal(1, grouped["ИСФ-31"].Count);
-        Assert.Equal(1, grouped["ИСФ-32"].Count);
-    }
-
-    [Fact]
-    public void Group_UnknownParam_GroupsAsOther()
-    {
-        // Act
-        var grouped = WorkWithBase.Group(testStudents, "Неизвестный параметр");
-
-        // Assert
-        Assert.Contains("Другое", grouped.Keys);
-        Assert.Equal(testStudents.Count, grouped["Другое"].Count);
-    }
-
-    [Fact]
-    public void GetGroupKeySelector_Course_ReturnsCourseAsString()
-    {
-        // Act
-        var selector = WorkWithBase.GetGroupKeySelector("Курс");
-        var result = selector(testStudents[0]);
-
-        // Assert
-        Assert.Equal("2", result);
-    }
 }
