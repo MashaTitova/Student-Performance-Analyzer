@@ -694,6 +694,7 @@
             Info_button.TabIndex = 7;
             Info_button.Text = "Справка пользователя";
             Info_button.UseVisualStyleBackColor = true;
+            Info_button.Click += Get_Inf;
             // 
             // HomeButtons_flowLayoutPanel
             // 

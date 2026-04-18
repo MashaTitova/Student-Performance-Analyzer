@@ -1,93 +1,75 @@
-﻿using Xunit;
-using System.Linq;
+﻿using System.Collections.Generic;
+using Xunit;
 
 public class CalculateStatisticalIndicatorsTests
 {
-    private Student[] GetTestStudents()
+    private List<Student> sampleStudents;
+    private List<Student> singleStudent;
+    private List<Student> emptyStudents;
+
+    public CalculateStatisticalIndicatorsTests()
     {
-        return new Student[]
+        sampleStudents = new List<Student>
         {
-            new Student(1, "Иванов И.И.", 2, "Гр-101", 4.5, 5.0, 3.8, 4.2, 4.0, 4.8, 4.3, 4.7, 4.1, 4.6, 4.4, 0),
-            new Student(2, "Петров П.П.", 2, "Гр-101", 3.5, 4.0, 3.2, 3.8, 3.9, 3.7, 3.6, 3.9, 3.4, 3.7, 3.7, 1),
-            new Student(3, "Сидоров С.С.", 3, "Гр-102", 5.0, 5.0, 4.9, 5.0, 4.8, 5.0, 4.9, 5.0, 4.9, 5.0, 4.9, 0),
-            new Student(4, "Козлова К.К.", 3, "Гр-102", 4.0, 4.2, 4.1, 4.3, 4.4, 4.0, 4.5, 4.1, 4.2, 4.3, 4.2, 0)
+            new Student { ID = 1, Physics = 4.0, English = 5.0, Mathematics = 3.0, AverageGrade = 4.0 },
+            new Student { ID = 2, Physics = 3.0, English = 4.0, Mathematics = 4.0, AverageGrade = 3.5 },
+            new Student { ID = 3, Physics = 5.0, English = 3.0, Mathematics = 5.0, AverageGrade = 4.5 },
+            new Student { ID = 4, Physics = 4.0, English = 4.0, Mathematics = 4.0, AverageGrade = 4.0 }
         };
+
+        singleStudent = new List<Student>
+        {
+            new Student { ID = 1, Physics = 4.5, English = 3.8, Mathematics = 4.2, AverageGrade = 4.1 }
+        };
+
+        emptyStudents = new List<Student>();
+    }
+
+    [Theory]
+    [InlineData("Physics", 4.0)]
+    [InlineData("English", 4.0)]
+    [InlineData("Mathematics", 4.0)]
+    [InlineData("AverageGrade", 4.0)]
+    public void CalculateAverage_WithValidData_ReturnsCorrectResult(string column, double expected)
+    {
+        double result = CalculateStatisticalIndicators.CalculateAverage(sampleStudents, column);
+
+        Assert.Equal(expected, result);
+    }
+    [Fact]
+    public void CalculateAverage_EmptyList_ThrowsInvalidOperationException()
+    {
+        var exception = Assert.Throws<InvalidOperationException>(() =>
+            CalculateStatisticalIndicators.CalculateAverage(emptyStudents, "Physics"));
+
+        Assert.Contains("Sequence contains no elements", exception.Message);
+    }
+
+    [Theory]
+    [InlineData("Physics", 4.0)]  
+    [InlineData("English", 4.0)]   
+    [InlineData("Mathematics", 4.0)] 
+    public void CalculateMedian_EvenCount_ReturnsAverageOfMiddleValues(string column, double expected)
+    {
+        double result = CalculateStatisticalIndicators.CalculateMedian(sampleStudents, column);
+
+        Assert.Equal(expected, result);
+    }
+    [Fact]
+    public void CalculateMinMax_SingleStudent_ReturnsSameValueForMinAndMax()
+    {
+        var (min, max) = CalculateStatisticalIndicators.CalculateMinMax(singleStudent, "AverageGrade");
+
+        Assert.Equal(4.1, min);
+        Assert.Equal(4.1, max);
     }
 
     [Fact]
-    public void CalculateAverage_ReturnsCorrectAverageForPhysics()
+    public void CalculateMinMax_EmptyList_ThrowsInvalidOperationException()
     {
-        var students = GetTestStudents();
-        string columnText = nameof(Student.Physics);
+        var exception = Assert.Throws<InvalidOperationException>(() =>
+            CalculateStatisticalIndicators.CalculateMinMax(emptyStudents, "Physics"));
 
-        var average = CalculateStatisticalIndicators.CalculateAverage(students, columnText);
-
-        Assert.Equal(4.3, average);
-    }
-
-    [Fact]
-    public void CalculateAverage_ReturnsCorrectAverageForMathematics()
-    {
-        var students = GetTestStudents();
-        string columnText = nameof(Student.Mathematics);
-
-        var average = CalculateStatisticalIndicators.CalculateAverage(students, columnText);
-
-        Assert.Equal(4.30, average);
-    }
-
-    [Fact]
-    public void CalculateMedian_ReturnsCorrectMedianForEnglish()
-    {
-
-        var students = GetTestStudents();
-        string columnText = nameof(Student.English);
-
-        var median = CalculateStatisticalIndicators.CalculateMedian(students, columnText);
-
-
-        Assert.Equal(4.3, median);
-    }
-    [Fact]
-    public void CalculateMedian_ReturnsCorrectMedianForMath()
-    {
-
-        var students = GetTestStudents();
-        string columnText = nameof(Student.Mathematics);
-
-        var median = CalculateStatisticalIndicators.CalculateMedian(students, columnText);
-
-
-        Assert.Equal(4.3, median);
-    }
-
-    [Fact]
-    public void CalculateMinMax_ReturnsCorrectMinMaxForPhysics()
-    {
-        // Arrange
-        var students = GetTestStudents();
-        string columnText = nameof(Student.Physics);
-
-        // Act
-        var (min, max) = CalculateStatisticalIndicators.CalculateMinMax(students, columnText);
-
-        // Assert
-        Assert.Equal(3.7, min); 
-        Assert.Equal(4.9, max); 
-    }
-
-    [Fact]
-    public void CalculateMinMax_ReturnsCorrectMinMaxForMathematics()
-    {
-        // Arrange
-        var students = GetTestStudents();
-        string columnText = nameof(Student.Mathematics);
-
-        // Act
-        var (min, max) = CalculateStatisticalIndicators.CalculateMinMax(students, columnText);
-
-        // Assert
-        Assert.Equal(3.7, min); 
-        Assert.Equal(4.9, max);
+        Assert.Contains("Sequence contains no elements", exception.Message);
     }
 }

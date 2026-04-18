@@ -16,25 +16,4 @@
     public double Chemistry { get; set; }
     public double AverageGrade { get; set; }
     public int DebtCount { get; set; }
-    public Student(int id, string fullName, int course, string group, double physics, 
-        double english, double history, double pe, double cs, double inf, double psychology, double math,
-        double bio, double chemistry, double average, int debt)
-    {
-        ID = id;
-        FullName = fullName;
-        Course = course;
-        Group = group;
-        Physics = physics;
-        English = english;
-        History = history;
-        PhysicalEducation = pe;
-        CulturalStudies = cs;
-        Informatics = inf;
-        Psychology = psychology;
-        Mathematics = math;
-        Biology = bio;
-        Chemistry = chemistry;
-        AverageGrade = average;
-        DebtCount = debt;
-    }
 }
