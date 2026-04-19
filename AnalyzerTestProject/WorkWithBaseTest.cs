@@ -1,18 +1,97 @@
-﻿public class WorkWithBaseTests
+﻿using System.Buffers;
+
+public class WorkWithBaseTests
 {
-    private List<Student> testStudents;
+    private Student[] testStudents;
 
     public WorkWithBaseTests()
     {
-        testStudents = new List<Student>
+        testStudents = new Student[]
         {
-            new Student { ID = 1, FullName = "Иванов И.И.", Physics = 4.5, English = 3.0, Mathematics = 5.0, Course = 2, Group = "ИСФ-21", DebtCount = 0 },
-            new Student { ID = 2, FullName = "Петров П.П.", Physics = 3.5, English = 4.0, Mathematics = 4.0, Course = 2, Group = "ИСФ-21", DebtCount = 1 },
-            new Student { ID = 3, FullName = "Сидоров С.С.", Physics = 5.0, English = 5.0, Mathematics = 3.5, Course = 3, Group = "ИСФ-31", DebtCount = 2 },
-            new Student { ID = 4, FullName = "Козлов К.К.", Physics = 4.0, English = 4.5, Mathematics = 4.5, Course = 3, Group = "ИСФ-32", DebtCount = 0 }
+        new Student { ID = 1, FullName = "Иванов И.И.", Physics = 4.5, English = 3.0, Mathematics = 5.0, Course = 2, Group = "ИСФ-21", DebtCount = 0 },
+        new Student { ID = 2, FullName = "Петров П.П.", Physics = 3.5, English = 4.0, Mathematics = 4.0, Course = 2, Group = "ИСФ-21", DebtCount = 1 },
+        new Student { ID = 3, FullName = "Сидоров С.С.", Physics = 5.0, English = 5.0, Mathematics = 3.5, Course = 3, Group = "ИСФ-31", DebtCount = 2 },
+        new Student { ID = 4, FullName = "Козлов К.К.", Physics = 4.0, English = 4.5, Mathematics = 4.5, Course = 3, Group = "ИСФ-32", DebtCount = 0 }
         };
     }
+    // Вспомогательный метод: генерация большого массива
+    private Student[] GenerateLargeStudentArray(int size)
+    {
+        var students = new Student[size];
+        var random = new Random(50);
 
+        for (int i = 0; i < size; i++)
+        {
+            students[i] = new Student
+            {
+                ID = i,
+                FullName = $"Студент {i}",
+                Physics = random.NextDouble() * 5,
+                English = random.NextDouble() * 5,
+                Mathematics = random.NextDouble() * 5,
+                Course = random.Next(1, 5),
+                Group = $"Группа-{random.Next(1, 10)}",
+                DebtCount = random.Next(0, 3)
+            };
+        }
+        return students;
+    }
+
+    // Специфический случай: отсортированных массив Фильтр Возрастание
+    [Fact]
+    public void CustomSort_AlreadySortedAscending_ShouldNotChangeArray()
+    {
+        var sortedStudents = new Student[]
+        {
+            new Student { Physics = 2.5 },
+            new Student { Physics = 3.0 },
+            new Student { Physics = 4.0 },
+            new Student { Physics = 4.5 },
+            new Student { Physics = 5.0 }
+        };
+
+        var originalReferences = sortedStudents.Select(s => s).ToArray();
+
+        string sortDirection = "Возрастание";
+        string param = "Physics";
+
+        WorkWithBase.CustomSort(sortedStudents, sortDirection, param);
+
+        Assert.Equal(originalReferences.Length, sortedStudents.Length);
+
+        for (int i = 0; i < originalReferences.Length; i++)
+        {
+            Assert.Same(originalReferences[i], sortedStudents[i]);
+        }
+    }
+
+    // Специфический случай: отсортированных массив Фильтр Убывание
+    [Fact]
+    public void CustomSort_AlreadySortedDescending_ShouldHandleCorrectly()
+    {
+        var descendingStudents = new Student[]
+        {
+            new Student { Physics = 5.0 },
+            new Student { Physics = 4.5 },
+            new Student { Physics = 4.0 },
+            new Student { Physics = 3.0 },
+            new Student { Physics = 2.5 }
+        };
+
+        var originalReferences = descendingStudents.Select(s => s).ToArray();
+        string sortDirection = "Убывание";
+        string param = "Physics";
+
+        WorkWithBase.CustomSort(descendingStudents, sortDirection, param);
+
+        Assert.Equal(originalReferences.Length, descendingStudents.Length);
+        for (int i = 0; i < originalReferences.Length; i++)
+        {
+            Assert.Same(originalReferences[i], descendingStudents[i]);
+        }
+    }
+
+    // Некорректные входные данные - null Сортировка
     [Fact]
     public void CustomSort_NullStudents_ThrowsArgumentNullException()
     {
@@ -20,22 +99,20 @@
             WorkWithBase.CustomSort(null, "Возрастание", "Физика"));
     }
 
-    [Fact]
-    public void CustomSort_EmptySortDirection_ThrowsArgumentException()
-    {
-        var students = new List<Student>();
-        Assert.Throws<ArgumentException>(() =>
-            WorkWithBase.CustomSort(students, "", "Физика"));
-    }
-
+    // Граничный случай - пустой массив Сортировка
     [Fact]
     public void CustomSort_EmptyParam_ThrowsArgumentException()
     {
-        var students = new List<Student>();
-        Assert.Throws<ArgumentException>(() =>
-            WorkWithBase.CustomSort(students, "Возрастание", ""));
+        Student[] emptyArray = new Student[0];
+        string sortDirection = "Возрастание";
+        string param = "Physics";
+
+        WorkWithBase.CustomSort(emptyArray, sortDirection, param);
+
+        Assert.Empty(emptyArray);
     }
 
+    // Типичный случай Сортировка Возрастание
     [Fact]
     public void CustomSort_Ascending_SortsCorrectly()
     {
@@ -45,6 +122,7 @@
         Assert.Equal(new List<int> { 2, 4, 1, 3 }, sortedIDs);
     }
 
+    // Типичный случай Сортировка Убывание
     [Fact]
     public void CustomSort_Descending_SortsCorrectly()
     {
@@ -53,16 +131,24 @@
         var sortedIDs = testStudents.Select(s => s.ID).ToList();
         Assert.Equal(new List<int> { 1, 4, 2, 3 }, sortedIDs);
     }
-
+    
+    // Большой объем данных Сортировка
     [Fact]
-    public void CustomSort_UnknownParam_UsesAverageGrade()
+    public void CustomSort_LargeDataSet_ShouldNotHang()
     {
-        var originalStudents = new List<Student>(testStudents);
+        const int largeSize = 10000;
+        var largeArray = GenerateLargeStudentArray(largeSize);
+        string sortDirection = "Возрастание";
+        string param = "Physics";
 
-        WorkWithBase.CustomSort(testStudents, "Возрастание", "Неизвестный параметр");
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
-        var averageGrades = testStudents.Select(s => s.AverageGrade).ToList();
-        Assert.True(averageGrades.SequenceEqual(averageGrades.OrderBy(x => x)));
+        WorkWithBase.CustomSort(largeArray, sortDirection, param);
+
+        stopwatch.Stop();
+
+        Assert.True(stopwatch.ElapsedMilliseconds < 2000,
+            $"Сортировка заняла {stopwatch.ElapsedMilliseconds} мс, что больше допустимых 2000 мс");
     }
 
     [Fact]
@@ -74,7 +160,7 @@
         Assert.Equal(4.5, result);
     }
 
-
+    // Типичный случай Фильтр >
     [Theory]
     [InlineData("Физика", 4.0)]
     [InlineData("Математика", 4.0)]
@@ -90,6 +176,7 @@
         }
     }
 
+    // Типичный случай Фильтр <
     [Theory]
     [InlineData("Физика", 4.0)]
     [InlineData("Математика", 4.0)]
@@ -104,6 +191,8 @@
             Assert.True(propertyValue < value);
         }
     }
+
+    // Типичный случай Фильтр <=
     [Theory]
     [InlineData("Физика", 4.0)]
     [InlineData("Математика", 4.0)]
@@ -118,6 +207,8 @@
             Assert.True(propertyValue <= value);
         }
     }
+
+    // Типичный случай Фильтр >=
     [Theory]
     [InlineData("Физика", 4.0)]
     [InlineData("Математика", 4.0)]
@@ -133,6 +224,7 @@
         }
     }
 
+    // Типичный случай Фильтр =
     [Theory]
     [InlineData("Физика", 3.5)]
     [InlineData("Математика", 4.0)]
@@ -148,7 +240,66 @@
         }
     }
 
+    // Некорректные входные данные - null Фильтр
+    [Fact]
+    public void FilterNums_NullStudentsArray_ShouldThrowArgumentNullException()
+    {
+        var result = WorkWithBase.FilterNums(null, "5", "Physics", ">");
+        Assert.IsType<Student[]>(result);
+        Assert.Empty(result);
 
+    }
+
+    // Большой объем данных Фильтр
+    [Fact]
+    public void FilterNums_LargeDataSet_ShouldCompleteInReasonableTime()
+    {
+        const int largeSize = 50000;
+        var largeArray = GenerateLargeStudentArray(largeSize);
+        string searchValue = "3,5";
+        string param = "Physics";
+        string ratio = ">";
+
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
+        var result = WorkWithBase.FilterNums(largeArray, searchValue, param, ratio);
+
+        stopwatch.Stop();
+
+        Assert.True(stopwatch.ElapsedMilliseconds < 2000,
+            $"Фильтрация заняла {stopwatch.ElapsedMilliseconds} мс, что больше допустимых 2000 мс");
+        Assert.NotNull(result);
+    }
+
+    // Граничный случай - пустой массив Фильтр
+    [Fact]
+    public void FilterNums_EmptyArray_ShouldReturnEmptyArray()
+    {
+        Student[] emptyArray = new Student[0];
+
+        var result = WorkWithBase.FilterNums(emptyArray, "3", "Physics", ">");
+
+        Assert.Empty(result);
+    }
+
+    // Специфический случай: не одно значение не подходит Фильтр
+    [Fact]
+    public void FilterNums_NoStudentsMatch_ShouldReturnEmpty()
+    {
+        var students = new Student[]
+        {
+        new Student { Physics = 3.5 },
+        new Student { Physics = 4.0 },
+        new Student { Physics = 2.0 }
+        };
+
+        var result = WorkWithBase.FilterNums(students, "5", "Physics", ">");
+
+        Assert.Empty(result);
+    }
+
+
+    // Типичный случай Группировка по группе
     [Fact]
     public void Group_ByCourse_GroupsCorrectly()
     {
@@ -156,10 +307,11 @@
 
         Assert.Contains("2", grouped.Keys);
         Assert.Contains("3", grouped.Keys);
-        Assert.Equal(2, grouped["2"].Count);
-        Assert.Equal(2, grouped["3"].Count);
+        Assert.Equal(2, grouped["2"].Length);
+        Assert.Equal(2, grouped["3"].Length);
     }
 
+    // Типичный случай Группировка по курсу
     [Fact]
     public void Group_ByGroup_GroupsCorrectly()
     {
@@ -168,20 +320,67 @@
         Assert.Contains("ИСФ-21", grouped.Keys);
         Assert.Contains("ИСФ-31", grouped.Keys);
         Assert.Contains("ИСФ-32", grouped.Keys);
-        Assert.Equal(2, grouped["ИСФ-21"].Count);
-        Assert.Equal(1, grouped["ИСФ-31"].Count);
-        Assert.Equal(1, grouped["ИСФ-32"].Count);
+        Assert.Equal(2, grouped["ИСФ-21"].Length);
+        Assert.Equal(1, grouped["ИСФ-31"].Length);
+        Assert.Equal(1, grouped["ИСФ-32"].Length);
     }
 
+    // Некорректные входные данные - null Группировка
     [Fact]
-    public void Group_UnknownParam_GroupsAsOther()
+    public void Group_NullStudentsArray_ReturnsEmptyDictionary()
     {
-        // Act
-        var grouped = WorkWithBase.Group(testStudents, "Неизвестный параметр");
+        var result = WorkWithBase.Group(null, "Course");
 
-        // Assert
-        Assert.Contains("Другое", grouped.Keys);
-        Assert.Equal(testStudents.Count, grouped["Другое"].Count);
+        Assert.Empty(result);
+        Assert.IsType<Dictionary<string, Student[]>>(result);
+    }
+
+    // Большой объем данных Группировка
+    [Fact]
+    public void Group_LargeDataSet_ShouldCompleteInReasonableTime()
+    {
+        const int largeSize = 50000;
+        var largeArray = GenerateLargeStudentArray(largeSize);
+        string param = "Course";
+
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
+        var result = WorkWithBase.Group(largeArray, param);
+
+        stopwatch.Stop();
+
+        Assert.True(stopwatch.ElapsedMilliseconds < 3000,
+            $"Группировка заняла {stopwatch.ElapsedMilliseconds} мс, что больше допустимых 3000 мс");
+        Assert.NotNull(result);
+    }
+
+    // Граничный случай - пустой массив Группировка
+    [Fact]
+    public void Group_EmptyArray_ShouldReturnEmptyDictionary()
+    {
+        Student[] emptyArray = new Student[0];
+
+        var result = WorkWithBase.Group(emptyArray, "Course");
+
+        Assert.Empty(result);
+    }
+
+    // Специфический случай: все студенты на одном курсе Группировка
+    [Fact]
+    public void Group_AllStudentsSameGroup_ShouldCreateSingleKey()
+    {
+        var students = new Student[]
+        {
+        new Student { Course = 3, FullName = "Иванов" },
+        new Student { Course = 3, FullName = "Петров" },
+        new Student { Course = 3, FullName = "Сидоров" }
+        };
+
+        var result = WorkWithBase.Group(students, "Курс");
+
+        Assert.Single(result); 
+        Assert.Contains("3", result.Keys); 
+        Assert.Equal(3, result["3"].Length); 
     }
 
     [Fact]

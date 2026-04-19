@@ -938,11 +938,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerTestProject\\AnalyzerTestProject.csproj",
+      "projectUniqueName": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\AnalyzerTestProject.csproj",
       "projectName": "AnalyzerTestProject",
-      "projectPath": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerTestProject\\AnalyzerTestProject.csproj",
+      "projectPath": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\AnalyzerTestProject.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerTestProject\\obj\\",
+      "outputPath": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -959,8 +959,8 @@
         "net10.0-windows7.0": {
           "targetAlias": "net10.0-windows",
           "projectReferences": {
-            "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj": {
-              "projectPath": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj"
+            "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj": {
+              "projectPath": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj"
             }
           }
         }

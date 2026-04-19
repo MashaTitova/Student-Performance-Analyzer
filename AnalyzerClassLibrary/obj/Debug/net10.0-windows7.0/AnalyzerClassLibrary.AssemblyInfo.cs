@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AnalyzerClassLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc9d1a66166a4745de3d56c2d6557e44698901bc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e468d660f2308acfdc8b6cda07134b8678f7796a")]
 [assembly: System.Reflection.AssemblyProductAttribute("AnalyzerClassLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AnalyzerClassLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

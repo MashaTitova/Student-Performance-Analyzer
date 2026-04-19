@@ -2,8 +2,10 @@
 
 public class CalculateStatisticalIndicators
 {
-    public static double CalculateAverage(List<Student> students, string columnText)
+    public static double CalculateAverage(Student[] students, string columnText)
     {
+        if (students.Length == 0)
+            return 0;
         var selector = WorkWithBase.GetPropertySelector(columnText);
 
         double sum = 0;
@@ -16,36 +18,38 @@ public class CalculateStatisticalIndicators
         }
 
         if (count == 0)
-            return 0; // или выбросить исключение
+            return 0;
 
         return Math.Round(sum / count, 2);
+
+       
     }
 
-    public static double CalculateMedian(List<Student> students, string columnText)
+    public static double CalculateMedian(Student[] students, string columnText)
     {
+        if (students.Length == 0)
+            return 0;
         var selector = WorkWithBase.GetPropertySelector(columnText);
 
-        // Получаем все значения
-        List<double> values = new List<double>();
-        foreach (var student in students)
+        double [] values = new double[students.Length];
+        for(int i  = 0; i < students.Length; i++)
         {
-            values.Add((double)selector(student));
+            values[i] = (double)selector(students[i]);
         }
 
-        int n = values.Count;
+        int n = values.Length;
         if (n == 0) return 0;
 
-        // Сортировка пузырьком (вместо OrderBy)
+        // Сортировка пузырьком 
         for (int i = 0; i < n - 1; i++)
         {
             for (int j = 0; j < n - i - 1; j++)
             {
                 if (values[j] > values[j + 1])
                 {
-                    // Обмен элементов
-                    double temp = values[j];
+                    double tmp = values[j];
                     values[j] = values[j + 1];
-                    values[j + 1] = temp;
+                    values[j + 1] = tmp;
                 }
             }
         }
@@ -53,32 +57,28 @@ public class CalculateStatisticalIndicators
         // Расчёт медианы
         if (n % 2 == 1)
         {
-            // Нечётное количество: берём средний элемент
             return values[n / 2];
         }
         else
         {
-            // Чётное количество: среднее двух центральных элементов
             int mid1 = n / 2 - 1;
             int mid2 = n / 2;
             return (values[mid1] + values[mid2]) / 2.0;
         }
     }
 
-    static (double Min, double Max) CalculateMinMax(List<Student> students, string columnText)
+    public static (double Min, double Max) CalculateMinMax(Student[] students, string columnText)
     {
         var selector = WorkWithBase.GetPropertySelector(columnText);
 
-        if (students.Count == 0)
-            return (0, 0); // или выбросить исключение
+        if (students.Length == 0)
+            return (0, 0); 
 
-        // Инициализируем min и max первым элементом
         double firstValue = (double)selector(students[0]);
         double min = firstValue;
         double max = firstValue;
 
-        // Проходим по остальным элементам
-        for (int i = 1; i < students.Count; i++)
+        for (int i = 1; i < students.Length; i++)
         {
             double currentValue = (double)selector(students[i]);
 
@@ -88,7 +88,6 @@ public class CalculateStatisticalIndicators
             if (currentValue > max)
                 max = currentValue;
         }
-
         return (min, max);
     }
 }

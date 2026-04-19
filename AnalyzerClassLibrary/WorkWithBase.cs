@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 public class WorkWithBase
 {
-    public static void CustomSort(List<Student> students, string sortDirection, string param)
+    public static void CustomSort(Student[] students, string sortDirection, string param)
     {
         // Проверки входных параметров
         if (students == null)
@@ -19,7 +19,8 @@ public class WorkWithBase
         var selector = GetPropertySelector(param);
 
         // Сортировка пузырьком
-        int n = students.Count;
+        int n = students.Length;
+        if (n == 0) return;
         for (int i = 0; i < n - 1; i++)
         {
             for (int j = 0; j < n - i - 1; j++)
@@ -33,10 +34,9 @@ public class WorkWithBase
 
                 if (shouldSwap)
                 {
-                    // Обмен элементов
-                    Student temp = students[j];
+                    Student tmp = students[j];
                     students[j] = students[j + 1];
-                    students[j + 1] = temp;
+                    students[j + 1] = tmp;
                 }
             }
         }
@@ -61,15 +61,17 @@ public class WorkWithBase
         };
     }
 
-    static List<Student> FilterNums(List<Student> students, string searchValue, string param, string ratio)
+    public static Student[] FilterNums(Student[] students, string searchValue, string param, string ratio)
     {
+        if (students == null)
+            return new Student[0];
         double value = Convert.ToDouble(searchValue);
         var propertySelector = GetPropertySelector(param);
         List<Student> result = new List<Student>();
 
-        foreach (var student in students)
+        for(int i = 0; i <  students.Length; i++)
         {
-            double studentValue = Convert.ToDouble(propertySelector(student));
+            double studentValue = Convert.ToDouble(propertySelector(students[i]));
             bool matches = ratio switch
             {
                 ">" => studentValue > value,
@@ -82,36 +84,42 @@ public class WorkWithBase
 
             if (matches)
             {
-                result.Add(student);
+                result.Add(students[i]);
             }
         }
-
-        return result;
+        var resultArray = result.ToArray();
+        return resultArray;
     }
-    static Dictionary<string, List<Student>> Group(List<Student> students, string param)
+
+    public static Dictionary<string, Student[]> Group(Student[] students, string param)
     {
+        if (students == null)
+            return new Dictionary<string, Student[]>();
+
         var keySelector = GetGroupKeySelector(param);
-        Dictionary<string, List<Student>> result = new Dictionary<string, List<Student>>();
+        var result = new Dictionary<string, List<Student>>();
 
-        foreach (var student in students)
+        for (int i = 0; i < students.Length; i++)
         {
-            string key = keySelector(student);
+            string key = keySelector(students[i]);
 
-            // Если ключ уже существует, добавляем в существующий список
-            if (result.ContainsKey(key))
+            if (!result.ContainsKey(key))
             {
-                result[key].Add(student);
+                result[key] = new List<Student>();
             }
-            else
-            {
-                // Создаём новый список для этого ключа
-                result[key] = new List<Student> { student };
-            }
+
+            result[key].Add(students[i]); 
         }
 
-        return result;
-    }
+        // Преобразование в Dictionary<string, Student[]>
+        var resultArray = new Dictionary<string, Student[]>();
+        foreach (var kvp in result)
+        {
+            resultArray[kvp.Key] = kvp.Value.ToArray(); 
+        }
 
+        return resultArray;
+    }
     public static Func<Student, string> GetGroupKeySelector(string propertyName)
     {
         return propertyName switch
