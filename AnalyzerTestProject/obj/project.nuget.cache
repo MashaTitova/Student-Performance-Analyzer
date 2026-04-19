@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uWFN1Vh+eN8=",
+  "dgSpecHash": "lXrtxNddejs=",
   "success": true,
-  "projectFilePath": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerTestProject\\AnalyzerTestProject.csproj",
+  "projectFilePath": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\AnalyzerTestProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.codecoverage\\17.14.1\\microsoft.codecoverage.17.14.1.nupkg.sha512",

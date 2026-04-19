@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj",
+      "projectUniqueName": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj",
       "projectName": "AnalyzerClassLibrary",
-      "projectPath": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj",
+      "projectPath": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\Masha\\Алгоритмизация\\Семестр2\\Курсовая работа вариант2\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\obj\\",
+      "outputPath": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
