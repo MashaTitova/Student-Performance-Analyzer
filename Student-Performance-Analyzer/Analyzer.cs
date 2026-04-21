@@ -92,7 +92,13 @@ namespace Student_Performance_Analyzer
                         Apply_button.Text = "Построить рейтинг";
                         Remove_button.Text = "Скрыть рейтинг";
                     }
-
+                    if(tmp.Name == "button_Anomalies")
+                    {
+                        Base_panel.Visible = true;
+                        NameUnit_label.Text = "Поиск аномалий";
+                        panel_Anomalies.Visible = true;
+                        StatInfo_panel.Visible = true;
+                    }
                     HomeButtons_flowLayoutPanel.Visible = false;
                     Apply_button.Visible = true;
                     Remove_button.Visible = true;
@@ -133,6 +139,10 @@ namespace Student_Performance_Analyzer
                 StatInfo_panel.Visible = false;
                 Rating_panel.Visible = false;
                 Chart_panel.Visible = false;
+            }
+            if(panel_Anomalies.Visible == true)
+            {
+                panel_Anomalies.Visible = false;
             }
             NameUnit_label.Text = "Анализатор успеваемости студентов";
         }
@@ -199,6 +209,7 @@ namespace Student_Performance_Analyzer
                     ChooseSortParam_comboBox.Items.Add(def[i]);
                     ChooseFindParam_comboBox.Items.Add(def[i]);
                     RatingCriteria_comboBox.Items.Add(def[i]);
+                    comboBox_Anomalies.Items.Add(def[i]);
                 }
                 studentArray = new Student[lines.Length - 1];
                 for (int i = 1; i < lines.Length; i++)
@@ -283,7 +294,7 @@ namespace Student_Performance_Analyzer
 
         private void Apply_button_Click(object sender, EventArgs e)
         {
-
+            RestoreOriginalData(true);
             if (WorkWithBase_panel.Visible == true)
             {
                 GetTab();
@@ -293,31 +304,46 @@ namespace Student_Performance_Analyzer
                 {
                     WorkWithBase.CustomSort(currentStudents, SortDirection_comboBox.Text, ChooseSortParam_comboBox.Text);
                     report += $"Сортировка по параметру {ChooseSortParam_comboBox.Text}. Направление сортировки: {SortDirection_comboBox.Text}\n";
+                    studentArray = currentStudents.ToArray();
                 }
-
+                if (ChooseFindParam_comboBox.Text != "" && ChooseFind_textBox.Text != "")
+                {
+                    if (ChooseFindParam_comboBox.Text == "ФИО студента")
+                    {
+                        FindRatio_comboBox.Items.Clear();
+                        currentStudents = WorkWithBase.FilterString(currentStudents, ChooseFind_textBox.Text);
+                        report += $"Поиск по ФИО студента. Условие поиска: {ChooseFind_textBox.Text}\n";
+                    }
+                    studentArray = currentStudents.ToArray();
+                }
                 if (ChooseFindParam_comboBox.Text != "" && FindRatio_comboBox.Text != "" && ChooseFind_textBox.Text != "")
                 {
-                    try
-                    {
-                        Convert.ToDouble(ChooseFind_textBox.Text);
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show(
-                            "Значение параметра поиска введено неверно",
-                    "Ошибка",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                        return;
-                    }
 
-                    report += $"Поиск значений по параметру {ChooseFindParam_comboBox.Text}. Условие поиска {FindRatio_comboBox.Text} {ChooseFind_textBox.Text}\n";
-                    currentStudents = WorkWithBase.FilterNums(
-                        currentStudents,
-                        ChooseFind_textBox.Text,
-                        ChooseFindParam_comboBox.Text,
-                        FindRatio_comboBox.Text
-                    );
+                    if (ChooseFindParam_comboBox.Text != "ФИО студента")
+                    {
+                        try
+                        {
+                            Convert.ToDouble(ChooseFind_textBox.Text);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(
+                                "Значение параметра поиска введено неверно",
+                        "Ошибка",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        report += $"Поиск значений по параметру {ChooseFindParam_comboBox.Text}. Условие поиска {FindRatio_comboBox.Text} {ChooseFind_textBox.Text}\n";
+                        currentStudents = WorkWithBase.FilterNums(
+                            currentStudents,
+                            ChooseFind_textBox.Text,
+                            ChooseFindParam_comboBox.Text,
+                            FindRatio_comboBox.Text
+                        );
+                        studentArray = currentStudents.ToArray();
+                    }
                 }
 
                 if (ChooseGroupParam_comboBox.Text != "")
@@ -335,12 +361,6 @@ namespace Student_Performance_Analyzer
 
                     studentArray = displayList.ToArray();
                 }
-                else
-                {
-
-                    studentArray = currentStudents.ToArray();
-                }
-
                 bindingSource.DataSource = studentArray;
                 bindingSource.ResetBindings(false);
                 StatInfoNum_label.Text = $"{studentArray.Length}";
@@ -385,6 +405,32 @@ namespace Student_Performance_Analyzer
             {
                 Rating_Mode();
             }
+            if (panel_Anomalies.Visible == true && comboBox_Anomalies.Text != "")
+            {
+                var currentStudents = studentArray;
+                var anomalies = AnalyzerClassLibrary.AnomalyDetector.FindAnomalies(currentStudents, comboBox_Anomalies.Text);
+                report += $"Поиск аномалий. Параметр поиска: {comboBox_Anomalies.Text}\n" +
+                    $"Найденные аномалии:\n";
+
+                var tempAnomaliesArray = anomalies.ToArray();
+
+                bindingSource.DataSource = tempAnomaliesArray;
+                bindingSource.ResetBindings(false);
+                StatInfoNum_label.Text = $"{tempAnomaliesArray.Length}";
+
+                // Заполняем отчёт данными об аномалиях
+                for (int i = 0; i < StudentInfo_dataGridView.Rows.Count; i++)
+                {
+                    DataGridViewRow row = StudentInfo_dataGridView.Rows[i];
+                    List<string> cellValues = new List<string>();
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        cellValues.Add(cell.Value?.ToString() ?? "null");
+                    }
+                    report += $"{string.Join(";", cellValues)}\n";
+                }
+            }
+
         }
         private void RestoreOriginalData(bool forceOriginal = false)
         {
@@ -392,21 +438,27 @@ namespace Student_Performance_Analyzer
             {
                 studentArray = originalStudentArray.ToArray();
             }
+            bindingSource.DataSource = studentArray;
+            bindingSource.ResetBindings(false);
+            StudentInfo_dataGridView.DataSource = bindingSource;
+            StatInfoNum_label.Text = $"{studentArray.Length}";
 
-            bindingSource.ResetBindings(false); // Обновляем источник данных грида
-            StatInfoNum_label.Text = $"{studentArray.Length}"; // Обновляем счётчик
-
-            // Сбрасываем сортировку колонок
             foreach (DataGridViewColumn column in StudentInfo_dataGridView.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-
-            // Скрываем диаграмму, если она была показана
-            chart.Visible = false;
-            chart.Series.Clear();
-            chart.Titles.Clear();
+            foreach (DataGridViewColumn column in StudentInfo_dataGridView.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            if (chart.Visible == true)
+            {
+                chart.Visible = false;
+                chart.Series.Clear();
+                chart.Titles.Clear();
+            }
         }
+
         private DataTable CreateDataTableFromstudentArray(Student[] students)
         {
             DataTable dt = new DataTable();
@@ -487,6 +539,14 @@ namespace Student_Performance_Analyzer
                 chart.Series.Clear();
                 chart.Titles.Clear();
                 chart.Visible = false;
+            }
+            if (panel_Anomalies.Visible == true)
+            {
+                comboBox_Anomalies.SelectedItem = null;
+                studentArray = originalStudentArray.ToArray();
+                bindingSource.DataSource = studentArray;
+                bindingSource.ResetBindings(false);
+                StatInfoNum_label.Text = $"{studentArray.Length}";
             }
         }
         private void Rating_Mode()
@@ -649,7 +709,7 @@ namespace Student_Performance_Analyzer
         }
         private void BuildStudentRatingFromDataTable(DataTable dataTable, string ratingCriteria)
         {
-            report += $"Построение рейтинга студентов по параметру {ratingCriteria}\n";
+            report += $"Построение рейтинга студентов по критерию {ratingCriteria}\n";
 
             // Сортируем по критерию в порядке убывания
             dataTable.DefaultView.Sort = $"{ratingCriteria} DESC";
@@ -676,7 +736,7 @@ namespace Student_Performance_Analyzer
             if (StudentInfo_dataGridView.Columns.Contains(ratingCriteria))
                 StudentInfo_dataGridView.Columns[ratingCriteria].HeaderText = RatingCriteria_comboBox.Text;
 
-            StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count - 1}";
+            StatInfoNum_label.Text = $"{StudentInfo_dataGridView.Rows.Count}";
 
             BuildStudentRatingChart(filteredTable, ratingCriteria);
 
@@ -714,7 +774,7 @@ namespace Student_Performance_Analyzer
             DataTable filteredTable = new DataTable();
             filteredTable.Columns.Add("Номер в рейтинге", typeof(int));
             filteredTable.Columns.Add("Группа", typeof(string));
-            filteredTable.Columns.Add($"Средний балл по {ratingCriteria}", typeof(double));
+            filteredTable.Columns.Add($"Средний балл по критерию {ratingCriteria}", typeof(double));
 
             int rank = 1;
             foreach (var group in groupAverage)

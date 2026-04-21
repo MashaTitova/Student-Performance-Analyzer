@@ -3,30 +3,39 @@
   "WorkspaceRootPath": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CBC30C11-0FD8-4A3A-868F-5653177926E2}|..\\AnalyzerTestProject\\AnalyzerTestProject.csproj|d:\\_git\\student-performance-analyzer\\analyzertestproject\\workwithbasetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBC30C11-0FD8-4A3A-868F-5653177926E2}|..\\AnalyzerTestProject\\AnalyzerTestProject.csproj|d:\\_git\\student-performance-analyzer\\analyzertestproject\\calculatestaticalindicatorstest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D04BDB5C-DE51-C0AC-5E93-39595D4D0C88}|..\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj|d:\\_git\\student-performance-analyzer\\analyzerclasslibrary\\calculatestatisticalindicators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBC30C11-0FD8-4A3A-868F-5653177926E2}|..\\AnalyzerTestProject\\AnalyzerTestProject.csproj|d:\\_git\\student-performance-analyzer\\analyzertestproject\\studenttest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D04BDB5C-DE51-C0AC-5E93-39595D4D0C88}|..\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj|d:\\_git\\student-performance-analyzer\\analyzerclasslibrary\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D04BDB5C-DE51-C0AC-5E93-39595D4D0C88}|..\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj|d:\\_git\\student-performance-analyzer\\analyzerclasslibrary\\workwithbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|d:\\_git\\student-performance-analyzer\\student-performance-analyzer\\analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|solutionrelative:analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B5F00C6D-5C7E-D0BB-F8AA-E3AAADF245EF}|Student-Performance-Analyzer.csproj|solutionrelative:analyzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBC30C11-0FD8-4A3A-868F-5653177926E2}|..\\AnalyzerTestProject\\AnalyzerTestProject.csproj|d:\\_git\\student-performance-analyzer\\analyzertestproject\\workwithbasetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D04BDB5C-DE51-C0AC-5E93-39595D4D0C88}|..\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj|d:\\_git\\student-performance-analyzer\\analyzerclasslibrary\\workwithbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D04BDB5C-DE51-C0AC-5E93-39595D4D0C88}|..\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj|d:\\_git\\student-performance-analyzer\\analyzerclasslibrary\\anomalydetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D04BDB5C-DE51-C0AC-5E93-39595D4D0C88}|..\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj|d:\\_git\\student-performance-analyzer\\analyzerclasslibrary\\calculatestatisticalindicators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBC30C11-0FD8-4A3A-868F-5653177926E2}|..\\AnalyzerTestProject\\AnalyzerTestProject.csproj|d:\\_git\\student-performance-analyzer\\analyzertestproject\\anomalydetectortest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBC30C11-0FD8-4A3A-868F-5653177926E2}|..\\AnalyzerTestProject\\AnalyzerTestProject.csproj|d:\\_git\\student-performance-analyzer\\analyzertestproject\\calculatestaticalindicatorstest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D04BDB5C-DE51-C0AC-5E93-39595D4D0C88}|..\\AnalyzerClassLibrary\\AnalyzerClassLibrary.csproj|d:\\_git\\student-performance-analyzer\\analyzerclasslibrary\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBC30C11-0FD8-4A3A-868F-5653177926E2}|..\\AnalyzerTestProject\\AnalyzerTestProject.csproj|d:\\_git\\student-performance-analyzer\\analyzertestproject\\analyzertestproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBC30C11-0FD8-4A3A-868F-5653177926E2}|..\\AnalyzerTestProject\\AnalyzerTestProject.csproj|d:\\_git\\student-performance-analyzer\\analyzertestproject\\studenttest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\Student-Performance-Analyzer\\AnalyzerTestProject\\StudentTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -60,17 +69,17 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Analyzer.cs",
               "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs",
               "RelativeDocumentMoniker": "Analyzer.cs",
               "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs",
               "RelativeToolTip": "Analyzer.cs",
-              "ViewState": "AgIAALgAAAAAAAAAAAAswHoCAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHEBAAAAAAAAAAAIwK0BAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T13:12:42.609Z",
               "IsPinned": true,
@@ -98,46 +107,114 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CalculateStaticalIndicatorsTest.cs",
-              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\CalculateStaticalIndicatorsTest.cs",
-              "RelativeDocumentMoniker": "..\\AnalyzerTestProject\\CalculateStaticalIndicatorsTest.cs",
-              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\CalculateStaticalIndicatorsTest.cs",
-              "RelativeToolTip": "..\\AnalyzerTestProject\\CalculateStaticalIndicatorsTest.cs",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAmwNEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T12:03:53.146Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "WorkWithBaseTest.cs",
               "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\WorkWithBaseTest.cs",
               "RelativeDocumentMoniker": "..\\AnalyzerTestProject\\WorkWithBaseTest.cs",
-              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\WorkWithBaseTest.cs*",
-              "RelativeToolTip": "..\\AnalyzerTestProject\\WorkWithBaseTest.cs*",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAkwIoAAAAfAAAAAAAAAA==",
+              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\WorkWithBaseTest.cs",
+              "RelativeToolTip": "..\\AnalyzerTestProject\\WorkWithBaseTest.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwGUAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T13:01:42.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T13:01:42.055Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "Analyzer.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs",
+              "RelativeDocumentMoniker": "Analyzer.cs",
+              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "Analyzer.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-16T15:49:41.841Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WorkWithBase.cs",
+              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\WorkWithBase.cs",
+              "RelativeDocumentMoniker": "..\\AnalyzerClassLibrary\\WorkWithBase.cs",
+              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\WorkWithBase.cs",
+              "RelativeToolTip": "..\\AnalyzerClassLibrary\\WorkWithBase.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAgwIEAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T11:19:04.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AnomalyDetector.cs",
+              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnomalyDetector.cs",
+              "RelativeDocumentMoniker": "..\\AnalyzerClassLibrary\\AnomalyDetector.cs",
+              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\AnomalyDetector.cs",
+              "RelativeToolTip": "..\\AnalyzerClassLibrary\\AnomalyDetector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T17:28:53.638Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CalculateStatisticalIndicators.cs",
               "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\CalculateStatisticalIndicators.cs",
               "RelativeDocumentMoniker": "..\\AnalyzerClassLibrary\\CalculateStatisticalIndicators.cs",
               "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\CalculateStatisticalIndicators.cs",
               "RelativeToolTip": "..\\AnalyzerClassLibrary\\CalculateStatisticalIndicators.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAIwFwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T11:03:30.311Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-17T11:03:30.311Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
+              "Title": "AnomalyDetectorTest.cs",
+              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\AnomalyDetectorTest.cs",
+              "RelativeDocumentMoniker": "..\\AnalyzerTestProject\\AnomalyDetectorTest.cs",
+              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\AnomalyDetectorTest.cs",
+              "RelativeToolTip": "..\\AnalyzerTestProject\\AnomalyDetectorTest.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwJUAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T11:30:08.32Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CalculateStaticalIndicatorsTest.cs",
+              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\CalculateStaticalIndicatorsTest.cs",
+              "RelativeDocumentMoniker": "..\\AnalyzerTestProject\\CalculateStaticalIndicatorsTest.cs",
+              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\CalculateStaticalIndicatorsTest.cs",
+              "RelativeToolTip": "..\\AnalyzerTestProject\\CalculateStaticalIndicatorsTest.cs",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAiwKMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T12:03:53.146Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Student.cs",
+              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\Student.cs",
+              "RelativeDocumentMoniker": "..\\AnalyzerClassLibrary\\Student.cs",
+              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\Student.cs",
+              "RelativeToolTip": "..\\AnalyzerClassLibrary\\Student.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwBAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T11:41:42.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AnalyzerTestProject.csproj",
+              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\AnalyzerTestProject.csproj",
+              "RelativeDocumentMoniker": "..\\AnalyzerTestProject\\AnalyzerTestProject.csproj",
+              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\AnalyzerTestProject.csproj",
+              "RelativeToolTip": "..\\AnalyzerTestProject\\AnalyzerTestProject.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-21T10:40:44.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "StudentTest.cs",
               "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerTestProject\\StudentTest.cs",
               "RelativeDocumentMoniker": "..\\AnalyzerTestProject\\StudentTest.cs",
@@ -145,38 +222,11 @@
               "RelativeToolTip": "..\\AnalyzerTestProject\\StudentTest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T13:01:35.65Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T13:01:35.65Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Student.cs",
-              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\Student.cs",
-              "RelativeDocumentMoniker": "..\\AnalyzerClassLibrary\\Student.cs",
-              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\Student.cs",
-              "RelativeToolTip": "..\\AnalyzerClassLibrary\\Student.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T11:41:42.587Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "WorkWithBase.cs",
-              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\WorkWithBase.cs",
-              "RelativeDocumentMoniker": "..\\AnalyzerClassLibrary\\WorkWithBase.cs",
-              "ToolTip": "D:\\_git\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\WorkWithBase.cs",
-              "RelativeToolTip": "..\\AnalyzerClassLibrary\\WorkWithBase.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAYwFAAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T11:19:04.556Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "WorkWithBase.cs",
               "DocumentMoniker": "D:\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\WorkWithBase.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\WorkWithBase.cs",
@@ -188,7 +238,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "Student.cs",
               "DocumentMoniker": "D:\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\Student.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\Student.cs",
@@ -200,7 +250,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "CalculateStatisticalIndicators.cs",
               "DocumentMoniker": "D:\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\CalculateStatisticalIndicators.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\CalculateStatisticalIndicators.cs",
@@ -212,7 +262,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "WorkWithBaseTest.cs",
               "DocumentMoniker": "D:\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerTestProject\\WorkWithBaseTest.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerTestProject\\WorkWithBaseTest.cs",
@@ -224,7 +274,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "CalculateStaticalIndicatorsTest.cs",
               "DocumentMoniker": "D:\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerTestProject\\CalculateStaticalIndicatorsTest.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerTestProject\\CalculateStaticalIndicatorsTest.cs",
@@ -236,7 +286,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "StudentTest.cs",
               "DocumentMoniker": "D:\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerTestProject\\StudentTest.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\AnalyzerTestProject\\StudentTest.cs",
@@ -248,18 +298,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Analyzer.cs [Design]",
-              "DocumentMoniker": "D:\\_git\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs",
-              "RelativeDocumentMoniker": "Analyzer.cs",
-              "ToolTip": "D:\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\\u0421\u0435\u043C\u0435\u0441\u0442\u04402\\\u041A\u0443\u0440\u0441\u043E\u0432\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u0432\u0430\u0440\u0438\u0430\u043D\u04422\\Student-Performance-Analyzer\\Student-Performance-Analyzer\\Analyzer.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-16T15:49:41.841Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "StudentTest.cs",
               "DocumentMoniker": "D:\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\Student-Performance-Analyzer\\AnalyzerTestProject\\StudentTest.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\Student-Performance-Analyzer\\AnalyzerTestProject\\StudentTest.cs",
@@ -271,7 +310,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "CalculateStatisticalIndicators.cs",
               "DocumentMoniker": "D:\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\CalculateStatisticalIndicators.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\Masha\\\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u044F\\Student-Performance-Analyzer\\AnalyzerClassLibrary\\CalculateStatisticalIndicators.cs",

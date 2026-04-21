@@ -37,10 +37,10 @@
             ExportingReportsHome_button = new Button();
             ExitApp_button = new Button();
             Home_panel = new Panel();
-            Chart_panel = new Panel();
-            chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            RatingCriteria_comboBox = new ComboBox();
-            RatingCriteria_label = new Label();
+            panel_Anomalies = new Panel();
+            label_AmonaliesParametr = new Label();
+            label_AnomaliesResearch = new Label();
+            comboBox_Anomalies = new ComboBox();
             WorkWithBase_panel = new Panel();
             SortDirection_label = new Label();
             SortDirection_comboBox = new ComboBox();
@@ -55,6 +55,10 @@
             ChooseSortParam_comboBox = new ComboBox();
             FindRatio_comboBox = new ComboBox();
             ChooseFindParam_comboBox = new ComboBox();
+            Chart_panel = new Panel();
+            chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            RatingCriteria_comboBox = new ComboBox();
+            RatingCriteria_label = new Label();
             StatisticalIndicators_panel = new Panel();
             ChooseColumn_comboBox = new ComboBox();
             ChooseColumn_label = new Label();
@@ -81,11 +85,13 @@
             Info_button = new Button();
             HomeButtons_flowLayoutPanel = new FlowLayoutPanel();
             LoadFile_button = new Button();
+            button_Anomalies = new Button();
             BuildingRatingsHome_button = new Button();
             Home_panel.SuspendLayout();
+            panel_Anomalies.SuspendLayout();
+            WorkWithBase_panel.SuspendLayout();
             Chart_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart).BeginInit();
-            WorkWithBase_panel.SuspendLayout();
             StatisticalIndicators_panel.SuspendLayout();
             Rating_panel.SuspendLayout();
             StatInfo_panel.SuspendLayout();
@@ -139,7 +145,7 @@
             // 
             ExportingReportsHome_button.AutoSize = true;
             ExportingReportsHome_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            ExportingReportsHome_button.Location = new Point(4, 378);
+            ExportingReportsHome_button.Location = new Point(4, 472);
             ExportingReportsHome_button.Margin = new Padding(4, 2, 4, 2);
             ExportingReportsHome_button.Name = "ExportingReportsHome_button";
             ExportingReportsHome_button.Size = new Size(546, 90);
@@ -152,7 +158,7 @@
             // 
             ExitApp_button.AutoSize = true;
             ExitApp_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            ExitApp_button.Location = new Point(4, 472);
+            ExitApp_button.Location = new Point(4, 566);
             ExitApp_button.Margin = new Padding(4, 2, 4, 2);
             ExitApp_button.Name = "ExitApp_button";
             ExitApp_button.Size = new Size(546, 90);
@@ -164,8 +170,9 @@
             // Home_panel
             // 
             Home_panel.BackColor = Color.Transparent;
-            Home_panel.Controls.Add(Chart_panel);
+            Home_panel.Controls.Add(panel_Anomalies);
             Home_panel.Controls.Add(WorkWithBase_panel);
+            Home_panel.Controls.Add(Chart_panel);
             Home_panel.Controls.Add(StatisticalIndicators_panel);
             Home_panel.Controls.Add(Rating_panel);
             Home_panel.Controls.Add(StatInfo_panel);
@@ -179,6 +186,230 @@
             Home_panel.Name = "Home_panel";
             Home_panel.Size = new Size(1384, 1028);
             Home_panel.TabIndex = 7;
+            // 
+            // panel_Anomalies
+            // 
+            panel_Anomalies.Controls.Add(label_AmonaliesParametr);
+            panel_Anomalies.Controls.Add(label_AnomaliesResearch);
+            panel_Anomalies.Controls.Add(comboBox_Anomalies);
+            panel_Anomalies.Location = new Point(0, 90);
+            panel_Anomalies.Name = "panel_Anomalies";
+            panel_Anomalies.Size = new Size(503, 737);
+            panel_Anomalies.TabIndex = 28;
+            panel_Anomalies.Visible = false;
+            // 
+            // label_AmonaliesParametr
+            // 
+            label_AmonaliesParametr.Anchor = AnchorStyles.None;
+            label_AmonaliesParametr.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            label_AmonaliesParametr.Location = new Point(35, 89);
+            label_AmonaliesParametr.Margin = new Padding(4, 0, 4, 0);
+            label_AmonaliesParametr.Name = "label_AmonaliesParametr";
+            label_AmonaliesParametr.Size = new Size(435, 45);
+            label_AmonaliesParametr.TabIndex = 30;
+            label_AmonaliesParametr.Text = "Выберите параметр поиска";
+            label_AmonaliesParametr.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label_AnomaliesResearch
+            // 
+            label_AnomaliesResearch.Anchor = AnchorStyles.None;
+            label_AnomaliesResearch.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            label_AnomaliesResearch.Location = new Point(113, 31);
+            label_AnomaliesResearch.Margin = new Padding(4, 0, 4, 0);
+            label_AnomaliesResearch.Name = "label_AnomaliesResearch";
+            label_AnomaliesResearch.Size = new Size(288, 45);
+            label_AnomaliesResearch.TabIndex = 28;
+            label_AnomaliesResearch.Text = "Поиск аномалий";
+            label_AnomaliesResearch.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // comboBox_Anomalies
+            // 
+            comboBox_Anomalies.Anchor = AnchorStyles.None;
+            comboBox_Anomalies.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Anomalies.ForeColor = Color.Black;
+            comboBox_Anomalies.FormattingEnabled = true;
+            comboBox_Anomalies.Items.AddRange(new object[] { "Кол-во задолженностей", "Общий средний балл" });
+            comboBox_Anomalies.Location = new Point(27, 163);
+            comboBox_Anomalies.Margin = new Padding(4, 2, 4, 2);
+            comboBox_Anomalies.Name = "comboBox_Anomalies";
+            comboBox_Anomalies.Size = new Size(435, 40);
+            comboBox_Anomalies.TabIndex = 29;
+            // 
+            // WorkWithBase_panel
+            // 
+            WorkWithBase_panel.Controls.Add(SortDirection_label);
+            WorkWithBase_panel.Controls.Add(SortDirection_comboBox);
+            WorkWithBase_panel.Controls.Add(ChooseFind_textBox);
+            WorkWithBase_panel.Controls.Add(ChooseSort_label);
+            WorkWithBase_panel.Controls.Add(Sort_label);
+            WorkWithBase_panel.Controls.Add(Group_label);
+            WorkWithBase_panel.Controls.Add(Find_label);
+            WorkWithBase_panel.Controls.Add(ChooseFind_label);
+            WorkWithBase_panel.Controls.Add(ChooseGroup_label);
+            WorkWithBase_panel.Controls.Add(ChooseGroupParam_comboBox);
+            WorkWithBase_panel.Controls.Add(ChooseSortParam_comboBox);
+            WorkWithBase_panel.Controls.Add(FindRatio_comboBox);
+            WorkWithBase_panel.Controls.Add(ChooseFindParam_comboBox);
+            WorkWithBase_panel.Location = new Point(0, 90);
+            WorkWithBase_panel.Margin = new Padding(4, 2, 4, 2);
+            WorkWithBase_panel.Name = "WorkWithBase_panel";
+            WorkWithBase_panel.Size = new Size(510, 736);
+            WorkWithBase_panel.TabIndex = 30;
+            WorkWithBase_panel.Visible = false;
+            // 
+            // SortDirection_label
+            // 
+            SortDirection_label.Anchor = AnchorStyles.None;
+            SortDirection_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            SortDirection_label.Location = new Point(35, 149);
+            SortDirection_label.Margin = new Padding(4, 0, 4, 0);
+            SortDirection_label.Name = "SortDirection_label";
+            SortDirection_label.Size = new Size(435, 45);
+            SortDirection_label.TabIndex = 27;
+            SortDirection_label.Text = "Направление сортировки";
+            SortDirection_label.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // SortDirection_comboBox
+            // 
+            SortDirection_comboBox.Anchor = AnchorStyles.None;
+            SortDirection_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            SortDirection_comboBox.FormattingEnabled = true;
+            SortDirection_comboBox.Items.AddRange(new object[] { "Возрастание", "Убывание" });
+            SortDirection_comboBox.Location = new Point(35, 199);
+            SortDirection_comboBox.Margin = new Padding(4, 2, 4, 2);
+            SortDirection_comboBox.Name = "SortDirection_comboBox";
+            SortDirection_comboBox.Size = new Size(435, 40);
+            SortDirection_comboBox.TabIndex = 26;
+            // 
+            // ChooseFind_textBox
+            // 
+            ChooseFind_textBox.Anchor = AnchorStyles.None;
+            ChooseFind_textBox.Location = new Point(35, 459);
+            ChooseFind_textBox.Margin = new Padding(4, 2, 4, 2);
+            ChooseFind_textBox.Name = "ChooseFind_textBox";
+            ChooseFind_textBox.Size = new Size(435, 39);
+            ChooseFind_textBox.TabIndex = 24;
+            // 
+            // ChooseSort_label
+            // 
+            ChooseSort_label.Anchor = AnchorStyles.None;
+            ChooseSort_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            ChooseSort_label.Location = new Point(43, 49);
+            ChooseSort_label.Margin = new Padding(4, 0, 4, 0);
+            ChooseSort_label.Name = "ChooseSort_label";
+            ChooseSort_label.Size = new Size(435, 45);
+            ChooseSort_label.TabIndex = 25;
+            ChooseSort_label.Text = "Выберите параметр сортировки";
+            ChooseSort_label.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // Sort_label
+            // 
+            Sort_label.Anchor = AnchorStyles.None;
+            Sort_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            Sort_label.Location = new Point(121, 13);
+            Sort_label.Margin = new Padding(4, 0, 4, 0);
+            Sort_label.Name = "Sort_label";
+            Sort_label.Size = new Size(288, 45);
+            Sort_label.TabIndex = 9;
+            Sort_label.Text = "Сортировка студентов";
+            Sort_label.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // Group_label
+            // 
+            Group_label.Anchor = AnchorStyles.None;
+            Group_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            Group_label.Location = new Point(96, 557);
+            Group_label.Margin = new Padding(4, 0, 4, 0);
+            Group_label.Name = "Group_label";
+            Group_label.Size = new Size(288, 38);
+            Group_label.TabIndex = 10;
+            Group_label.Text = "Группировка студентов";
+            Group_label.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // Find_label
+            // 
+            Find_label.Anchor = AnchorStyles.None;
+            Find_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            Find_label.Location = new Point(100, 299);
+            Find_label.Margin = new Padding(4, 0, 4, 0);
+            Find_label.Name = "Find_label";
+            Find_label.Size = new Size(288, 41);
+            Find_label.TabIndex = 11;
+            Find_label.Text = "Поиск студентов";
+            Find_label.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // ChooseFind_label
+            // 
+            ChooseFind_label.Anchor = AnchorStyles.None;
+            ChooseFind_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            ChooseFind_label.Location = new Point(35, 339);
+            ChooseFind_label.Margin = new Padding(4, 0, 4, 0);
+            ChooseFind_label.Name = "ChooseFind_label";
+            ChooseFind_label.Size = new Size(427, 45);
+            ChooseFind_label.TabIndex = 13;
+            ChooseFind_label.Text = "Введите параметр поиска";
+            ChooseFind_label.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // ChooseGroup_label
+            // 
+            ChooseGroup_label.Anchor = AnchorStyles.None;
+            ChooseGroup_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            ChooseGroup_label.Location = new Point(31, 598);
+            ChooseGroup_label.Margin = new Padding(4, 0, 4, 0);
+            ChooseGroup_label.Name = "ChooseGroup_label";
+            ChooseGroup_label.Size = new Size(435, 36);
+            ChooseGroup_label.TabIndex = 14;
+            ChooseGroup_label.Text = "Введите параметр группировки";
+            ChooseGroup_label.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // ChooseGroupParam_comboBox
+            // 
+            ChooseGroupParam_comboBox.Anchor = AnchorStyles.None;
+            ChooseGroupParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ChooseGroupParam_comboBox.FormattingEnabled = true;
+            ChooseGroupParam_comboBox.Items.AddRange(new object[] { "Курс", "Группа" });
+            ChooseGroupParam_comboBox.Location = new Point(31, 636);
+            ChooseGroupParam_comboBox.Margin = new Padding(4, 2, 4, 2);
+            ChooseGroupParam_comboBox.Name = "ChooseGroupParam_comboBox";
+            ChooseGroupParam_comboBox.Size = new Size(435, 40);
+            ChooseGroupParam_comboBox.TabIndex = 19;
+            // 
+            // ChooseSortParam_comboBox
+            // 
+            ChooseSortParam_comboBox.Anchor = AnchorStyles.None;
+            ChooseSortParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ChooseSortParam_comboBox.ForeColor = Color.Black;
+            ChooseSortParam_comboBox.FormattingEnabled = true;
+            ChooseSortParam_comboBox.Items.AddRange(new object[] { "ФИО студента", "Общий средний балл", "Количество задолженностей" });
+            ChooseSortParam_comboBox.Location = new Point(35, 105);
+            ChooseSortParam_comboBox.Margin = new Padding(4, 2, 4, 2);
+            ChooseSortParam_comboBox.Name = "ChooseSortParam_comboBox";
+            ChooseSortParam_comboBox.Size = new Size(435, 40);
+            ChooseSortParam_comboBox.TabIndex = 15;
+            // 
+            // FindRatio_comboBox
+            // 
+            FindRatio_comboBox.Anchor = AnchorStyles.None;
+            FindRatio_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            FindRatio_comboBox.FormattingEnabled = true;
+            FindRatio_comboBox.Items.AddRange(new object[] { "=", ">", ">=", "<", "<=" });
+            FindRatio_comboBox.Location = new Point(376, 386);
+            FindRatio_comboBox.Margin = new Padding(4, 2, 4, 2);
+            FindRatio_comboBox.Name = "FindRatio_comboBox";
+            FindRatio_comboBox.Size = new Size(94, 40);
+            FindRatio_comboBox.TabIndex = 17;
+            // 
+            // ChooseFindParam_comboBox
+            // 
+            ChooseFindParam_comboBox.Anchor = AnchorStyles.None;
+            ChooseFindParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ChooseFindParam_comboBox.FormattingEnabled = true;
+            ChooseFindParam_comboBox.Items.AddRange(new object[] { "ФИО студента", "Общий средний балл", "Кол-во задолженностей" });
+            ChooseFindParam_comboBox.Location = new Point(35, 386);
+            ChooseFindParam_comboBox.Margin = new Padding(4, 2, 4, 2);
+            ChooseFindParam_comboBox.Name = "ChooseFindParam_comboBox";
+            ChooseFindParam_comboBox.Size = new Size(312, 40);
+            ChooseFindParam_comboBox.TabIndex = 16;
             // 
             // Chart_panel
             // 
@@ -229,182 +460,6 @@
             RatingCriteria_label.TabIndex = 32;
             RatingCriteria_label.Text = "Выберете критерий построения рейтингов";
             RatingCriteria_label.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // WorkWithBase_panel
-            // 
-            WorkWithBase_panel.Controls.Add(SortDirection_label);
-            WorkWithBase_panel.Controls.Add(SortDirection_comboBox);
-            WorkWithBase_panel.Controls.Add(ChooseFind_textBox);
-            WorkWithBase_panel.Controls.Add(ChooseSort_label);
-            WorkWithBase_panel.Controls.Add(Sort_label);
-            WorkWithBase_panel.Controls.Add(Group_label);
-            WorkWithBase_panel.Controls.Add(Find_label);
-            WorkWithBase_panel.Controls.Add(ChooseFind_label);
-            WorkWithBase_panel.Controls.Add(ChooseGroup_label);
-            WorkWithBase_panel.Controls.Add(ChooseGroupParam_comboBox);
-            WorkWithBase_panel.Controls.Add(ChooseSortParam_comboBox);
-            WorkWithBase_panel.Controls.Add(FindRatio_comboBox);
-            WorkWithBase_panel.Controls.Add(ChooseFindParam_comboBox);
-            WorkWithBase_panel.Location = new Point(0, 90);
-            WorkWithBase_panel.Margin = new Padding(4, 2, 4, 2);
-            WorkWithBase_panel.Name = "WorkWithBase_panel";
-            WorkWithBase_panel.Size = new Size(457, 736);
-            WorkWithBase_panel.TabIndex = 30;
-            WorkWithBase_panel.Visible = false;
-            // 
-            // SortDirection_label
-            // 
-            SortDirection_label.Anchor = AnchorStyles.None;
-            SortDirection_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            SortDirection_label.Location = new Point(8, 149);
-            SortDirection_label.Margin = new Padding(4, 0, 4, 0);
-            SortDirection_label.Name = "SortDirection_label";
-            SortDirection_label.Size = new Size(435, 45);
-            SortDirection_label.TabIndex = 27;
-            SortDirection_label.Text = "Направление сортировки";
-            SortDirection_label.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // SortDirection_comboBox
-            // 
-            SortDirection_comboBox.Anchor = AnchorStyles.None;
-            SortDirection_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            SortDirection_comboBox.FormattingEnabled = true;
-            SortDirection_comboBox.Items.AddRange(new object[] { "Возрастание", "Убывание" });
-            SortDirection_comboBox.Location = new Point(8, 199);
-            SortDirection_comboBox.Margin = new Padding(4, 2, 4, 2);
-            SortDirection_comboBox.Name = "SortDirection_comboBox";
-            SortDirection_comboBox.Size = new Size(435, 40);
-            SortDirection_comboBox.TabIndex = 26;
-            // 
-            // ChooseFind_textBox
-            // 
-            ChooseFind_textBox.Anchor = AnchorStyles.None;
-            ChooseFind_textBox.Location = new Point(8, 459);
-            ChooseFind_textBox.Margin = new Padding(4, 2, 4, 2);
-            ChooseFind_textBox.Name = "ChooseFind_textBox";
-            ChooseFind_textBox.Size = new Size(435, 39);
-            ChooseFind_textBox.TabIndex = 24;
-            // 
-            // ChooseSort_label
-            // 
-            ChooseSort_label.Anchor = AnchorStyles.None;
-            ChooseSort_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            ChooseSort_label.Location = new Point(16, 49);
-            ChooseSort_label.Margin = new Padding(4, 0, 4, 0);
-            ChooseSort_label.Name = "ChooseSort_label";
-            ChooseSort_label.Size = new Size(435, 45);
-            ChooseSort_label.TabIndex = 25;
-            ChooseSort_label.Text = "Выберите параметр сортировки";
-            ChooseSort_label.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // Sort_label
-            // 
-            Sort_label.Anchor = AnchorStyles.None;
-            Sort_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            Sort_label.Location = new Point(94, 13);
-            Sort_label.Margin = new Padding(4, 0, 4, 0);
-            Sort_label.Name = "Sort_label";
-            Sort_label.Size = new Size(288, 45);
-            Sort_label.TabIndex = 9;
-            Sort_label.Text = "Сортировка студентов";
-            Sort_label.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // Group_label
-            // 
-            Group_label.Anchor = AnchorStyles.None;
-            Group_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            Group_label.Location = new Point(69, 557);
-            Group_label.Margin = new Padding(4, 0, 4, 0);
-            Group_label.Name = "Group_label";
-            Group_label.Size = new Size(288, 38);
-            Group_label.TabIndex = 10;
-            Group_label.Text = "Группировка студентов";
-            Group_label.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // Find_label
-            // 
-            Find_label.Anchor = AnchorStyles.None;
-            Find_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            Find_label.Location = new Point(73, 299);
-            Find_label.Margin = new Padding(4, 0, 4, 0);
-            Find_label.Name = "Find_label";
-            Find_label.Size = new Size(288, 41);
-            Find_label.TabIndex = 11;
-            Find_label.Text = "Поиск студентов";
-            Find_label.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // ChooseFind_label
-            // 
-            ChooseFind_label.Anchor = AnchorStyles.None;
-            ChooseFind_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            ChooseFind_label.Location = new Point(8, 339);
-            ChooseFind_label.Margin = new Padding(4, 0, 4, 0);
-            ChooseFind_label.Name = "ChooseFind_label";
-            ChooseFind_label.Size = new Size(427, 45);
-            ChooseFind_label.TabIndex = 13;
-            ChooseFind_label.Text = "Введите параметр поиска";
-            ChooseFind_label.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // ChooseGroup_label
-            // 
-            ChooseGroup_label.Anchor = AnchorStyles.None;
-            ChooseGroup_label.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            ChooseGroup_label.Location = new Point(4, 598);
-            ChooseGroup_label.Margin = new Padding(4, 0, 4, 0);
-            ChooseGroup_label.Name = "ChooseGroup_label";
-            ChooseGroup_label.Size = new Size(435, 36);
-            ChooseGroup_label.TabIndex = 14;
-            ChooseGroup_label.Text = "Введите параметр группировки";
-            ChooseGroup_label.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // ChooseGroupParam_comboBox
-            // 
-            ChooseGroupParam_comboBox.Anchor = AnchorStyles.None;
-            ChooseGroupParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            ChooseGroupParam_comboBox.FormattingEnabled = true;
-            ChooseGroupParam_comboBox.Items.AddRange(new object[] { "Курс", "Группа" });
-            ChooseGroupParam_comboBox.Location = new Point(4, 636);
-            ChooseGroupParam_comboBox.Margin = new Padding(4, 2, 4, 2);
-            ChooseGroupParam_comboBox.Name = "ChooseGroupParam_comboBox";
-            ChooseGroupParam_comboBox.Size = new Size(435, 40);
-            ChooseGroupParam_comboBox.TabIndex = 19;
-            // 
-            // ChooseSortParam_comboBox
-            // 
-            ChooseSortParam_comboBox.Anchor = AnchorStyles.None;
-            ChooseSortParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            ChooseSortParam_comboBox.ForeColor = Color.Black;
-            ChooseSortParam_comboBox.FormattingEnabled = true;
-            ChooseSortParam_comboBox.Items.AddRange(new object[] { "ФИО студента", "Общий средний балл", "Количество задолженностей" });
-            ChooseSortParam_comboBox.Location = new Point(8, 105);
-            ChooseSortParam_comboBox.Margin = new Padding(4, 2, 4, 2);
-            ChooseSortParam_comboBox.Name = "ChooseSortParam_comboBox";
-            ChooseSortParam_comboBox.Size = new Size(435, 40);
-            ChooseSortParam_comboBox.TabIndex = 15;
-            // 
-            // FindRatio_comboBox
-            // 
-            FindRatio_comboBox.Anchor = AnchorStyles.None;
-            FindRatio_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            FindRatio_comboBox.FormattingEnabled = true;
-            FindRatio_comboBox.Items.AddRange(new object[] { "=", ">", ">=", "<", "<=" });
-            FindRatio_comboBox.Location = new Point(349, 386);
-            FindRatio_comboBox.Margin = new Padding(4, 2, 4, 2);
-            FindRatio_comboBox.Name = "FindRatio_comboBox";
-            FindRatio_comboBox.Size = new Size(94, 40);
-            FindRatio_comboBox.TabIndex = 17;
-            // 
-            // ChooseFindParam_comboBox
-            // 
-            ChooseFindParam_comboBox.Anchor = AnchorStyles.None;
-            ChooseFindParam_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            ChooseFindParam_comboBox.FormattingEnabled = true;
-            ChooseFindParam_comboBox.Items.AddRange(new object[] { "Общий средний балл", "Кол-во задолженностей" });
-            ChooseFindParam_comboBox.Location = new Point(8, 386);
-            ChooseFindParam_comboBox.Margin = new Padding(4, 2, 4, 2);
-            ChooseFindParam_comboBox.Name = "ChooseFindParam_comboBox";
-            ChooseFindParam_comboBox.Size = new Size(312, 40);
-            ChooseFindParam_comboBox.TabIndex = 16;
             // 
             // StatisticalIndicators_panel
             // 
@@ -704,15 +759,16 @@
             HomeButtons_flowLayoutPanel.Controls.Add(LoadFile_button);
             HomeButtons_flowLayoutPanel.Controls.Add(DataSetHome_button);
             HomeButtons_flowLayoutPanel.Controls.Add(StatisticalIndicatorsHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(button_Anomalies);
             HomeButtons_flowLayoutPanel.Controls.Add(BuildingRatingsHome_button);
             HomeButtons_flowLayoutPanel.Controls.Add(ExportingReportsHome_button);
             HomeButtons_flowLayoutPanel.Controls.Add(ExitApp_button);
-            HomeButtons_flowLayoutPanel.Location = new Point(431, 260);
+            HomeButtons_flowLayoutPanel.Location = new Point(431, 160);
             HomeButtons_flowLayoutPanel.Margin = new Padding(4, 2, 4, 2);
             HomeButtons_flowLayoutPanel.MaximumSize = new Size(700, 800);
             HomeButtons_flowLayoutPanel.MinimumSize = new Size(496, 582);
             HomeButtons_flowLayoutPanel.Name = "HomeButtons_flowLayoutPanel";
-            HomeButtons_flowLayoutPanel.Size = new Size(554, 582);
+            HomeButtons_flowLayoutPanel.Size = new Size(554, 664);
             HomeButtons_flowLayoutPanel.TabIndex = 9;
             // 
             // LoadFile_button
@@ -729,11 +785,24 @@
             LoadFile_button.UseVisualStyleBackColor = false;
             LoadFile_button.Click += LoadFile_button_Click;
             // 
+            // button_Anomalies
+            // 
+            button_Anomalies.AutoSize = true;
+            button_Anomalies.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            button_Anomalies.Location = new Point(4, 284);
+            button_Anomalies.Margin = new Padding(4, 2, 4, 2);
+            button_Anomalies.Name = "button_Anomalies";
+            button_Anomalies.Size = new Size(546, 90);
+            button_Anomalies.TabIndex = 8;
+            button_Anomalies.Text = "Поиск аномалий";
+            button_Anomalies.UseVisualStyleBackColor = true;
+            button_Anomalies.Click += Home_button_Click;
+            // 
             // BuildingRatingsHome_button
             // 
             BuildingRatingsHome_button.AutoSize = true;
             BuildingRatingsHome_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            BuildingRatingsHome_button.Location = new Point(4, 284);
+            BuildingRatingsHome_button.Location = new Point(4, 378);
             BuildingRatingsHome_button.Margin = new Padding(4, 2, 4, 2);
             BuildingRatingsHome_button.Name = "BuildingRatingsHome_button";
             BuildingRatingsHome_button.Size = new Size(546, 90);
@@ -758,10 +827,11 @@
             FormClosing += Analyzer_form_FormClosing;
             Home_panel.ResumeLayout(false);
             Home_panel.PerformLayout();
-            Chart_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)chart).EndInit();
+            panel_Anomalies.ResumeLayout(false);
             WorkWithBase_panel.ResumeLayout(false);
             WorkWithBase_panel.PerformLayout();
+            Chart_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)chart).EndInit();
             StatisticalIndicators_panel.ResumeLayout(false);
             StatisticalIndicators_panel.PerformLayout();
             Rating_panel.ResumeLayout(false);
@@ -828,5 +898,10 @@
         private CheckBox checkBox_GroupRating;
         private CheckBox checkBox_StudentRating;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private Button button_Anomalies;
+        private Panel panel_Anomalies;
+        private Label label_AmonaliesParametr;
+        private Label label_AnomaliesResearch;
+        private ComboBox comboBox_Anomalies;
     }
 }

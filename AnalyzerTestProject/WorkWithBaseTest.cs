@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using System.DirectoryServices;
 
 public class WorkWithBaseTests
 {
@@ -36,7 +37,81 @@ public class WorkWithBaseTests
         }
         return students;
     }
+    // Типичный случай Строковый поиск
+    [Fact]
+    public void FilterString_TypicalSearch_ReturnsCorrectResults()
+    {
+        string searchString = "Иванов";
 
+        var result = WorkWithBase.FilterString(testStudents, searchString);
+
+        Assert.Single(result);
+        Assert.Equal("Иванов И.И.", result[0].FullName);
+    }
+    // Типичный случай Строковый поиск
+    [Fact]
+    public void FilterString_PartialMatch_ReturnsMultipleResults()
+    {
+        string searchString = "ов";
+
+        var result = WorkWithBase.FilterString(testStudents, searchString);
+
+        Assert.Equal(4, result.Length);
+        Assert.Contains(result, s => s.FullName == "Иванов И.И.");
+        Assert.Contains(result, s => s.FullName == "Петров П.П.");
+        Assert.Contains(result, s => s.FullName == "Сидоров С.С.");
+        Assert.Contains(result, s => s.FullName == "Козлов К.К.");
+    }
+
+    // Граничный случай - пустой массив Строковый поиск
+    [Fact]
+    public void FilterString_EmptyArray_ReturnsEmptyArray()
+    {
+        Student[] emptyStudents = new Student[0];
+        string searchString = "Иванов";
+
+        var result = WorkWithBase.FilterString(emptyStudents, searchString);
+
+        Assert.Empty(result);
+    }
+    // Некорректные входные данные - null Входные данные Строковый поиск
+    [Fact]
+    public void FilterString_NullArray_ReturnsEmptyArray()
+    {
+        Student[] nullStudents = null;
+        string searchString = "Иванов";
+
+        var result = WorkWithBase.FilterString(nullStudents, searchString);
+
+        Assert.Empty(result);
+    }
+    // Большой объем данных Строковый поиск
+    public void FilterString_LargeDataSet_CompletesInReasonableTime()
+    {
+        const int largeSize = 10000;
+        var largeArray = GenerateLargeStudentArray(largeSize);
+        string searchString = "Иванов";
+
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
+        WorkWithBase.FilterString(largeArray, searchString);
+
+        stopwatch.Stop();
+
+        Assert.True(stopwatch.ElapsedMilliseconds < 5000,
+            $"Сортировка заняла {stopwatch.ElapsedMilliseconds} мс, что больше допустимых 5000 мс");
+    }
+    // Специфический случай: несовпадение регистра Строковый поиск
+    [Fact]
+    public void FilterString_CaseInsensitiveSearch_ReturnsMatches()
+    {
+        string searchString = "иванов";
+
+        var result = WorkWithBase.FilterString(testStudents, searchString);
+
+        Assert.Single(result);
+        Assert.Equal("Иванов И.И.", result[0].FullName);
+    }
     // Специфический случай: отсортированных массив Фильтр Возрастание
     [Fact]
     public void CustomSort_AlreadySortedAscending_ShouldNotChangeArray()
@@ -91,12 +166,26 @@ public class WorkWithBaseTests
         }
     }
 
-    // Некорректные входные данные - null Сортировка
+    // Некорректные входные данные - null Входные данные Сортировка
     [Fact]
     public void CustomSort_NullStudents_ThrowsArgumentNullException()
     {
         Assert.Throws<ArgumentNullException>(() =>
             WorkWithBase.CustomSort(null, "Возрастание", "Физика"));
+    }
+    // Некорректные входные данные - null Направление сортировки Сортировка
+    [Fact]
+    public void CustomSort_NullDirection_ThrowsArgumentException()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            WorkWithBase.CustomSort(testStudents,null, "Физика"));
+    }
+    // Некорректные входные данные - null Параметр Сортировка
+    [Fact]
+    public void CustomSort_NullParam_ThrowsArgumentException()
+    {
+        Assert.Throws<ArgumentException>(() =>
+            WorkWithBase.CustomSort(testStudents, "Возрастание", null));
     }
 
     // Граничный случай - пустой массив Сортировка
@@ -239,7 +328,6 @@ public class WorkWithBaseTests
             Assert.True(Math.Abs(propertyValue - value) < 0.001);
         }
     }
-
     // Некорректные входные данные - null Фильтр
     [Fact]
     public void FilterNums_NullStudentsArray_ShouldThrowArgumentNullException()
