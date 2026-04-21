@@ -46,6 +46,7 @@ public class WorkWithBase
     {
         return propertyName switch
         {
+            "ФИО студента" => s => s.FullName,
             "Физика" => s => s.Physics,
             "Английский язык" => s => s.English,
             "История" => s => s.History,
@@ -90,7 +91,56 @@ public class WorkWithBase
         var resultArray = result.ToArray();
         return resultArray;
     }
+    public static Student[] FilterString(Student[] students, string searchString)
+    {
+        if (students == null)
+            return new Student[0];
+        var propertySelector = GetPropertySelector("ФИО студента");
+        List<Student> result = new List<Student>();
+        for (int i = 0; i < students.Length; i++)
+        {
+            string studentName = Convert.ToString(propertySelector(students[i]));
+            bool matches = ContainsSubstring(studentName, searchString);
 
+            if (matches)
+            {
+                result.Add(students[i]);
+            }
+        }
+        var resultArray = result.ToArray();
+        return resultArray;
+    }
+    private static bool ContainsSubstring(string text, string substring)
+    {
+        if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(substring))
+            return string.IsNullOrEmpty(substring) && !string.IsNullOrEmpty(text);
+
+        string lowerText = text.ToLower();
+        string lowerSubstring = substring.ToLower();
+
+        int textLength = lowerText.Length;
+        int subLength = lowerSubstring.Length;
+
+        if (subLength > textLength)
+            return false;
+
+        for (int i = 0; i <= textLength - subLength; i++)
+        {
+            bool isMatch = true;
+            for (int j = 0; j < subLength; j++)
+            {
+                if (lowerText[i + j] != lowerSubstring[j])
+                {
+                    isMatch = false;
+                    break;
+                }
+            }
+            if (isMatch)
+                return true;
+        }
+
+        return false;
+    }
     public static Dictionary<string, Student[]> Group(Student[] students, string param)
     {
         if (students == null)
