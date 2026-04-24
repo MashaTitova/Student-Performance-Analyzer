@@ -21,6 +21,7 @@ public class WorkWithBase
         // Сортировка пузырьком
         int n = students.Length;
         if (n == 0) return;
+        bool flag = false;
         for (int i = 0; i < n - 1; i++)
         {
             for (int j = 0; j < n - i - 1; j++)
@@ -34,11 +35,14 @@ public class WorkWithBase
 
                 if (shouldSwap)
                 {
+                    flag = true; 
                     Student tmp = students[j];
                     students[j] = students[j + 1];
                     students[j + 1] = tmp;
                 }
             }
+            if (!flag) return;
+            flag = false;
         }
     }
 

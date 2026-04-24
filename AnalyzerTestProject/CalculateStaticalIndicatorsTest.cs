@@ -113,7 +113,7 @@ public class CalculateStatisticalIndicatorsTests
     }
     // Граничный случай - пустой массив Медиана
     [Fact]
-    public void CalculateMedian_EmptyList_ThrowsInvalidOperationException()
+    public void CalculateMedian_EmptyList_ReturnsZero()
     {
         var median = CalculateStatisticalIndicators.CalculateMedian(emptyStudents, "Physics");
 
@@ -121,7 +121,7 @@ public class CalculateStatisticalIndicatorsTests
     }
     // Некорректные входные данные - null Медиана
     [Fact]
-    public void CalculateMedian_NullList_ThrowsInvalidOperationException()
+    public void CalculateMedian_NullList_ReturnsZero()
     {
         var median = CalculateStatisticalIndicators.CalculateMedian(emptyStudents, "Physics");
 

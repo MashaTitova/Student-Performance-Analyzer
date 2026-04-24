@@ -85,6 +85,7 @@ public class WorkWithBaseTests
 
         Assert.Empty(result);
     }
+    [Fact]
     // Большой объем данных Строковый поиск
     public void FilterString_LargeDataSet_CompletesInReasonableTime()
     {
@@ -112,7 +113,7 @@ public class WorkWithBaseTests
         Assert.Single(result);
         Assert.Equal("Иванов И.И.", result[0].FullName);
     }
-    // Специфический случай: отсортированных массив Фильтр Возрастание
+    // Специфический случай: отсортированных массив Сортировка Возрастание
     [Fact]
     public void CustomSort_AlreadySortedAscending_ShouldNotChangeArray()
     {
@@ -140,17 +141,17 @@ public class WorkWithBaseTests
         }
     }
 
-    // Специфический случай: отсортированных массив Фильтр Убывание
+    // Специфический случай: отсортированных в обратную сторону массив Сортировка Убывание
     [Fact]
-    public void CustomSort_AlreadySortedDescending_ShouldHandleCorrectly()
+    public void CustomSort_AlreadySortedAscending_ShouldHandleCorrectly()
     {
         var descendingStudents = new Student[]
         {
-            new Student { Physics = 5.0 },
-            new Student { Physics = 4.5 },
-            new Student { Physics = 4.0 },
+            new Student { Physics = 2.5 },
             new Student { Physics = 3.0 },
-            new Student { Physics = 2.5 }
+            new Student { Physics = 4.0 },
+            new Student { Physics = 4.5 },
+            new Student { Physics = 5.0 }
         };
 
         var originalReferences = descendingStudents.Select(s => s).ToArray();
@@ -330,7 +331,7 @@ public class WorkWithBaseTests
     }
     // Некорректные входные данные - null Фильтр
     [Fact]
-    public void FilterNums_NullStudentsArray_ShouldThrowArgumentNullException()
+    public void FilterNums_NullStudentsArray_ReturnsEmptyArray()
     {
         var result = WorkWithBase.FilterNums(null, "5", "Physics", ">");
         Assert.IsType<Student[]>(result);
@@ -474,11 +475,9 @@ public class WorkWithBaseTests
     [Fact]
     public void GetGroupKeySelector_Course_ReturnsCourseAsString()
     {
-        // Act
         var selector = WorkWithBase.GetGroupKeySelector("Курс");
         var result = selector(testStudents[0]);
 
-        // Assert
         Assert.Equal("2", result);
     }
 }
