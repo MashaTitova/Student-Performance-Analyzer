@@ -290,9 +290,10 @@ var assemblies = [
   {
     "name": "AnalyzerClassLibrary",
     "classes": [
-      { "name": "CalculateStatisticalIndicators", "rp": "AnalyzerClassLibrary_CalculateStatisticalIndicators.html", "cl": 62, "ucl": 1, "cal": 63, "tl": 93, "cb": 26, "tb": 28, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "AnalyzerClassLibrary.AnomalyDetector", "rp": "AnalyzerClassLibrary_AnomalyDetector.html", "cl": 30, "ucl": 1, "cal": 31, "tl": 57, "cb": 13, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "CalculateStatisticalIndicators", "rp": "AnalyzerClassLibrary_CalculateStatisticalIndicators.html", "cl": 65, "ucl": 0, "cal": 65, "tl": 92, "cb": 26, "tb": 26, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Student", "rp": "AnalyzerClassLibrary_Student.html", "cl": 16, "ucl": 0, "cal": 16, "tl": 19, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "WorkWithBase", "rp": "AnalyzerClassLibrary_WorkWithBase.html", "cl": 89, "ucl": 11, "cal": 100, "tl": 132, "cb": 73, "tb": 94, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "WorkWithBase", "rp": "AnalyzerClassLibrary_WorkWithBase.html", "cl": 136, "ucl": 10, "cal": 146, "tl": 186, "cb": 98, "tb": 122, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -307,19 +308,25 @@ var riskHotspotMetrics = [
 
 var riskHotspots = [
   {
-    "assembly": "AnalyzerClassLibrary", "class": "WorkWithBase", "reportPath": "AnalyzerClassLibrary_WorkWithBase.html", "methodName": "GetPropertySelector(System.String)", "methodShortName": "GetPropertySelector(...)", "fileIndex": 0, "line": 46,
+    "assembly": "AnalyzerClassLibrary", "class": "WorkWithBase", "reportPath": "AnalyzerClassLibrary_WorkWithBase.html", "methodName": "GetPropertySelector(System.String)", "methodShortName": "GetPropertySelector(...)", "fileIndex": 0, "line": 50,
     "metrics": [
-      { "value": 311, "exceeded": true },
-      { "value": 50, "exceeded": true },
+      { "value": 310, "exceeded": true },
+      { "value": 54, "exceeded": true },
     ]},
   {
     "assembly": "AnalyzerClassLibrary", "class": "WorkWithBase", "reportPath": "AnalyzerClassLibrary_WorkWithBase.html", "methodName": "CustomSort(Student[],System.String,System.String)", "methodShortName": "CustomSort(...)", "fileIndex": 0, "line": 9,
+    "metrics": [
+      { "value": 18, "exceeded": false },
+      { "value": 18, "exceeded": true },
+    ]},
+  {
+    "assembly": "AnalyzerClassLibrary", "class": "WorkWithBase", "reportPath": "AnalyzerClassLibrary_WorkWithBase.html", "methodName": "FilterNums(Student[],System.String,System.String,System.String)", "methodShortName": "FilterNums(...)", "fileIndex": 0, "line": 70,
     "metrics": [
       { "value": 16, "exceeded": false },
       { "value": 16, "exceeded": true },
     ]},
   {
-    "assembly": "AnalyzerClassLibrary", "class": "WorkWithBase", "reportPath": "AnalyzerClassLibrary_WorkWithBase.html", "methodName": "FilterNums(Student[],System.String,System.String,System.String)", "methodShortName": "FilterNums(...)", "fileIndex": 0, "line": 65,
+    "assembly": "AnalyzerClassLibrary", "class": "WorkWithBase", "reportPath": "AnalyzerClassLibrary_WorkWithBase.html", "methodName": "ContainsSubstring(System.String,System.String)", "methodShortName": "ContainsSubstring(...)", "fileIndex": 0, "line": 118,
     "metrics": [
       { "value": 16, "exceeded": false },
       { "value": 16, "exceeded": true },

@@ -9,22 +9,35 @@ public class CalculateStatisticalIndicators
         var selector = WorkWithBase.GetPropertySelector(columnText);
 
         double sum = 0;
-        int count = 0;
+        int count = students.Length;
 
-        foreach (var student in students)
+        for(int i = 0; i < students.Length; i++)
         {
-            sum += (double)selector(student);
-            count++;
+            sum += (double)selector(students[i]);
         }
-
-        if (count == 0)
-            return 0;
 
         return Math.Round(sum / count, 2);
 
        
     }
-
+    public static void BubbleSort(ref double[] values)
+    {
+        bool flag = false;
+        for (int i = 0; i < values.Length / 2 + 1; i++)
+        {
+            for (int j = 0; j < values.Length - i - 1; j++)
+            {
+                if (values[j] > values[j + 1])
+                {
+                    flag = true;
+                    double tmp = values[j];
+                    values[j] = values[j + 1];
+                    values[j + 1] = tmp;
+                }
+            }
+            if (!flag) return;
+        }
+    }
     public static double CalculateMedian(Student[] students, string columnText)
     {
         if (students.Length == 0)
@@ -38,21 +51,7 @@ public class CalculateStatisticalIndicators
         }
 
         int n = values.Length;
-        if (n == 0) return 0;
-
-        // Сортировка пузырьком 
-        for (int i = 0; i < n - 1; i++)
-        {
-            for (int j = 0; j < n - i - 1; j++)
-            {
-                if (values[j] > values[j + 1])
-                {
-                    double tmp = values[j];
-                    values[j] = values[j + 1];
-                    values[j + 1] = tmp;
-                }
-            }
-        }
+       BubbleSort(ref  values);
 
         // Расчёт медианы
         if (n % 2 == 1)

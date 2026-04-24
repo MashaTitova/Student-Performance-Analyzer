@@ -95,7 +95,7 @@ public class AnomalyDetectorTest
     }
     // Некорректные входные данные - несуществующий параметр
     [Fact]
-    public void FindAnomalies_InvalidParam_ReturnsEmptyArray()
+    public void FindAnomalies_InvalidParam_ReturnsAverageArray()
     {
         string invalidParam = "InvalidProperty";
 

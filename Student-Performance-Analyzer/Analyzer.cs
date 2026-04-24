@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
+using System.Diagnostics;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Student_Performance_Analyzer
 {
-    public partial class Analyzer_form : Form
+    partial class Analyzer_form : Form
     {
         private string selectedFilePath = "";
         private Student[] studentArray = new Student[0];
         private Student[] originalStudentArray = new Student[0];
         private BindingSource bindingSource = new BindingSource();
         private string report = "Отчёт о работе с данными об успеваемости студентов.\n";
+        private int clickCount = 0;
 
         public Analyzer_form()
         {
@@ -92,7 +88,7 @@ namespace Student_Performance_Analyzer
                         Apply_button.Text = "Построить рейтинг";
                         Remove_button.Text = "Скрыть рейтинг";
                     }
-                    if(tmp.Name == "button_Anomalies")
+                    if (tmp.Name == "button_Anomalies")
                     {
                         Base_panel.Visible = true;
                         NameUnit_label.Text = "Поиск аномалий";
@@ -140,7 +136,7 @@ namespace Student_Performance_Analyzer
                 Rating_panel.Visible = false;
                 Chart_panel.Visible = false;
             }
-            if(panel_Anomalies.Visible == true)
+            if (panel_Anomalies.Visible == true)
             {
                 panel_Anomalies.Visible = false;
             }
@@ -245,7 +241,7 @@ namespace Student_Performance_Analyzer
                 bindingSource.ResetBindings(false);
                 StudentInfo_dataGridView.DataSource = bindingSource;
                 StatInfoNum_label.Text = $"{studentArray.Length - 1}";
-               
+
             }
             catch (Exception ex)
             {
@@ -289,6 +285,10 @@ namespace Student_Performance_Analyzer
 
         private void GetTab()
         {
+            for (int i = 0; i < 5; i++)
+            {
+                report += "\n";
+            }
             report += "ID;ФИО студента;Курс;Группа;Физика;Английский язык;История;Физическая культура;Культурология;Информатика;Психология;Математика;Биология;Химия;Общий средний балл;Кол-во задолженностей\n";
         }
 
@@ -375,7 +375,7 @@ namespace Student_Performance_Analyzer
                     }
                     report += $"{string.Join(";", cellValues)}\n";
                 }
-               
+
             }
 
             if (StatisticalIndicators_panel.Visible == true && ChooseColumn_comboBox.Text != "")
@@ -551,10 +551,10 @@ namespace Student_Performance_Analyzer
         }
         private void Rating_Mode()
         {
-            if(!checkBox_StudentRating.Checked && !checkBox_GroupRating.Checked)
+            if (!checkBox_StudentRating.Checked && !checkBox_GroupRating.Checked)
             { return; }
             GetTab();
-           
+
 
             if (string.IsNullOrEmpty(RatingCriteria_comboBox.Text))
             {
@@ -870,6 +870,63 @@ namespace Student_Performance_Analyzer
                 "Справка пользователя",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Asterisk);
+            }
+        }
+        private void button_Time_Click(object sender, EventArgs e)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            WorkWithBase.CustomSort(studentArray, "Возрастание", "Физика");
+            stopwatch.Stop();
+            TimeSpan elapsedSort = stopwatch.Elapsed;
+            MessageBox.Show($"Сортировка {elapsedSort.TotalMilliseconds.ToString()}");
+            stopwatch.Reset();
+
+            stopwatch.Start();
+            CalculateStatisticalIndicators.CalculateAverage(studentArray, "Физика");
+            stopwatch.Stop();
+            TimeSpan elapsedAverage = stopwatch.Elapsed;
+            MessageBox.Show($"Среднее арифметическое {elapsedAverage.TotalMilliseconds.ToString()}");
+            stopwatch.Reset();
+
+            stopwatch.Start();
+            CalculateStatisticalIndicators.CalculateMedian(studentArray, "Физика");
+            stopwatch.Stop();
+            TimeSpan elapsedMedian = stopwatch.Elapsed;
+            MessageBox.Show($"Медиана {elapsedMedian.TotalMilliseconds.ToString()}");
+            stopwatch.Reset();
+
+            stopwatch.Start();
+            CalculateStatisticalIndicators.CalculateMinMax(studentArray, "Физика");
+            stopwatch.Stop();
+            TimeSpan elapsedMinMAx = stopwatch.Elapsed;
+            MessageBox.Show($"МинМакс {elapsedMinMAx.TotalMilliseconds.ToString()}");
+            stopwatch.Reset();
+
+            stopwatch.Start();
+            AnalyzerClassLibrary.AnomalyDetector.FindAnomalies(studentArray, "Физика");
+            stopwatch.Stop();
+            TimeSpan elapsedAnomalies = stopwatch.Elapsed;
+            MessageBox.Show($"Аномалии {elapsedAnomalies.TotalMilliseconds.ToString()}");
+            stopwatch.Reset();
+
+
+        }
+
+        private void NameUnit_label_Click(object sender, EventArgs e)
+        {
+            clickCount++;
+            if (clickCount == 5)
+            {
+                if (button_Time.Visible == false)
+                {
+                    button_Time.Visible = true;
+                }
+                else
+                {
+                    button_Time.Visible = false;
+                }
+                clickCount = 0;
             }
         }
     }

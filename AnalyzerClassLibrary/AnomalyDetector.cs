@@ -7,7 +7,6 @@
             if (data == null || data.Length < 4)
                 return new Student[0];
 
-            // Сортируем данные вручную (пузырьковая сортировка)
             WorkWithBase.CustomSort(data, "Возрастание", param);
 
             var selector = WorkWithBase.GetPropertySelector(param);

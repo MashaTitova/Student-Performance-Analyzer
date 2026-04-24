@@ -37,6 +37,11 @@
             ExportingReportsHome_button = new Button();
             ExitApp_button = new Button();
             Home_panel = new Panel();
+            HomeButtons_flowLayoutPanel = new FlowLayoutPanel();
+            LoadFile_button = new Button();
+            button_Anomalies = new Button();
+            BuildingRatingsHome_button = new Button();
+            button_Time = new Button();
             panel_Anomalies = new Panel();
             label_AmonaliesParametr = new Label();
             label_AnomaliesResearch = new Label();
@@ -83,11 +88,8 @@
             Remove_button = new Button();
             Return_button = new Button();
             Info_button = new Button();
-            HomeButtons_flowLayoutPanel = new FlowLayoutPanel();
-            LoadFile_button = new Button();
-            button_Anomalies = new Button();
-            BuildingRatingsHome_button = new Button();
             Home_panel.SuspendLayout();
+            HomeButtons_flowLayoutPanel.SuspendLayout();
             panel_Anomalies.SuspendLayout();
             WorkWithBase_panel.SuspendLayout();
             Chart_panel.SuspendLayout();
@@ -98,7 +100,6 @@
             Base_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)StudentInfo_dataGridView).BeginInit();
             Button_panel.SuspendLayout();
-            HomeButtons_flowLayoutPanel.SuspendLayout();
             SuspendLayout();
             // 
             // NameUnit_label
@@ -113,6 +114,7 @@
             NameUnit_label.TabIndex = 0;
             NameUnit_label.Text = "Анализатор успеваемости студентов";
             NameUnit_label.TextAlign = ContentAlignment.TopCenter;
+            NameUnit_label.Click += NameUnit_label_Click;
             // 
             // DataSetHome_button
             // 
@@ -170,6 +172,7 @@
             // Home_panel
             // 
             Home_panel.BackColor = Color.Transparent;
+            Home_panel.Controls.Add(HomeButtons_flowLayoutPanel);
             Home_panel.Controls.Add(panel_Anomalies);
             Home_panel.Controls.Add(WorkWithBase_panel);
             Home_panel.Controls.Add(Chart_panel);
@@ -179,13 +182,87 @@
             Home_panel.Controls.Add(Base_panel);
             Home_panel.Controls.Add(NameUnit_label);
             Home_panel.Controls.Add(Button_panel);
-            Home_panel.Controls.Add(HomeButtons_flowLayoutPanel);
             Home_panel.Dock = DockStyle.Fill;
             Home_panel.Location = new Point(0, 0);
             Home_panel.Margin = new Padding(4, 2, 4, 2);
             Home_panel.Name = "Home_panel";
             Home_panel.Size = new Size(1384, 1028);
             Home_panel.TabIndex = 7;
+            // 
+            // HomeButtons_flowLayoutPanel
+            // 
+            HomeButtons_flowLayoutPanel.Anchor = AnchorStyles.None;
+            HomeButtons_flowLayoutPanel.AutoSize = true;
+            HomeButtons_flowLayoutPanel.BackColor = Color.Transparent;
+            HomeButtons_flowLayoutPanel.Controls.Add(LoadFile_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(DataSetHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(StatisticalIndicatorsHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(button_Anomalies);
+            HomeButtons_flowLayoutPanel.Controls.Add(BuildingRatingsHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(ExportingReportsHome_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(ExitApp_button);
+            HomeButtons_flowLayoutPanel.Controls.Add(button_Time);
+            HomeButtons_flowLayoutPanel.Location = new Point(431, 158);
+            HomeButtons_flowLayoutPanel.Margin = new Padding(4, 2, 4, 2);
+            HomeButtons_flowLayoutPanel.MaximumSize = new Size(700, 800);
+            HomeButtons_flowLayoutPanel.MinimumSize = new Size(496, 582);
+            HomeButtons_flowLayoutPanel.Name = "HomeButtons_flowLayoutPanel";
+            HomeButtons_flowLayoutPanel.Size = new Size(554, 762);
+            HomeButtons_flowLayoutPanel.TabIndex = 9;
+            // 
+            // LoadFile_button
+            // 
+            LoadFile_button.AutoSize = true;
+            LoadFile_button.BackColor = Color.Transparent;
+            LoadFile_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            LoadFile_button.Location = new Point(4, 2);
+            LoadFile_button.Margin = new Padding(4, 2, 4, 2);
+            LoadFile_button.Name = "LoadFile_button";
+            LoadFile_button.Size = new Size(546, 90);
+            LoadFile_button.TabIndex = 7;
+            LoadFile_button.Text = "Загрузить файл";
+            LoadFile_button.UseVisualStyleBackColor = false;
+            LoadFile_button.Click += LoadFile_button_Click;
+            // 
+            // button_Anomalies
+            // 
+            button_Anomalies.AutoSize = true;
+            button_Anomalies.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            button_Anomalies.Location = new Point(4, 284);
+            button_Anomalies.Margin = new Padding(4, 2, 4, 2);
+            button_Anomalies.Name = "button_Anomalies";
+            button_Anomalies.Size = new Size(546, 90);
+            button_Anomalies.TabIndex = 8;
+            button_Anomalies.Text = "Поиск аномалий";
+            button_Anomalies.UseVisualStyleBackColor = true;
+            button_Anomalies.Click += Home_button_Click;
+            // 
+            // BuildingRatingsHome_button
+            // 
+            BuildingRatingsHome_button.AutoSize = true;
+            BuildingRatingsHome_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            BuildingRatingsHome_button.Location = new Point(4, 378);
+            BuildingRatingsHome_button.Margin = new Padding(4, 2, 4, 2);
+            BuildingRatingsHome_button.Name = "BuildingRatingsHome_button";
+            BuildingRatingsHome_button.Size = new Size(546, 90);
+            BuildingRatingsHome_button.TabIndex = 3;
+            BuildingRatingsHome_button.Text = "Построение рейтингов";
+            BuildingRatingsHome_button.UseVisualStyleBackColor = true;
+            BuildingRatingsHome_button.Click += Home_button_Click;
+            // 
+            // button_Time
+            // 
+            button_Time.AutoSize = true;
+            button_Time.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            button_Time.Location = new Point(4, 660);
+            button_Time.Margin = new Padding(4, 2, 4, 2);
+            button_Time.Name = "button_Time";
+            button_Time.Size = new Size(546, 90);
+            button_Time.TabIndex = 9;
+            button_Time.Text = "Время алгоритмов";
+            button_Time.UseVisualStyleBackColor = true;
+            button_Time.Visible = false;
+            button_Time.Click += button_Time_Click;
             // 
             // panel_Anomalies
             // 
@@ -751,66 +828,6 @@
             Info_button.UseVisualStyleBackColor = true;
             Info_button.Click += Get_Inf;
             // 
-            // HomeButtons_flowLayoutPanel
-            // 
-            HomeButtons_flowLayoutPanel.Anchor = AnchorStyles.None;
-            HomeButtons_flowLayoutPanel.AutoSize = true;
-            HomeButtons_flowLayoutPanel.BackColor = Color.Transparent;
-            HomeButtons_flowLayoutPanel.Controls.Add(LoadFile_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(DataSetHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(StatisticalIndicatorsHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(button_Anomalies);
-            HomeButtons_flowLayoutPanel.Controls.Add(BuildingRatingsHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(ExportingReportsHome_button);
-            HomeButtons_flowLayoutPanel.Controls.Add(ExitApp_button);
-            HomeButtons_flowLayoutPanel.Location = new Point(431, 160);
-            HomeButtons_flowLayoutPanel.Margin = new Padding(4, 2, 4, 2);
-            HomeButtons_flowLayoutPanel.MaximumSize = new Size(700, 800);
-            HomeButtons_flowLayoutPanel.MinimumSize = new Size(496, 582);
-            HomeButtons_flowLayoutPanel.Name = "HomeButtons_flowLayoutPanel";
-            HomeButtons_flowLayoutPanel.Size = new Size(554, 664);
-            HomeButtons_flowLayoutPanel.TabIndex = 9;
-            // 
-            // LoadFile_button
-            // 
-            LoadFile_button.AutoSize = true;
-            LoadFile_button.BackColor = Color.Transparent;
-            LoadFile_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            LoadFile_button.Location = new Point(4, 2);
-            LoadFile_button.Margin = new Padding(4, 2, 4, 2);
-            LoadFile_button.Name = "LoadFile_button";
-            LoadFile_button.Size = new Size(546, 90);
-            LoadFile_button.TabIndex = 7;
-            LoadFile_button.Text = "Загрузить файл";
-            LoadFile_button.UseVisualStyleBackColor = false;
-            LoadFile_button.Click += LoadFile_button_Click;
-            // 
-            // button_Anomalies
-            // 
-            button_Anomalies.AutoSize = true;
-            button_Anomalies.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            button_Anomalies.Location = new Point(4, 284);
-            button_Anomalies.Margin = new Padding(4, 2, 4, 2);
-            button_Anomalies.Name = "button_Anomalies";
-            button_Anomalies.Size = new Size(546, 90);
-            button_Anomalies.TabIndex = 8;
-            button_Anomalies.Text = "Поиск аномалий";
-            button_Anomalies.UseVisualStyleBackColor = true;
-            button_Anomalies.Click += Home_button_Click;
-            // 
-            // BuildingRatingsHome_button
-            // 
-            BuildingRatingsHome_button.AutoSize = true;
-            BuildingRatingsHome_button.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            BuildingRatingsHome_button.Location = new Point(4, 378);
-            BuildingRatingsHome_button.Margin = new Padding(4, 2, 4, 2);
-            BuildingRatingsHome_button.Name = "BuildingRatingsHome_button";
-            BuildingRatingsHome_button.Size = new Size(546, 90);
-            BuildingRatingsHome_button.TabIndex = 3;
-            BuildingRatingsHome_button.Text = "Построение рейтингов";
-            BuildingRatingsHome_button.UseVisualStyleBackColor = true;
-            BuildingRatingsHome_button.Click += Home_button_Click;
-            // 
             // Analyzer_form
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -827,6 +844,8 @@
             FormClosing += Analyzer_form_FormClosing;
             Home_panel.ResumeLayout(false);
             Home_panel.PerformLayout();
+            HomeButtons_flowLayoutPanel.ResumeLayout(false);
+            HomeButtons_flowLayoutPanel.PerformLayout();
             panel_Anomalies.ResumeLayout(false);
             WorkWithBase_panel.ResumeLayout(false);
             WorkWithBase_panel.PerformLayout();
@@ -840,8 +859,6 @@
             Base_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)StudentInfo_dataGridView).EndInit();
             Button_panel.ResumeLayout(false);
-            HomeButtons_flowLayoutPanel.ResumeLayout(false);
-            HomeButtons_flowLayoutPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -903,5 +920,6 @@
         private Label label_AmonaliesParametr;
         private Label label_AnomaliesResearch;
         private ComboBox comboBox_Anomalies;
+        private Button button_Time;
     }
 }
